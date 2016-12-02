@@ -5,12 +5,16 @@
  */
 package data.dao;
 
-import data.entities.Cateringorder;
+import java.util.List;
 
 /**
  *
  * @author srostantkritikos06
  */
-public interface ICateringOrderDAO extends DAOFacade<Cateringorder>{
-    
+public interface DAOFacade<T> {
+    public T create(T entity);
+    public boolean delete(T entity);
+    public T edit(T entity);
+    public T find(T entity);
+    public List<T> getAll();
 }
