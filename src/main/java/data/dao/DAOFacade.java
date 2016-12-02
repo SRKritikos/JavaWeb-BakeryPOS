@@ -10,6 +10,7 @@ import com.google.inject.Inject;
 import config.database.IDatabaseConnection;
 import java.util.List;
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.transaction.UserTransaction;
 
@@ -93,8 +94,8 @@ public abstract class DAOFacade<T> implements IDAOFacade<T>{
         List<T> rtVl = null;
         try {
             
-            rtVl = em.createNamedQuery("T.findAll", classType)
-                    .getResultList();
+            Query query = em.createNamedQuery(this.classType.getSimpleName() + ".findAll");
+            rtVl =  query.getResultList();
         } catch (Exception e) {
             System.out.println("Failed to retrieve entiy " + this.getClass().getName());
             e.printStackTrace();

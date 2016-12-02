@@ -8,13 +8,18 @@ clients\paymentclient\PaymentsModule.class
 data\entities\Productcategory_.class
 data\entities\Product_.class
 clients\paymentclient\AmericanExpressPayment.class
+services\ICustomerService.class
 data\entities\Userroles.class
 data\entities\Customer_.class
+data\dao\IDAOFacade.class
+services\CustomerService.class
 data\entities\CateringorderProduct.class
 data\entities\Cateringorder.class
 data\dao\ProductDAOImpl.class
+data\dao\DAOModule.class
 data\dao\PaymentDAOImpl.class
 data\dao\CustomerDAOImpl.class
+services\IProductService.class
 clients\paymentclient\VisaPayment.class
 config\database\HomeDatabaseConnection.class
 data\entities\CateringorderProductPK.class
@@ -28,6 +33,7 @@ data\dao\ProductReviewDAOImpl.class
 data\entities\Paymentmethod_.class
 clients\paymentclient\IPaymentProcess.class
 config\database\IDatabaseConnection.class
+services\ProductService.class
 data\dao\DAOFacade.class
 data\entities\CateringorderProductPK_.class
 data\entities\CateringorderProduct_.class

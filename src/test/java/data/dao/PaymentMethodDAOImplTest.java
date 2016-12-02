@@ -87,17 +87,10 @@ public class PaymentMethodDAOImplTest {
     @Test
     public void getAllTest() {
         List<Paymentmethod> dbPaymentmethod = new ArrayList<>();
-        CriteriaQuery cq = Mockito.mock(CriteriaQuery.class);
-        CriteriaBuilder cb = Mockito.mock(CriteriaBuilder.class);
         TypedQuery query = Mockito.mock(TypedQuery.class);
-        Mockito.when(em.getCriteriaBuilder()).thenReturn(cb);
-        Mockito.when(cb.createQuery()).thenReturn(cq);
-        Mockito.when(cq
-                .select(cq.from(Customer.class)))
-                .thenReturn(cq);
-        Mockito.when(em.createQuery(cq)).thenReturn(query);
         Mockito.when(query.getResultList()).thenReturn(dbPaymentmethod);
-        List<Paymentmethod> result = new ArrayList<>();
+        Mockito.when(em.createNamedQuery("Paymentmethod.findAll")).thenReturn(query);
+        List<Paymentmethod> result = this.instance.getAll();
         assertEquals(result, dbPaymentmethod);
     }
 }

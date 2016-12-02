@@ -89,7 +89,8 @@ public class CateringOrderDAOImplTest {
         List<Cateringorder> dbCateringOrder = new ArrayList<>();
         TypedQuery query = Mockito.mock(TypedQuery.class);
         Mockito.when(query.getResultList()).thenReturn(dbCateringOrder);
-        List<Cateringorder> result = new ArrayList<>();
+        Mockito.when(em.createNamedQuery("Cateringorder.findAll")).thenReturn(query);
+        List<Cateringorder> result = this.instance.getAll();
         assertEquals(result, dbCateringOrder);
     }
 }

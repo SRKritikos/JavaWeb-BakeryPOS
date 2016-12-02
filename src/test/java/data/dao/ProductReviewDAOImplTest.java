@@ -91,7 +91,8 @@ public class ProductReviewDAOImplTest {
         List<Productreview> dbProductreview = new ArrayList<>();
         TypedQuery query = Mockito.mock(TypedQuery.class);
         Mockito.when(query.getResultList()).thenReturn(dbProductreview);
-        List<Paymentmethod> result = new ArrayList<>();
+        Mockito.when(em.createNamedQuery("Productreview.findAll")).thenReturn(query);
+        List<Productreview> result = this.instance.getAll();
         assertEquals(result, dbProductreview);
     }
 }

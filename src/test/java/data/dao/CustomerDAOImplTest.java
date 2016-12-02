@@ -13,22 +13,13 @@ import java.util.List;
 import java.util.UUID;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
-import javax.persistence.Query;
 import javax.persistence.TypedQuery;
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Root;
 import javax.transaction.UserTransaction;
 import org.junit.After;
-import org.junit.Assert;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
 import org.junit.Before;
 import org.junit.Test;
-import org.mockito.Mock;
 import org.mockito.Mockito;
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
 
 /**
  *
@@ -55,6 +46,7 @@ public class CustomerDAOImplTest {
     @After
     public void tearDown() {
     }
+    
     
     /**
      * Make sure create dbCustomer returns true
@@ -94,20 +86,11 @@ public class CustomerDAOImplTest {
     @Test
     public void getAllTest() {
         List<Customer> dbCustomers = new ArrayList<>();
-        CriteriaQuery cq = Mockito.mock(CriteriaQuery.class);
-        CriteriaBuilder cb = Mockito.mock(CriteriaBuilder.class);
-        Query query = Mockito.mock(Query.class);
-//        Mockito.when(em.getCriteriaBuilder()).thenReturn(cb);
-//        Mockito.when(cb.createQuery()).thenReturn(cq);
-//        Mockito.when(cq
-//                .select(cq.from(Customer.class)))
-//                .thenReturn(cq);
-        Mockito.when(em.createNamedQuery("")).thenReturn(query);
+        TypedQuery query = Mockito.mock(TypedQuery.class);
         Mockito.when(query.getResultList()).thenReturn(dbCustomers);
+        Mockito.when(em.createNamedQuery("Customer.findAll")).thenReturn(query);
         List<Customer> result = this.instance.getAll();
         assertEquals(result, dbCustomers);
     }
-    
-    
     
 }

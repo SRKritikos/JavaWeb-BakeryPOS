@@ -90,7 +90,8 @@ public class ProductDAOImplTest {
         List<Product> dbProduct = new ArrayList<>();
         TypedQuery query = Mockito.mock(TypedQuery.class);
         Mockito.when(query.getResultList()).thenReturn(dbProduct);
-        List<Paymentmethod> result = new ArrayList<>();
+        Mockito.when(em.createNamedQuery("Product.findAll")).thenReturn(query);
+        List<Product> result = this.instance.getAll();
         assertEquals(result, dbProduct);
     }
 }

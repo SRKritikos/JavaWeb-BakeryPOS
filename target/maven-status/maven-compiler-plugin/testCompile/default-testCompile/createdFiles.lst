@@ -1,2 +1,8 @@
+data\dao\CustomerDAOImplTest.class
 config\database\SchoolDatabaseConnectionTest.class
+data\dao\CateringOrderDAOImplTest.class
+data\dao\PaymentMethodDAOImplTest.class
 config\database\HomeDatabaseConnectionTest.class
+data\dao\ProductReviewDAOImplTest.class
+services\ProductServiceTest.class
+data\dao\ProductDAOImplTest.class
