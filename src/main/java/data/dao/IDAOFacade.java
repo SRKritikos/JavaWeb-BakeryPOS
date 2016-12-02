@@ -11,10 +11,10 @@ import java.util.List;
  *
  * @author srostantkritikos06
  */
-public interface DAOFacade<T> {
-    public T create(T entity);
+public interface IDAOFacade<T> {
+    public boolean create(T entity);
     public boolean delete(T entity);
-    public T edit(T entity);
-    public T find(T entity);
+    public boolean edit(T entity);
+    public T find(String id);
     public List<T> getAll();
 }

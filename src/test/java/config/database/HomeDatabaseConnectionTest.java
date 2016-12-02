@@ -6,6 +6,7 @@
 package config.database;
 
 import javax.persistence.EntityManager;
+import javax.transaction.UserTransaction;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -22,12 +23,17 @@ import static org.mockito.Mockito.mock;
 public class HomeDatabaseConnectionTest {
     EntityManager em;
     HomeDatabaseConnection instance;
+    UserTransaction utx;
     public HomeDatabaseConnectionTest() {
     }
     
     @Before
     public void setUp() {
-       
+        em = Mockito.mock(EntityManager.class);
+        utx = Mockito.mock(UserTransaction.class);
+        instance = new HomeDatabaseConnection();
+        instance.setUtx(utx);
+        instance.setEm(em);
     }
     
     @After
@@ -36,15 +42,20 @@ public class HomeDatabaseConnectionTest {
 
     /**
      * Test of getConnection method, of class HomeDatabaseConnection.
+     * Make sure em is not null
      */
     @Test
-    public void testGetConnection() throws Exception {
+    public void testGetConnection() {
         System.out.println("getConnection");      
-        em = Mockito.mock(EntityManager.class);
-        instance = new HomeDatabaseConnection();
-        instance.setEm(em);
         EntityManager result = instance.getConnection();
         assertNotNull(result);
     }
     
+    
+    @Test
+    public void testGetTransaction() {
+        System.out.println("getTransaction");
+        UserTransaction result = instance.getTransaction();
+        assertNotNull(result);
+    }
 }

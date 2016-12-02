@@ -5,48 +5,19 @@
  */
 package data.dao;
 
-import com.google.inject.Inject;
 import config.database.IDatabaseConnection;
 import data.entities.Customer;
-import java.util.List;
 
 /**
  *
  * @author srostantkritikos06
  */
-public class CustomerDAOImpl implements ICustomerDAO {
-    
-    private IDatabaseConnection dbCon;
+public class CustomerDAOImpl extends DAOFacade<Customer> {
 
-    @Inject
     public CustomerDAOImpl(IDatabaseConnection dbCon) {
-        this.dbCon = dbCon;
+        super(dbCon, Customer.class);
     }
+
     
-    
-    @Override
-    public Customer create(Customer entity) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public boolean delete(Customer entity) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public Customer edit(Customer entity) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public Customer find(Customer entity) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public List<Customer> getAll() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
     
 }

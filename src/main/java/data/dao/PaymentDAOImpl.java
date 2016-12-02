@@ -5,46 +5,18 @@
  */
 package data.dao;
 
-import com.google.inject.Inject;
 import config.database.IDatabaseConnection;
 import data.entities.Paymentmethod;
-import java.util.List;
 
 /**
  *
  * @author srostantkritikos06
  */
-public class PaymentDAOImpl implements IPaymentDAO {
-    private IDatabaseConnection dbCon;
+public class PaymentDAOImpl extends DAOFacade<Paymentmethod> {
 
-    @Inject
     public PaymentDAOImpl(IDatabaseConnection dbCon) {
-        this.dbCon = dbCon;
-    }
-    
-    @Override
-    public Paymentmethod create(Paymentmethod entity) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        super(dbCon, Paymentmethod.class);
     }
 
-    @Override
-    public boolean delete(Paymentmethod entity) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public Paymentmethod edit(Paymentmethod entity) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public Paymentmethod find(Paymentmethod entity) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public List<Paymentmethod> getAll() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
     
 }

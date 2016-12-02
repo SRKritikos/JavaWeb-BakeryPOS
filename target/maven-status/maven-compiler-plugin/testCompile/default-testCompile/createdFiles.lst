@@ -1,2 +1,2 @@
-config\database\HomeDatabaseConnectionTest.class
 config\database\SchoolDatabaseConnectionTest.class
+config\database\HomeDatabaseConnectionTest.class

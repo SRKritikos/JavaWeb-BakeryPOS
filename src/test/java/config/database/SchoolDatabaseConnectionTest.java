@@ -6,12 +6,14 @@
 package config.database;
 
 import javax.persistence.EntityManager;
+import javax.transaction.UserTransaction;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import org.mockito.Mockito;
 
 /**
  *
@@ -19,19 +21,16 @@ import static org.junit.Assert.*;
  */
 public class SchoolDatabaseConnectionTest {
     
-    public SchoolDatabaseConnectionTest() {
-    }
-    
-    @BeforeClass
-    public static void setUpClass() {
-    }
-    
-    @AfterClass
-    public static void tearDownClass() {
-    }
-    
+    EntityManager em;
+    SchoolDatabaseConnection instance;
+    UserTransaction utx;
     @Before
     public void setUp() {
+        em = Mockito.mock(EntityManager.class);
+        instance = new SchoolDatabaseConnection();
+        utx = Mockito.mock(UserTransaction.class);
+        instance.setUtx(utx);
+        instance.setEm(em);
     }
     
     @After
@@ -40,16 +39,20 @@ public class SchoolDatabaseConnectionTest {
 
     /**
      * Test of getConnection method, of class SchoolDatabaseConnection.
+     * Make sure em is not null
      */
     @Test
     public void testGetConnection() {
         System.out.println("getConnection");
-        SchoolDatabaseConnection instance = new SchoolDatabaseConnection();
-        EntityManager expResult = null;
         EntityManager result = instance.getConnection();
-        assertNotEquals(result, expResult);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertNotNull(result);
+
     }
     
+    @Test
+    public void testGetTransaction() {
+        System.out.println("getTransaction");
+        UserTransaction result = instance.getTransaction();
+        assertNotNull(result);
+    }
 }

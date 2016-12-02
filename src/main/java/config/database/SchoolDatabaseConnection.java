@@ -5,8 +5,10 @@
  */
 package config.database;
 
+import javax.annotation.Resource;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.transaction.UserTransaction;
 
 /**
  *
@@ -15,10 +17,42 @@ import javax.persistence.PersistenceContext;
 public class SchoolDatabaseConnection implements IDatabaseConnection {
     @PersistenceContext(name="COMP31A3SchoolPU")
     private EntityManager em;
+    @Resource
+    private UserTransaction utx;
     
     @Override
     public EntityManager getConnection() {
         return em;
     }
+
+    /**
+     * Setter for injecting em manually
+     * @param em 
+     */
+    public void setEm(EntityManager em) {
+        this.em = em;
+    }
+
+    @Override
+    public UserTransaction getTransaction() {
+        return utx;
+    }
+
+    /**
+    * Setter for injecting utx manually
+    * @param em 
+    */
+    public void setUtx(UserTransaction utx) {
+        this.utx = utx;
+    }
+    
+    @Override
+    public void close() {
+        if (em != null) 
+            em.close();
+    }
+
+    
+    
     
 }

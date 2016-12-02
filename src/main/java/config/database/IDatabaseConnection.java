@@ -6,6 +6,7 @@
 package config.database;
 
 import javax.persistence.EntityManager;
+import javax.transaction.UserTransaction;
 
 /**
  *
@@ -13,4 +14,6 @@ import javax.persistence.EntityManager;
  */
 public interface IDatabaseConnection {
     public EntityManager getConnection();
+    public UserTransaction getTransaction();
+    public void close();
 }
