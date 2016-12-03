@@ -3,6 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package data.entities;
 
 import java.io.Serializable;
@@ -28,7 +29,8 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author srostantkritikos06
+ * @author Steven Kritikos
+ * email: stevenrktitikos@outlook.com
  */
 @Entity
 @Table(name = "paymentmethod")
@@ -57,10 +59,10 @@ public class Paymentmethod implements Serializable {
     @Column(name = "date_to")
     @Temporal(TemporalType.TIMESTAMP)
     private Date dateTo;
-    @OneToMany(mappedBy = "paymentMethodId", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "paymentMethodId", fetch = FetchType.EAGER)
     private List<Cateringorder> cateringorderList;
     @JoinColumn(name = "customer_id", referencedColumnName = "customer_id")
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     private Customer customerId;
 
     public Paymentmethod() {
@@ -143,5 +145,5 @@ public class Paymentmethod implements Serializable {
     public String toString() {
         return "data.entities.Paymentmethod[ paymentMethodId=" + paymentMethodId + " ]";
     }
-    
+
 }

@@ -6,11 +6,13 @@
 package data.dao;
 
 import java.util.List;
+import javax.ejb.Local;
 
 /**
  *
  * @author srostantkritikos06
  */
+@Local
 public interface IDAOFacade<T> {
     public boolean create(T entity);
     public boolean delete(T entity);

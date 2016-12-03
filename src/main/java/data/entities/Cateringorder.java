@@ -3,6 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package data.entities;
 
 import java.io.Serializable;
@@ -29,7 +30,8 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author srostantkritikos06
+ * @author Steven Kritikos
+ * email: stevenrktitikos@outlook.com
  */
 @Entity
 @Table(name = "cateringorder")
@@ -55,12 +57,12 @@ public class Cateringorder implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     private Date deliveryDate;
     @JoinColumn(name = "payment_method_id", referencedColumnName = "payment_method_id")
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     private Paymentmethod paymentMethodId;
     @JoinColumn(name = "customer_id", referencedColumnName = "customer_id")
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     private Customer customerId;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cateringorder", fetch = FetchType.LAZY)
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cateringorder", fetch = FetchType.EAGER)
     private List<CateringorderProduct> cateringorderProductList;
 
     public Cateringorder() {
@@ -143,5 +145,5 @@ public class Cateringorder implements Serializable {
     public String toString() {
         return "data.entities.Cateringorder[ cateringId=" + cateringId + " ]";
     }
-    
+
 }

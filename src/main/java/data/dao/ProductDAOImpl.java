@@ -5,18 +5,23 @@
  */
 package data.dao;
 
-import com.google.inject.Inject;
 import config.database.IDatabaseConnection;
 import data.entities.Product;
-import java.util.List;
-import javax.persistence.EntityManager;
+import javax.ejb.LocalBean;
+import javax.ejb.Stateful;
+import javax.inject.Inject;
+import javax.inject.Named;
 
 /**
  *
  * @author srostantkritikos06
  */
-public class ProductDAOImpl extends DAOFacade<Product> {
+@Stateful
+@LocalBean
+public class ProductDAOImpl extends DAOFacade<Product> implements IProductDAO{
     
+    @Inject
+    @Named("homedbcon")
     public ProductDAOImpl(IDatabaseConnection dbCon) {
         super(dbCon, Product.class);
     }

@@ -11,4 +11,6 @@
         <property name="driverClass" value="com.mysql.jdbc.Driver"/>
     </jdbc-connection-pool>
     <jdbc-resource enabled="true" jndi-name="java:app/jdbc/COMP31A3" object-type="user" pool-name="mysql_comp31a2_rootPool"/>
+    <jdbc-resource enabled="true" jndi-name="java:app/jdbc/COMP31A3" object-type="user" pool-name="mysql_comp31a2_rootPool"/>
+    <jdbc-resource enabled="true" jndi-name="java:app/####" object-type="user" pool-name="mysql_comp31a2_rootPool"/>
 </resources>

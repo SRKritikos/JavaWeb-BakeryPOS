@@ -3,13 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package clients.paymentclient;
+package services.clients;
 
 /**
  *
  * @author srostantkritikos06
  */
-public class AmericanExpressPayment implements IPaymentProcess {
+public class PaypalPayment implements IPaymentProcess {
 
     @Override
     public void processPaynent() {

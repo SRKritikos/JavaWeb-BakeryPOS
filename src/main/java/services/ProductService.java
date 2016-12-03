@@ -6,23 +6,26 @@
 
 package services;
 
-import com.google.inject.Inject;
-import com.google.inject.name.Named;
-import data.dao.IDAOFacade;
+
+import data.dao.ProductDAOImpl;
 import data.entities.Product;
 import java.util.List;
+import javax.ejb.EJB;
+import javax.ejb.Stateful;
 import javax.ejb.Stateless;
+
+import javax.inject.Inject;
 
 /**
  *
  * @author Steven Kritikos
  */
-@Stateless 
+@Stateless
 public class ProductService implements IProductService{
-
-    @Inject
-    @Named("ProductDAO")
-    private IDAOFacade<Product> productDAO;
+    @EJB
+    private ProductDAOImpl productDAO;
+    
+    
     
     @Override
     public List<Product> getAllProducts() {
@@ -38,20 +41,13 @@ public class ProductService implements IProductService{
 
     @Override
     public boolean saveProduct(Product product) {
-        boolean rtVl = false;
-        rtVl = this.productDAO.create(product);
+        boolean rtVl = this.productDAO.create(product);
         return rtVl;
     }
 
-    /**
-     * Used for testing
-     * @param productDAO 
-     */
-    public void setProductDAO(IDAOFacade<Product> productDAO) {
+    public void setProductDAO(ProductDAOImpl productDAO) {
         this.productDAO = productDAO;
     }
     
     
-
-
 }

@@ -5,6 +5,7 @@
  */
 package config.database;
 
+import javax.ejb.Local;
 import javax.persistence.EntityManager;
 import javax.transaction.UserTransaction;
 
@@ -12,6 +13,7 @@ import javax.transaction.UserTransaction;
  *
  * @author srostantkritikos06
  */
+@Local
 public interface IDatabaseConnection {
     public EntityManager getConnection();
     public UserTransaction getTransaction();

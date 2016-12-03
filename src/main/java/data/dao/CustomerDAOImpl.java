@@ -7,17 +7,22 @@ package data.dao;
 
 import config.database.IDatabaseConnection;
 import data.entities.Customer;
+import javax.ejb.LocalBean;
+import javax.ejb.Stateless;
+import javax.inject.Inject;
+import javax.inject.Named;
 
 /**
  *
  * @author srostantkritikos06
  */
-public class CustomerDAOImpl extends DAOFacade<Customer> {
+@Stateless
+@LocalBean
+public class CustomerDAOImpl extends DAOFacade<Customer> implements ICustomerDAO{
 
+    @Inject
+    @Named("homedbcon")
     public CustomerDAOImpl(IDatabaseConnection dbCon) {
         super(dbCon, Customer.class);
-    }
-
-    
-    
+    }   
 }

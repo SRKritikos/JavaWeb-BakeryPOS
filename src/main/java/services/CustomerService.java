@@ -6,11 +6,12 @@
 
 package services;
 
-import com.google.inject.Inject;
-import com.google.inject.name.Named;
-import data.dao.IDAOFacade;
+import data.dao.CustomerDAOImpl;
 import data.entities.Customer;
+import javax.ejb.EJB;
+import javax.ejb.Stateful;
 import javax.ejb.Stateless;
+import javax.inject.Inject;
 
 /**
  *
@@ -18,18 +19,12 @@ import javax.ejb.Stateless;
  */
 @Stateless
 public class CustomerService implements ICustomerService {
-    
-    @Inject
-    @Named("CustomerDAO")
-    IDAOFacade<Customer> customerDAO;
+    @EJB
+    private CustomerDAOImpl customerDAO;
 
-    public CustomerService() {   
-    }
-    
     @Override
      public boolean saveCustomer(Customer customer) {
-        boolean rtVl = false;
-        rtVl = this.customerDAO.create(customer);
+        boolean rtVl = this.customerDAO.create(customer);
         return rtVl;
     }
     
@@ -39,4 +34,8 @@ public class CustomerService implements ICustomerService {
         return rtVl;
     }
 
+    public void setCustomerDAO(CustomerDAOImpl customerDAO) {
+        this.customerDAO = customerDAO;
+    }
+    
 }

@@ -7,13 +7,19 @@ package data.dao;
 
 import config.database.IDatabaseConnection;
 import data.entities.Productreview;
+import javax.ejb.Stateless;
+import javax.inject.Inject;
+import javax.inject.Named;
 
 /**
  *
  * @author srostantkritikos06
  */
-public class ProductReviewDAOImpl extends DAOFacade<Productreview>{
+@Stateless
+public class ProductReviewDAOImpl extends DAOFacade<Productreview> implements IProductReviewDAO{
     
+    @Inject
+    @Named("homedbcon")
     public ProductReviewDAOImpl(IDatabaseConnection dbCon) {
         super(dbCon, Productreview.class);
     }

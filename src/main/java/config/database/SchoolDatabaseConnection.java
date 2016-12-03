@@ -5,7 +5,12 @@
  */
 package config.database;
 
+import annotations.SchoolDB;
 import javax.annotation.Resource;
+import javax.ejb.Singleton;
+import javax.ejb.Stateful;
+import javax.ejb.TransactionManagement;
+import javax.ejb.TransactionManagementType;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.UserTransaction;
@@ -14,6 +19,9 @@ import javax.transaction.UserTransaction;
  *
  * @author srostantkritikos06
  */
+@Stateful(name="schooldbcon")
+@TransactionManagement(value=TransactionManagementType.BEAN)
+@SchoolDB
 public class SchoolDatabaseConnection implements IDatabaseConnection {
     @PersistenceContext(name="COMP31A3SchoolPU")
     private EntityManager em;

@@ -3,6 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package data.entities;
 
 import java.io.Serializable;
@@ -25,7 +26,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author srostantkritikos06
+ * @author Steven Kritikos
  */
 @Entity
 @Table(name = "productreview")
@@ -54,10 +55,10 @@ public class Productreview implements Serializable {
     @Column(name = "number_stars")
     private Integer numberStars;
     @JoinColumn(name = "customer_id", referencedColumnName = "customer_id")
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     private Customer customerId;
     @JoinColumn(name = "product_id", referencedColumnName = "product_id")
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     private Product productId;
 
     public Productreview() {
@@ -139,5 +140,5 @@ public class Productreview implements Serializable {
     public String toString() {
         return "data.entities.Productreview[ reviewId=" + reviewId + " ]";
     }
-    
+
 }

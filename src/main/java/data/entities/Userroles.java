@@ -3,6 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package data.entities;
 
 import java.io.Serializable;
@@ -23,7 +24,8 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author srostantkritikos06
+ * @author Steven Kritikos
+ * email: stevenrktitikos@outlook.com
  */
 @Entity
 @Table(name = "userroles")
@@ -45,7 +47,7 @@ public class Userroles implements Serializable {
     @Size(min = 1, max = 64)
     @Column(name = "role_description")
     private String roleDescription;
-    @OneToMany(mappedBy = "roleId", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "roleId", fetch = FetchType.EAGER)
     private List<Customer> customerList;
 
     public Userroles() {
@@ -109,5 +111,5 @@ public class Userroles implements Serializable {
     public String toString() {
         return "data.entities.Userroles[ roleId=" + roleId + " ]";
     }
-    
+
 }

@@ -6,12 +6,11 @@
 
 package data.dao;
 
-import com.google.inject.Inject;
 import config.database.IDatabaseConnection;
 import java.util.List;
+import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
-import javax.persistence.criteria.CriteriaQuery;
 import javax.transaction.UserTransaction;
 
 /**
@@ -22,7 +21,6 @@ public abstract class DAOFacade<T> implements IDAOFacade<T>{
     protected IDatabaseConnection dbCon;
     private final Class<T> classType;
     
-    @Inject
     public DAOFacade(IDatabaseConnection dbCon, Class<T> classType) {
         this.dbCon = dbCon;
         this.classType = classType;

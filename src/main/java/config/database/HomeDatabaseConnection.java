@@ -6,6 +6,10 @@
 package config.database;
 
 import javax.annotation.Resource;
+import javax.ejb.Singleton;
+import javax.ejb.Stateful;
+import javax.ejb.TransactionManagement;
+import javax.ejb.TransactionManagementType;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.UserTransaction;
@@ -14,6 +18,8 @@ import javax.transaction.UserTransaction;
  *
  * @author srostantkritikos06
  */
+@Stateful(name="homedbcon")
+@TransactionManagement(value=TransactionManagementType.BEAN)
 public class HomeDatabaseConnection implements IDatabaseConnection {
     @PersistenceContext(name="COMP31A3HomePU")
     private EntityManager em;

@@ -7,16 +7,21 @@ package data.dao;
 
 import config.database.IDatabaseConnection;
 import data.entities.Cateringorder;
+import javax.ejb.Stateless;
+import javax.inject.Inject;
+import javax.inject.Named;
 
 /**
  *
  * @author srostantkritikos06
  */
-public class CateringOrderDAOImpl extends DAOFacade<Cateringorder> {
+@Stateless
+public class CateringOrderDAOImpl extends DAOFacade<Cateringorder> implements ICateringOrderDAO{
     
+    @Inject
+    @Named("homedbcon")
     public CateringOrderDAOImpl(IDatabaseConnection dbCon) {
         super(dbCon, Cateringorder.class);
     }
-  
     
 }
