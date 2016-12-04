@@ -5,6 +5,7 @@
  */
 package beans;
 
+import data.entities.Cateringorder;
 import data.entities.Customer;
 import javax.ejb.Local;
 
@@ -17,4 +18,8 @@ public interface IUserBean {
     public Customer getCustomer();
     public void setCustomer(Customer customer);
     public String logout();
+    public void setCurrentCateringOrder(Cateringorder cateringorder);
+    public Cateringorder getCurrentCateringOrder();
+    public void setCartTotal(Double cartTotal);
+    public Double getCartTotal();
 }

@@ -26,7 +26,7 @@ public class WriteReviewBean implements IWriteReviewBean{
     private String reviewText;
     private int numStars;
     private String productId;
-    @ManagedProperty(value="#{userbean}")
+    @ManagedProperty(value="#{user}")
     private UserBean user;
     @EJB
     private IReviewsService reviewservice;
@@ -69,7 +69,7 @@ public class WriteReviewBean implements IWriteReviewBean{
     public String submitReview() {
         System.out.println(this.numStars +  this.reviewText + "   $$$ " + this.productId );
         Product product = this.productservice.getProductById(productId);
-        //this.reviewservice.saveProductReview(product, this.user.getCustomer(), reviewText, numStars);
+        this.reviewservice.saveProductReview(product, this.user.getCustomer(), reviewText, numStars);
         return "home.xhtml";
     }
 
@@ -100,6 +100,16 @@ public class WriteReviewBean implements IWriteReviewBean{
     @Override
     public IProductService getProductservice() {
         return productservice;
+    }
+
+    @Override
+    public void setUser(UserBean user) {
+        this.user = user;
+    }
+
+    @Override
+    public UserBean getUser() {
+        return user;
     }
     
 }

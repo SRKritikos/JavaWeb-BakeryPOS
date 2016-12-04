@@ -5,6 +5,7 @@
  */
 package beans;
 
+import javax.ejb.Local;
 import services.ICustomerService;
 import services.IProductService;
 import services.IReviewsService;
@@ -13,6 +14,7 @@ import services.IReviewsService;
  *
  * @author Steven
  */
+@Local
 public interface IWriteReviewBean {
     public void setReviewText(String text);
     public String getReviewText();
@@ -27,4 +29,6 @@ public interface IWriteReviewBean {
     public void setProductservice(IProductService productservice);
     public ICustomerService getCustomerservice();
     public void setCustomerservice(ICustomerService customerservice);
+    public void setUser(UserBean user);
+    public UserBean getUser();
 }

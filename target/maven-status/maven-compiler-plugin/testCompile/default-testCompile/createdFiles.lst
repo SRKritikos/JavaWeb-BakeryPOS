@@ -1,6 +1,7 @@
 services\CustomerServiceTest.class
 config\database\HomeDatabaseConnectionTest.class
 beans\WriteReviewBeanTest.class
+services\ReviewServiceTest.class
 beans\LoginBeanTest.class
 data\dao\ProductDAOImplTest.class
 data\dao\CustomerDAOImplTest.class
@@ -11,3 +12,4 @@ beans\NavigationBeanTest.class
 data\dao\ProductReviewDAOImplTest.class
 services\ProductServiceTest.class
 beans\ProductsLisBeanTest.class
+beans\ViewReviewsBeanTest.class

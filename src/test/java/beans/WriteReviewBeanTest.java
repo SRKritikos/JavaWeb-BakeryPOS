@@ -10,6 +10,11 @@ import org.junit.After;
 import static org.junit.Assert.assertEquals;
 import org.junit.Before;
 import org.junit.Test;
+import static org.mockito.Matchers.anyString;
+import org.mockito.Mockito;
+import services.ICustomerService;
+import services.IProductService;
+import services.IReviewsService;
 
 /**
  *
@@ -17,11 +22,21 @@ import org.junit.Test;
  */
 public class WriteReviewBeanTest {
     private WriteReviewBean instance;
-    
+    private IReviewsService reviewservice;
+    private ICustomerService customerservice;
+    private IProductService productService;
+    private UserBean userbean; 
     @Before
     public void setUp() {
+        this.customerservice = Mockito.mock(ICustomerService.class);
+        this.productService = Mockito.mock(IProductService.class);
+        this.reviewservice = Mockito.mock(IReviewsService.class);
+        this.userbean = Mockito.mock(UserBean.class);
         this.instance = new WriteReviewBean();
-        
+        this.instance.setCustomerservice(customerservice);
+        this.instance.setProductservice(productService);
+        this.instance.setReviewservice(reviewservice);
+        this.instance.setUser(userbean);
     }
     
     @After

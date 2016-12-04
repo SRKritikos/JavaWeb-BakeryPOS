@@ -13,6 +13,7 @@ data\entities\CateringorderProductPK.class
 data\dao\CateringOrderDAOImpl.class
 beans\WriteReviewBean.class
 data\entities\Paymentmethod.class
+model\HomeProduct.class
 data\dao\ProductReviewDAOImpl.class
 beans\UserBean.class
 beans\NavigationBean.class
@@ -25,12 +26,14 @@ data\entities\Cateringorder_.class
 services\clients\MasterCardPayment.class
 beans\IUserBean.class
 data\entities\Product_.class
+services\ReviewService.class
 data\entities\Userroles.class
 beans\ILoginBean.class
 beans\ProductsListBean.class
 data\entities\Customer_.class
 annotations\SchoolDB.class
 services\CustomerService.class
+beans\ViewReviewsBean.class
 data\entities\Cateringorder.class
 services\clients\PaymentsFactory.class
 beans\INavigationBean.class
@@ -45,11 +48,13 @@ data\entities\Product.class
 config\database\SchoolDatabaseConnection.class
 beans\IWriteReviewBean.class
 data\entities\Paymentmethod_.class
+beans\IViewReviewsBean.class
 services\clients\VisaPayment.class
 data\entities\CateringorderProductPK_.class
 data\entities\CateringorderProduct_.class
 data\entities\Productcategory.class
 services\clients\IPaymentProcess.class
+services\IReviewsService.class
 beans\IProductListBean.class
 data\dao\IProductDAO.class
 data\entities\Productreview.class

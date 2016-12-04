@@ -5,6 +5,11 @@
  */
 package data.dao;
 
+import data.entities.Cateringorder;
+import data.entities.CateringorderProduct;
+import data.entities.CateringorderProductPK;
+import data.entities.Customer;
+import java.util.List;
 import javax.ejb.Local;
 
 /**
@@ -14,5 +19,8 @@ import javax.ejb.Local;
 
 @Local
 public interface ICateringOrderDAO {
-    
+    public CateringorderProduct getCateringorderProductById(CateringorderProductPK orderProductPK);
+    public boolean updateCateringOrderProduct(CateringorderProduct orderProduct);
+    public List<Cateringorder> getCateringOrdersForCustomer(Customer customerId);
+    public boolean createNewOrderProduct(CateringorderProduct orderProduct);
 }

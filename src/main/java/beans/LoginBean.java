@@ -6,7 +6,9 @@
 
 package beans;
 
+import data.entities.Cateringorder;
 import data.entities.Customer;
+import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
@@ -25,7 +27,7 @@ public class LoginBean implements ILoginBean {
     private String password;
     @EJB
     private ICustomerService customerservice;
-    @ManagedProperty(value="#{userbean}")
+    @ManagedProperty(value="#{user}")
     private UserBean user;
     
     @PostConstruct
@@ -59,6 +61,10 @@ public class LoginBean implements ILoginBean {
         Customer customer = customerservice.getCustomerByName(username);
         if (customer != null) {
             this.user.setCustomer(customer);
+            List<Cateringorder> customerOrder = customer.getCateringorderList();
+            if (customerOrder.isEmpty()) {
+                
+            }
             return "home.xhtml";
         }
         return "login.xhtml";
@@ -67,6 +73,16 @@ public class LoginBean implements ILoginBean {
     @Override
     public void setCustomerService(ICustomerService customerservice) {
         this.customerservice = customerservice;
+    }
+
+    @Override
+    public UserBean getUser() {
+        return user;
+    }
+
+    @Override
+    public void setUser(UserBean user) {
+        this.user = user;
     }
 
 

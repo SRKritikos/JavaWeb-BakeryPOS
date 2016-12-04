@@ -54,4 +54,13 @@ public class LoginBeanTest {
         assertEquals(expectedUsername, resultUsername);
         assertEquals(expectedPassword, resultPassword);
     }
+    
+    @Test 
+    public void testGetAndSetUser() {
+        UserBean expectedResult = new UserBean();
+        this.instance.setUser(expectedResult);
+        UserBean result = this.instance.getUser();
+        assertEquals(expectedResult, result);
+        
+    }
 }

@@ -6,8 +6,11 @@
 package beans;
 
 import data.entities.Product;
+import data.entities.Productreview;
 import java.util.List;
+import model.HomeProduct;
 import services.IProductService;
+import services.IReviewsService;
 import services.ProductService;
 
 /**
@@ -16,7 +19,11 @@ import services.ProductService;
  */
 public interface IProductListBean {
     public void init();
-    public void setProductlist(List<Product> productList);
-    public List<Product> getProductlist();
+    public void setProductlist(List<HomeProduct> productList);
+    public List<HomeProduct> getProductlist();
     public void setProductservice(IProductService productservice);
+    public void setReviewService(IReviewsService reviewService);
+    public String viewReviewsClick();
+    public ViewReviewsBean getViewReviewsBean();
+    public void setViewReviewsBean(ViewReviewsBean viewReviewsBean);
 }

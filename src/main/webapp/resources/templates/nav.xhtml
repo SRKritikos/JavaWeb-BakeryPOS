@@ -17,17 +17,24 @@ and open the template in the editor.
                     <span style="color: #94533E"> BATR Bakery &amp; Café</span>
                 </a>
             </div>
-            <ul class="nav navbar-nav nav-list">
-                <h:form>
-                    <li><h:commandLink action="#{navigation.goToHome()}" value="Home"/> ></li>
+            <h:form>
+                <ul class="nav navbar-nav">
+                    <li>
+                        <h:commandLink action="#{navigation.goToHome()}" >
+                            Home
+                        </h:commandLink>
+                    </li>
                     <li><h:commandLink action="#{navigation.goToCatering()}" value="Catering"/> </li>
-                </h:form>
-            </ul>
-              <ul class="nav navbar-nav navbar-right">
-                  <h:form>
-                    <li><h:commandLink action="#{user.logout()}" value="Logout"/></li>
-                  </h:form>
-              </ul>
+                </ul>
+            </h:form>
+              <h:form>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><h:commandLink action="#{user.logout()}" value="Logout">
+                      <span class="glyphicon glyphicon-log-out"></span>
+                      <span>Logout</span>
+                    </h:commandLink></li>
+                </ul>
+              </h:form>
           </div>
         </nav>
     </body>

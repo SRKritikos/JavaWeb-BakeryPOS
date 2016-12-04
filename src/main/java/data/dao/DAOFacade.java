@@ -8,6 +8,7 @@ package data.dao;
 
 import config.database.IDatabaseConnection;
 import java.util.List;
+import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
@@ -29,15 +30,13 @@ public abstract class DAOFacade<T> implements IDAOFacade<T>{
     @Override
     public boolean create(T entity) {
         EntityManager em = this.dbCon.getConnection();
-        UserTransaction utx = this.dbCon.getTransaction();
         boolean success = false;
         try {
-            utx.begin();
             em.persist(entity);
-            utx.commit();
             success = true;
         } catch (Exception e) {
             System.out.println("Failed to create instance in function " + this.getClass().getName());
+            e.printStackTrace();
         }
         return success;
     }
@@ -45,12 +44,9 @@ public abstract class DAOFacade<T> implements IDAOFacade<T>{
     @Override
     public boolean delete(T entity) {
         EntityManager em = this.dbCon.getConnection();
-        UserTransaction utx = this.dbCon.getTransaction();
         boolean success = false;
         try {
-            utx.begin();
             em.remove(entity);
-            utx.commit();
             success = true;
         } catch (Exception e) {
             System.out.println("Failed to delete entity " + this.getClass().getName());
@@ -61,12 +57,9 @@ public abstract class DAOFacade<T> implements IDAOFacade<T>{
     @Override
     public boolean edit(T entity) {
         EntityManager em = this.dbCon.getConnection();
-        UserTransaction utx = this.dbCon.getTransaction();
         boolean success = false;
         try {
-            utx.begin();
             em.merge(entity);
-            utx.commit();
             success = true;
         } catch (Exception e) {
             System.out.println("Failed to update entity " + this.getClass().getName());

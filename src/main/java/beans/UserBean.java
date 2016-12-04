@@ -6,6 +6,7 @@
 
 package beans;
 
+import data.entities.Cateringorder;
 import data.entities.Customer;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -20,6 +21,8 @@ import javax.faces.context.FacesContext;
 public class UserBean implements IUserBean {
 
     private Customer customer;
+    private Cateringorder currentCateringOrder;
+    private Double cartTotal;
     
     @Override
     public Customer getCustomer() {
@@ -30,6 +33,27 @@ public class UserBean implements IUserBean {
     public void setCustomer(Customer customer) {
         this.customer = customer;
     }
+
+    @Override
+    public Cateringorder getCurrentCateringOrder() {
+        return currentCateringOrder;
+    }
+
+    @Override
+    public void setCurrentCateringOrder(Cateringorder currentCateringOrder) {
+        this.currentCateringOrder = currentCateringOrder;
+    }
+
+    @Override
+    public Double getCartTotal() {
+        return cartTotal;
+    }
+
+    @Override
+    public void setCartTotal(Double cartTotal) {
+        this.cartTotal = cartTotal;
+    }
+    
 
     @Override
     public String logout() {

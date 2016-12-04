@@ -11,13 +11,16 @@ import data.entities.Customer;
 import data.entities.Product;
 import data.entities.Productreview;
 import java.util.Date;
+import java.util.List;
 import java.util.UUID;
 import javax.ejb.EJB;
+import javax.ejb.Stateless;
 
 /**
  *
  * @author Steven Kritikos
  */
+@Stateless
 public class ReviewService implements IReviewsService{
     
     @EJB
@@ -41,6 +44,12 @@ public class ReviewService implements IReviewsService{
 
     public void setReviewDAO(ProductReviewDAOImpl reviewDAO) {
         this.reviewDAO = reviewDAO;
+    }
+
+    @Override
+    public List<Productreview> getReviewsByProduct(Product p) {
+        List<Productreview> rtVl = this.reviewDAO.getReviewsByProduct(p.getProductId());
+        return rtVl;
     }
     
     

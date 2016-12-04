@@ -20,4 +20,6 @@ public interface ILoginBean {
     public String getPassword();
     public String login();
     public void setCustomerService(ICustomerService customerservice);
+    public void setUser(UserBean user);
+    public UserBean getUser();
 }
