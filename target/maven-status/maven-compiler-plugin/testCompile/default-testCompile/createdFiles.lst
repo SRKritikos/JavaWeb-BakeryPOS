@@ -1,12 +1,13 @@
+services\CustomerServiceTest.class
+config\database\HomeDatabaseConnectionTest.class
+beans\WriteReviewBeanTest.class
+beans\LoginBeanTest.class
+data\dao\ProductDAOImplTest.class
 data\dao\CustomerDAOImplTest.class
 config\database\SchoolDatabaseConnectionTest.class
 data\dao\CateringOrderDAOImplTest.class
-services\CustomerServiceTest.class
 data\dao\PaymentMethodDAOImplTest.class
-config\database\HomeDatabaseConnectionTest.class
 beans\NavigationBeanTest.class
 data\dao\ProductReviewDAOImplTest.class
 services\ProductServiceTest.class
-beans\LoginBeanTest.class
 beans\ProductsLisBeanTest.class
-data\dao\ProductDAOImplTest.class

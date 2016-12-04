@@ -22,7 +22,7 @@ and open the template in the editor.
                     <div class="product-review">
                         <ui:fragment rendered="#{not empty product.productreviewList}">
                             <h4> Product Review </h4>
-                            <h:outputText value="#{product.productreviewList.get(0).reviewText}"
+                            <h:outputText value="#{product.productreviewList.get(0).reviewText}"/>
                             <div>
                                 <h:form>
                                     <div class="col-md-6">
@@ -32,9 +32,47 @@ and open the template in the editor.
                                 </h:form>
                             </div>
                         </ui:fragment>
+                        <div class="col-md-6">
+                            <button class="btn btn-default writeReviewBtn" type="button">Write Review</button>
+                        </div>
                     </div>
                 </div>    
             </ui:repeat>
+        <!--MODAL-->
+        <div id="write-review-modal" class="modal fade" role="dialog">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">X</button>
+                <h4 class="modal-title">Write Review</h4>
+              </div>
+              <h:form id="reviewform" class="form">
+                <div class="modal-body form-group">
+                  <h:outputText id="product-review-name"/>
+                  <label>Number of stars: </label>
+                    <div clas="form-group">
+                        <h:selectOneRadio value="#{writereview.numStars}">
+                            <f:selectItem itemValue="1" itemLabel="1"/>
+                            <f:selectItem itemValue="2" itemLabel="2"/>
+                            <f:selectItem itemValue="3" itemLabel="3"/>
+                            <f:selectItem itemValue="4" itemLabel="4"/>
+                            <f:selectItem itemValue="5" itemLabel="5"/>
+                        </h:selectOneRadio>
+                    </div>
+                  <label>Review: </label>
+                  <h:inputTextarea value="#{writereview.reviewText}" class="form-control"/>
+                  <h:inputHidden id="modalProductId" value="#{writereview.productId}"/>
+                </div>
+                <div class="modal-footer">
+                    <h:commandButton class="btn btn-success" value="Submit" action="#{writereview.submitReview()}"/>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+              </h:form>
+            </div>
+          </div>
+        </div>
+        <!--END MODAL-->
         </ui:define>
     </ui:composition>
+    
 </html>

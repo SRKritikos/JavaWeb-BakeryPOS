@@ -3,16 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package data.dao;
+package services;
 
 import data.entities.Customer;
-import javax.ejb.Local;
+import data.entities.Product;
+import data.entities.Productreview;
 
 /**
  *
  * @author Steven
  */
-@Local
-public interface ICustomerDAO {
-    public Customer getCustomerByName(String username);
+public interface IReviewsService {
+    public Productreview saveProductReview(Product product, Customer customer, String reviewText, int numberStars);
 }

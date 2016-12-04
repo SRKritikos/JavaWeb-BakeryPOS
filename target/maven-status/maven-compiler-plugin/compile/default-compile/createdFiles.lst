@@ -11,6 +11,7 @@ data\entities\CateringorderProduct.class
 config\database\HomeDatabaseConnection.class
 data\entities\CateringorderProductPK.class
 data\dao\CateringOrderDAOImpl.class
+beans\WriteReviewBean.class
 data\entities\Paymentmethod.class
 data\dao\ProductReviewDAOImpl.class
 beans\UserBean.class
@@ -42,6 +43,7 @@ data\entities\Userroles_.class
 data\entities\Customer.class
 data\entities\Product.class
 config\database\SchoolDatabaseConnection.class
+beans\IWriteReviewBean.class
 data\entities\Paymentmethod_.class
 services\clients\VisaPayment.class
 data\entities\CateringorderProductPK_.class

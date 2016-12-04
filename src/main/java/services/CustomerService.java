@@ -37,5 +37,11 @@ public class CustomerService implements ICustomerService {
     public void setCustomerDAO(CustomerDAOImpl customerDAO) {
         this.customerDAO = customerDAO;
     }
+
+    @Override
+    public Customer getCustomerByName(String username) {
+        Customer rtVl = this.customerDAO.getCustomerByName(username);
+        return rtVl;
+    }
     
 }

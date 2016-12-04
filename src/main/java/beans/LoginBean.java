@@ -6,10 +6,11 @@
 
 package beans;
 
+import data.entities.Customer;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
 import services.ICustomerService;
 
@@ -24,6 +25,8 @@ public class LoginBean implements ILoginBean {
     private String password;
     @EJB
     private ICustomerService customerservice;
+    @ManagedProperty(value="#{userbean}")
+    private UserBean user;
     
     @PostConstruct
     public void init() {
@@ -53,7 +56,12 @@ public class LoginBean implements ILoginBean {
 
     @Override
     public String login() {
-        return "home.xhtml";
+        Customer customer = customerservice.getCustomerByName(username);
+        if (customer != null) {
+            this.user.setCustomer(customer);
+            return "home.xhtml";
+        }
+        return "login.xhtml";
     }
 
     @Override

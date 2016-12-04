@@ -26,6 +26,7 @@ E:\School\Year3\Semester5\COMP31-JAVA\COMP31_A3_KritikosSteven\src\main\java\ser
 E:\School\Year3\Semester5\COMP31-JAVA\COMP31_A3_KritikosSteven\src\main\java\data\entities\Product.java
 E:\School\Year3\Semester5\COMP31-JAVA\COMP31_A3_KritikosSteven\src\main\java\services\clients\AmericanExpressPayment.java
 E:\School\Year3\Semester5\COMP31-JAVA\COMP31_A3_KritikosSteven\src\main\java\config\database\HomeDatabaseConnection.java
+E:\School\Year3\Semester5\COMP31-JAVA\COMP31_A3_KritikosSteven\src\main\java\beans\WriteReviewBean.java
 E:\School\Year3\Semester5\COMP31-JAVA\COMP31_A3_KritikosSteven\src\main\java\services\clients\IPaymentProcess.java
 E:\School\Year3\Semester5\COMP31-JAVA\COMP31_A3_KritikosSteven\src\main\java\services\CustomerService.java
 E:\School\Year3\Semester5\COMP31-JAVA\COMP31_A3_KritikosSteven\src\main\java\data\entities\CateringorderProduct.java
@@ -36,6 +37,7 @@ E:\School\Year3\Semester5\COMP31-JAVA\COMP31_A3_KritikosSteven\src\main\java\bea
 E:\School\Year3\Semester5\COMP31-JAVA\COMP31_A3_KritikosSteven\src\main\java\services\clients\PaypalPayment.java
 E:\School\Year3\Semester5\COMP31-JAVA\COMP31_A3_KritikosSteven\src\main\java\beans\INavigationBean.java
 E:\School\Year3\Semester5\COMP31-JAVA\COMP31_A3_KritikosSteven\src\main\java\beans\NavigationBean.java
+E:\School\Year3\Semester5\COMP31-JAVA\COMP31_A3_KritikosSteven\src\main\java\beans\IWriteReviewBean.java
 E:\School\Year3\Semester5\COMP31-JAVA\COMP31_A3_KritikosSteven\src\main\java\config\PaymentMethod.java
 E:\School\Year3\Semester5\COMP31-JAVA\COMP31_A3_KritikosSteven\src\main\java\config\database\IDatabaseConnection.java
 E:\School\Year3\Semester5\COMP31-JAVA\COMP31_A3_KritikosSteven\src\main\java\data\entities\Customer.java
