@@ -24,7 +24,7 @@ public class CustomerService implements ICustomerService {
 
     @Override
      public boolean saveCustomer(Customer customer) {
-        boolean rtVl = this.customerDAO.create(customer);
+        boolean rtVl = this.customerDAO.edit(customer);
         return rtVl;
     }
     

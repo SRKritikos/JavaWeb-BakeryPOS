@@ -8,6 +8,8 @@ data\dao\IDAOFacade.class
 data\dao\ICustomerDAO.class
 beans\LoginBean.class
 data\entities\CateringorderProduct.class
+beans\ICateringBean.class
+services\ICateringOrderService.class
 config\database\HomeDatabaseConnection.class
 data\entities\CateringorderProductPK.class
 data\dao\CateringOrderDAOImpl.class
@@ -16,12 +18,14 @@ data\entities\Paymentmethod.class
 model\HomeProduct.class
 data\dao\ProductReviewDAOImpl.class
 beans\UserBean.class
+beans\CateringBean.class
 beans\NavigationBean.class
 services\clients\PaypalPayment.class
 config\database\IDatabaseConnection.class
 services\ProductService.class
 data\dao\DAOFacade.class
 data\dao\IPaymentDAO.class
+services\CateringOrderService.class
 data\entities\Cateringorder_.class
 services\clients\MasterCardPayment.class
 beans\IUserBean.class

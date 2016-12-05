@@ -11,6 +11,7 @@ import data.entities.CateringorderProduct;
 import data.entities.CateringorderProductPK;
 import data.entities.Customer;
 import java.util.List;
+import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -24,6 +25,7 @@ import javax.persistence.criteria.Root;
  * @author srostantkritikos06
  */
 @Stateless
+@LocalBean
 public class CateringOrderDAOImpl extends DAOFacade<Cateringorder> implements ICateringOrderDAO{
     
     @Inject

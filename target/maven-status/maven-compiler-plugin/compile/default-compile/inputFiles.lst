@@ -1,5 +1,8 @@
+E:\School\Year3\Semester5\COMP31-JAVA\COMP31_A3_KritikosSteven\src\main\java\beans\ICateringBean.java
 E:\School\Year3\Semester5\COMP31-JAVA\COMP31_A3_KritikosSteven\src\main\java\data\dao\ProductDAOImpl.java
+E:\School\Year3\Semester5\COMP31-JAVA\COMP31_A3_KritikosSteven\src\main\java\services\ICateringOrderService.java
 E:\School\Year3\Semester5\COMP31-JAVA\COMP31_A3_KritikosSteven\src\main\java\model\HomeProduct.java
+E:\School\Year3\Semester5\COMP31-JAVA\COMP31_A3_KritikosSteven\src\main\java\services\CateringOrderService.java
 E:\School\Year3\Semester5\COMP31-JAVA\COMP31_A3_KritikosSteven\src\main\java\services\IProductService.java
 E:\School\Year3\Semester5\COMP31-JAVA\COMP31_A3_KritikosSteven\src\main\java\beans\IProductListBean.java
 E:\School\Year3\Semester5\COMP31-JAVA\COMP31_A3_KritikosSteven\src\main\java\services\clients\VisaPayment.java
@@ -12,6 +15,7 @@ E:\School\Year3\Semester5\COMP31-JAVA\COMP31_A3_KritikosSteven\src\main\java\dat
 E:\School\Year3\Semester5\COMP31-JAVA\COMP31_A3_KritikosSteven\src\main\java\services\ICustomerService.java
 E:\School\Year3\Semester5\COMP31-JAVA\COMP31_A3_KritikosSteven\src\main\java\data\entities\Cateringorder.java
 E:\School\Year3\Semester5\COMP31-JAVA\COMP31_A3_KritikosSteven\src\main\java\services\clients\PaymentsFactory.java
+E:\School\Year3\Semester5\COMP31-JAVA\COMP31_A3_KritikosSteven\src\main\java\beans\CateringBean.java
 E:\School\Year3\Semester5\COMP31-JAVA\COMP31_A3_KritikosSteven\src\main\java\beans\IViewReviewsBean.java
 E:\School\Year3\Semester5\COMP31-JAVA\COMP31_A3_KritikosSteven\src\main\java\config\database\HomeDatabaseConnection.java
 E:\School\Year3\Semester5\COMP31-JAVA\COMP31_A3_KritikosSteven\src\main\java\beans\WriteReviewBean.java

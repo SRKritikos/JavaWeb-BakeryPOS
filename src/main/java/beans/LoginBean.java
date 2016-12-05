@@ -7,13 +7,18 @@
 package beans;
 
 import data.entities.Cateringorder;
+import data.entities.CateringorderProduct;
 import data.entities.Customer;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
+import services.ICateringOrderService;
 import services.ICustomerService;
 
 /**
@@ -27,6 +32,8 @@ public class LoginBean implements ILoginBean {
     private String password;
     @EJB
     private ICustomerService customerservice;
+    @EJB
+    private ICateringOrderService orderservice;
     @ManagedProperty(value="#{user}")
     private UserBean user;
     
@@ -61,10 +68,17 @@ public class LoginBean implements ILoginBean {
         Customer customer = customerservice.getCustomerByName(username);
         if (customer != null) {
             this.user.setCustomer(customer);
-            List<Cateringorder> customerOrder = customer.getCateringorderList();
-            if (customerOrder.isEmpty()) {
-                
+            if (customer.getCateringorderList().isEmpty()) {
+                this.user.updateCustomerOrder(null);
+            } else {
+                Cateringorder order = customer.getCateringorderList()
+                        .parallelStream()
+                        .sorted((o1, o2) -> o1.getDateCreated().compareTo(o2.getDateCreated()))
+                        .collect(Collectors.toList())
+                        .get(0);
+                this.user.updateCustomerOrder(order);
             }
+            
             return "home.xhtml";
         }
         return "login.xhtml";

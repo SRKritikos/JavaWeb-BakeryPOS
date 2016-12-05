@@ -8,6 +8,8 @@ package beans;
 import data.entities.Cateringorder;
 import data.entities.Customer;
 import javax.ejb.Local;
+import services.ICateringOrderService;
+import services.ICustomerService;
 
 /**
  *
@@ -22,4 +24,7 @@ public interface IUserBean {
     public Cateringorder getCurrentCateringOrder();
     public void setCartTotal(Double cartTotal);
     public Double getCartTotal();
+    public void updateCustomerOrder(Cateringorder order);
+    public void setOrderservice(ICateringOrderService orderservice);
+    public void setCustomerservice(ICustomerService customerservice);
 }

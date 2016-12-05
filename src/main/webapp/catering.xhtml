@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <ui:composition template="resources/templates/common.xhtml">
+        <ui:define name="maincontent">
+            <h:outputScript name="js/catering.js"/>
+            <h:outputStylesheet name="css/catering.css"/>
+            <div id="order-wrapper">
+                <span class="glyphicon glyphicon-shopping-cart"></span>
+                <label>Total: </label> <h:outputText id="cartTotal" value="#{user.cartTotal}"/>
+                <p><a class="btn btn-success disabled" href="">Checkout</a></p>
+            </div>
+            <div class="row">
+                <div class="col-md-1 col-md-offset-3" id="addOrderWrapper">
+                    <h:form>
+                        <div>
+                            <h:commandButton class="btn  btn-default" value="New Order"/>
+                        </div>
+                    </h:form>
+                </div>
+                <h:form>
+                    <div class="col-md-3 form-group" id="orderListWrapper">
+                        <label for="selectCateringOrder">Choose your order:    </label>
+                        <h:selectOneMenu class="form-control" id="selectCateringOrder" value="#{catering.currentOrderId}">
+                            <f:selectItems value="#{catering.userOrders}" var="order"
+                                itemLabel="#{order.cateringId.substring(0, 5)}"
+                                itemValue="#{order.cateringId}"/>
+                        </h:selectOneMenu>  
+                    </div>
+                </h:form>
+            </div>
+            <div>
+                <ui:repeat value="#{catering.cateringModel.entrySet().toArray()}" var="productCategory">
+                    <div class="categories" id="${productCategory.key.name}">
+                        <div class="row">
+                            <h1>
+                                <h:outputText value="#{productCategory.key.name}"/>
+                            </h1>
+                            <button class="showProducts btn btn-default col-md-1" value="none" type="button">Show</button>
+                        </div>
+                    </div>
+                    <div class="products-wrapper">
+                        <ui:repeat value="#{catering.cateringModel.get(productCategory.key)}" var="product">
+                            <div id="#{product.productId}" class="products row">
+                                <div class="product-info col-md-8">
+                                    <strong><p class="productName">#{product.productName}</p></strong>
+                                    <p class="productDisc">#{product.price}</p>
+                                </div>
+                                <div class="add-remove-wrapper col-md-4">
+                                     <div class="addProduct col-md-12">   
+                                        <button class="addProductBtn btn btn-default" type="button">
+                                             <span class="glyphicon glyphicon-plus"></span>
+                                        </button>
+                                    </div>
+                                    <div class="removeProduct col-md-12">
+                                        <button class="removeProductBtn btn btn-default" type="button">
+                                            <span class="glyphicon glyphicon-minus"></span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </ui:repeat>      
+                    </div>
+                </ui:repeat>
+
+            </div>
+            
+        </ui:define>
+    </ui:composition>
+</html>

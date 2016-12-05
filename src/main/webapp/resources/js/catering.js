@@ -24,7 +24,8 @@ $(window).ready(function(){
        $(this).val(btnVal);
        $(this).html(html);
        console.log($(this).parent("div").siblings(".products-wrapper"));
-       $(this).parent("div").siblings(".products-wrapper").css({ "display" : btnVal });
+       //WTB .grandParent();
+       $(this).parent("div").parent("div").siblings(".products-wrapper").css({ "display" : btnVal });
    });
    
    $(".addProductBtn").click(function(e) {
@@ -33,7 +34,7 @@ $(window).ready(function(){
         url : "AddProductToOrder",
         type: 'POST',
         data : { 
-                 "id" : $id,
+                 "id" : $id
                } 
       }).done(function(data) {
           console.log(data);

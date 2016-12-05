@@ -16,6 +16,7 @@ import data.entities.Product;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
@@ -103,6 +104,7 @@ public class CateringOrderService implements ICateringOrderService {
     public void setOrderDAO(CateringOrderDAOImpl orderDAO) {
         this.orderDAO = orderDAO;
     }
+
     
     
 

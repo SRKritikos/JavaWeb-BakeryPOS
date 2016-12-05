@@ -1,6 +1,7 @@
 services\CustomerServiceTest.class
 config\database\HomeDatabaseConnectionTest.class
 beans\WriteReviewBeanTest.class
+beans\UserBeantest.class
 services\ReviewServiceTest.class
 beans\LoginBeanTest.class
 data\dao\ProductDAOImplTest.class

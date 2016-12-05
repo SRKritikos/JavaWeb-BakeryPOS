@@ -38,7 +38,7 @@ public class CustomerServiceTest {
     @Test
     public void testSaveCustomer() {
         Customer c =  new Customer("1");
-        Mockito.when(this.customerDAO.create(c)).thenReturn(true);
+        Mockito.when(this.customerDAO.edit(c)).thenReturn(true);
         boolean result = this.instance.saveCustomer(c);
         assertTrue(result);
     }
