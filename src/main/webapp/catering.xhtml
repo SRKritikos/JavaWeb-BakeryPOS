@@ -49,10 +49,10 @@ and open the template in the editor.
                     </div>
                     <div class="products-wrapper">
                         <ui:repeat value="#{catering.cateringModel.get(productCategory.key)}" var="product">
-                            <div id="#{product.productId}" class="products row">
+                            <div id="#{product.product.productId}" class="products row">
                                 <div class="product-info col-md-8">
-                                    <strong><p class="productName">#{product.productName}</p></strong>
-                                    <p class="productDisc">#{product.price}</p>
+                                    <strong><p class="productName">#{product.product.productName}</p></strong>
+                                    <p class="productDisc">#{product.product.price}</p>
                                 </div>
                                 <div class="add-remove-wrapper col-md-4">
                                      <div class="addProduct col-md-12">   

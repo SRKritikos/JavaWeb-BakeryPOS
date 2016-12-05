@@ -16,6 +16,7 @@ import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
+import model.CateringProduct;
 import services.ICustomerService;
 import services.IProductService;
 
@@ -26,27 +27,34 @@ import services.IProductService;
 @ManagedBean(name = "catering")
 @RequestScoped
 public class CateringBean implements ICateringBean{
-    private Map<Productcategory, List<Product>> cateringModel;
+    private Map<Productcategory, List<CateringProduct>> cateringModel;
     private List<Cateringorder> userOrders;
     private String currentOrderId;
     @EJB
     private IProductService productservice;
     @ManagedProperty("#{user}")
     private UserBean user;
+        
 
     @Override
-    public Map<Productcategory, List<Product>> getCateringModel() {
+    public Map<Productcategory, List<CateringProduct>> getCateringModel() {
         List<Product> productsList = this.productservice.getAllProducts();
+        Cateringorder userOrder = this.user.getCurrentCateringOrder();
         this.cateringModel = productsList.parallelStream()
-                .collect(Collectors
-                        .groupingBy(Product::getCategoryId));
+                    .map(p -> new CateringProduct(0, p, p.getCategoryId()))
+                    .collect(Collectors.groupingBy(CateringProduct::getCategory));
+//        this.cateringModel = this.cateringModel.entrySet().parallelStream()
+//                .filter(entry -> entry.getValue()
+//                        .equals(userOrder.getCateringorderProductList().stream().))
+                
         return cateringModel;
     }
 
     @Override
-    public void setCateringModel(Map<Productcategory, List<Product>> cateringModel) {
+    public void setCateringModel(Map<Productcategory, List<CateringProduct>> cateringModel) {
         this.cateringModel = cateringModel;
     }
+
 
     @Override
     public List<Cateringorder> getUserOrders() {

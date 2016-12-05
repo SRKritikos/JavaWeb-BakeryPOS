@@ -52,6 +52,7 @@ data\entities\Product.class
 config\database\SchoolDatabaseConnection.class
 beans\IWriteReviewBean.class
 data\entities\Paymentmethod_.class
+model\CateringProduct.class
 beans\IViewReviewsBean.class
 services\clients\VisaPayment.class
 data\entities\CateringorderProductPK_.class

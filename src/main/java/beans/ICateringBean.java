@@ -11,6 +11,7 @@ import data.entities.Productcategory;
 import java.util.List;
 import java.util.Map;
 import javax.ejb.Local;
+import model.CateringProduct;
 import services.IProductService;
 
 /**
@@ -19,8 +20,8 @@ import services.IProductService;
  */
 @Local
 public interface ICateringBean {
-    public Map<Productcategory, List<Product>> getCateringModel();
-    public void setCateringModel(Map<Productcategory, List<Product>> cateringModel);
+    public Map<Productcategory, List<CateringProduct>> getCateringModel();
+    public void setCateringModel(Map<Productcategory, List<CateringProduct>> cateringModel);
     public List<Cateringorder> getUserOrders();
     public void setUserOrders(List<Cateringorder> userOrders);
     public String getCurrentOrderId();
