@@ -73,18 +73,22 @@ public class UserBean implements IUserBean {
     }
 
     @Override
-    public void updateCustomerOrder(Cateringorder order) {
+    public void addCustomerOrder(Cateringorder order) {
         if (order == null) {
-            order  = this.orderservice.createNewCateringOrder(new Date(), null, null, customer, new ArrayList<CateringorderProduct>());    
+            order  = this.orderservice.createNewCateringOrder(new Date(), null, null, customer, new ArrayList<>());    
         }
         List<Cateringorder> customerOrders = customer.getCateringorderList();
         customerOrders.add(order);
         this.customer.setCateringorderList(customerOrders);
         this.customerservice.saveCustomer(customer);
         this.currentCateringOrder = order;
-        this.cartTotal =  order.getCateringorderProductList().stream()
-                    .mapToDouble(cor -> cor.getProduct().getPrice().doubleValue())
-                    .sum();
+        this.cartTotal =  this.computeTotal(order);
+    }
+    
+    @Override
+    public void updateCustomerOrder(Cateringorder order) {
+        this.currentCateringOrder = order;
+        this.cartTotal = this.computeTotal(order);
     }
 
     @Override
@@ -96,6 +100,14 @@ public class UserBean implements IUserBean {
     public void setCustomerservice(ICustomerService customerservice) {
         this.customerservice = customerservice;
     }
+
+    
+    private Double computeTotal(Cateringorder order) {
+        return order.getCateringorderProductList().stream()
+                    .mapToDouble(cor -> cor.getProduct().getPrice().doubleValue())
+                    .sum();
+    }
+
     
     
     

@@ -22,22 +22,23 @@ and open the template in the editor.
                 <div class="col-md-1 col-md-offset-3" id="addOrderWrapper">
                     <h:form>
                         <div>
-                            <h:commandButton class="btn  btn-default" value="New Order"/>
+                            <h:commandButton class="btn  btn-default" action="#{catering.makeNewOrder()}" value="New Order"/>
                         </div>
                     </h:form>
                 </div>
-                <h:form>
-                    <div class="col-md-3 form-group" id="orderListWrapper">
+                <h:form class="ordersForm">
+                    <div class="col-md-2 col-md-offset-3 form-group" id="orderListWrapper">
                         <label for="selectCateringOrder">Choose your order:    </label>
                         <h:selectOneMenu class="form-control" id="selectCateringOrder" value="#{catering.currentOrderId}">
                             <f:selectItems value="#{catering.userOrders}" var="order"
                                 itemLabel="#{order.cateringId.substring(0, 5)}"
                                 itemValue="#{order.cateringId}"/>
+                            <f:ajax listener="#{catering.changeOrder()}" render="cateringOrderDisplay"/>
                         </h:selectOneMenu>  
                     </div>
                 </h:form>
             </div>
-            <div>
+            <div id="cateringOrderDisplay">
                 <ui:repeat value="#{catering.cateringModel.entrySet().toArray()}" var="productCategory">
                     <div class="categories" id="${productCategory.key.name}">
                         <div class="row">
@@ -70,9 +71,7 @@ and open the template in the editor.
                         </ui:repeat>      
                     </div>
                 </ui:repeat>
-
-            </div>
-            
+            </div> 
         </ui:define>
     </ui:composition>
 </html>

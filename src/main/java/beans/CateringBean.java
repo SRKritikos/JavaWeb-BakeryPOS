@@ -17,6 +17,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
 import model.CateringProduct;
+import services.ICateringOrderService;
 import services.ICustomerService;
 import services.IProductService;
 
@@ -32,6 +33,8 @@ public class CateringBean implements ICateringBean{
     private String currentOrderId;
     @EJB
     private IProductService productservice;
+    @EJB
+    private ICateringOrderService orderservice;
     @ManagedProperty("#{user}")
     private UserBean user;
         
@@ -48,6 +51,12 @@ public class CateringBean implements ICateringBean{
 //                        .equals(userOrder.getCateringorderProductList().stream().))
                 
         return cateringModel;
+    }
+    
+    @Override
+    public String makeNewOrder() {
+        this.user.addCustomerOrder(null);
+        return "catering.xhtml";
     }
 
     @Override
@@ -69,6 +78,7 @@ public class CateringBean implements ICateringBean{
 
     @Override
     public String getCurrentOrderId() {
+        this.currentOrderId = this.user.getCurrentCateringOrder().getCateringId();
         return currentOrderId;
     }
 
@@ -78,8 +88,11 @@ public class CateringBean implements ICateringBean{
     }
 
     @Override
-    public String changeOrder() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void changeOrder() {
+        System.out.println(this.currentOrderId);
+        Cateringorder order = this.orderservice.getCateringOrderById(currentOrderId);
+        this.user.updateCustomerOrder(order);
+//        return "catering.xhtml";
     }
 
     @Override
@@ -100,6 +113,13 @@ public class CateringBean implements ICateringBean{
     public void setProductservice(IProductService productservice) {
         this.productservice = productservice;
     }
+
+    @Override
+    public void setOrderservice(ICateringOrderService orderservice) {
+        this.orderservice = orderservice;
+    }
+
+    
     
     
     

@@ -69,14 +69,14 @@ public class LoginBean implements ILoginBean {
         if (customer != null) {
             this.user.setCustomer(customer);
             if (customer.getCateringorderList().isEmpty()) {
-                this.user.updateCustomerOrder(null);
+                this.user.addCustomerOrder(null);
             } else {
                 Cateringorder order = customer.getCateringorderList()
                         .parallelStream()
                         .sorted((o1, o2) -> o1.getDateCreated().compareTo(o2.getDateCreated()))
                         .collect(Collectors.toList())
                         .get(0);
-                this.user.updateCustomerOrder(order);
+                this.user.addCustomerOrder(order);
             }
             
             return "home.xhtml";

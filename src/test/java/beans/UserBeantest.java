@@ -20,6 +20,8 @@ import org.mockito.Matchers;
 import org.mockito.Mockito;
 import services.ICateringOrderService;
 import services.ICustomerService;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 /**
  *

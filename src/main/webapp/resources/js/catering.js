@@ -25,7 +25,7 @@ $(window).ready(function(){
        $(this).html(html);
        console.log($(this).parent("div").siblings(".products-wrapper"));
        //WTB .grandParent();
-       $(this).parent("div").parent("div").siblings(".products-wrapper").css({ "display" : btnVal });
+       $(this).parent("div").parent("div").next(".products-wrapper").css({ "display" : btnVal });
    });
    
    $(".addProductBtn").click(function(e) {

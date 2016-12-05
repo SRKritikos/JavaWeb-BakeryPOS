@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.Map;
 import javax.ejb.Local;
 import model.CateringProduct;
+import services.ICateringOrderService;
 import services.IProductService;
 
 /**
@@ -28,7 +29,9 @@ public interface ICateringBean {
     public void setCurrentOrderId(String orderId);
     public UserBean getUser();
     public void setUser(UserBean user);
-    public String changeOrder();
+    public void changeOrder();
     public IProductService getProductservice();
     public void setProductservice(IProductService productservice);
+    public String makeNewOrder();
+    public void setOrderservice(ICateringOrderService orderservice);
 }
