@@ -9,13 +9,13 @@ and open the template in the editor.
 */
 
 .review {
-    padding: 15px;
-    border-style: solid;
-    border-color: black;
-    margin-bottom: 1em;
+  padding: 15px;
+  border-style: solid;
+  border-color: black;
+  margin-bottom: 1em;
 }
 
 .review-wrapper {
-    width: 50%;
-    margin: auto;
+  width: 50%;
+  margin: auto;
 }

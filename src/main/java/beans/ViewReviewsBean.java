@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package beans;
 
 import data.entities.Product;
@@ -18,33 +17,31 @@ import javax.faces.bean.SessionScoped;
  *
  * @author Steven Kritikos
  */
-@ManagedBean(name="viewreviews")
+@ManagedBean(name = "viewreviews")
 @SessionScoped
 public class ViewReviewsBean implements IViewReviewsBean, Serializable {
-    
-    private List<Productreview> productReviews;
-    private Product productBeingReviewed;
 
-    @Override
-    public List<Productreview> getProductReviews() {
-        return productReviews;
-    }
+  private List<Productreview> productReviews;
+  private Product productBeingReviewed;
 
-    @Override
-    public void setProductReviews(List<Productreview> productReviews) {
-        this.productReviews = productReviews;
-    }
+  @Override
+  public List<Productreview> getProductReviews() {
+    return productReviews;
+  }
 
-    @Override
-    public Product getProductBeingReviewed() {
-        return productBeingReviewed;
-    }
+  @Override
+  public void setProductReviews(List<Productreview> productReviews) {
+    this.productReviews = productReviews;
+  }
 
-    @Override
-    public void setProductBeingReviewed(Product productBeingReviewed) {
-        this.productBeingReviewed = productBeingReviewed;
-    }
-    
-    
-    
+  @Override
+  public Product getProductBeingReviewed() {
+    return productBeingReviewed;
+  }
+
+  @Override
+  public void setProductBeingReviewed(Product productBeingReviewed) {
+    this.productBeingReviewed = productBeingReviewed;
+  }
+
 }

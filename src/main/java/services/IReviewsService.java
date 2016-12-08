@@ -17,7 +17,8 @@ import javax.ejb.Local;
  */
 @Local
 public interface IReviewsService {
-    public Productreview saveProductReview(Product product, Customer customer, String reviewText, int numberStars);
 
-    public List<Productreview> getReviewsByProduct(Product p);
+  public Productreview saveProductReview(Product product, Customer customer, String reviewText, int numberStars);
+
+  public List<Productreview> getReviewsByProduct(Product p);
 }

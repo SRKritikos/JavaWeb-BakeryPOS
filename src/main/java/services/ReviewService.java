@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package services;
 
 import data.dao.ProductReviewDAOImpl;
@@ -21,37 +20,35 @@ import javax.ejb.Stateless;
  * @author Steven Kritikos
  */
 @Stateless
-public class ReviewService implements IReviewsService{
-    
-    @EJB
-    ProductReviewDAOImpl reviewDAO;
-    
-    
-    @Override
-    public Productreview saveProductReview(Product product, Customer customer, String reviewText, int numberStars) {
-        Productreview newReview = new Productreview(UUID.randomUUID().toString());
-        newReview.setCustomerId(customer);
-        newReview.setNumberStars(numberStars);
-        newReview.setProductId(product);
-        newReview.setReviewText(reviewText);
-        newReview.setReviewDate(new Date());
-        boolean success = this.reviewDAO.create(newReview);
-        if (!success)
-            newReview = null;
-        
-        return newReview;
+public class ReviewService implements IReviewsService {
+
+  @EJB
+  ProductReviewDAOImpl reviewDAO;
+
+  @Override
+  public Productreview saveProductReview(Product product, Customer customer, String reviewText, int numberStars) {
+    Productreview newReview = new Productreview(UUID.randomUUID().toString());
+    newReview.setCustomerId(customer);
+    newReview.setNumberStars(numberStars);
+    newReview.setProductId(product);
+    newReview.setReviewText(reviewText);
+    newReview.setReviewDate(new Date());
+    boolean success = this.reviewDAO.create(newReview);
+    if (!success) {
+      newReview = null;
     }
 
-    public void setReviewDAO(ProductReviewDAOImpl reviewDAO) {
-        this.reviewDAO = reviewDAO;
-    }
+    return newReview;
+  }
 
-    @Override
-    public List<Productreview> getReviewsByProduct(Product p) {
-        List<Productreview> rtVl = this.reviewDAO.getReviewsByProduct(p.getProductId());
-        return rtVl;
-    }
-    
-    
-    
+  public void setReviewDAO(ProductReviewDAOImpl reviewDAO) {
+    this.reviewDAO = reviewDAO;
+  }
+
+  @Override
+  public List<Productreview> getReviewsByProduct(Product p) {
+    List<Productreview> rtVl = this.reviewDAO.getReviewsByProduct(p.getProductId());
+    return rtVl;
+  }
+
 }

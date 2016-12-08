@@ -13,10 +13,16 @@ import services.IProductService;
  * @author Steven
  */
 public interface IRemoveProductFromOrderBean {
-    public void removeProductFromOrder();
-    public void setUserbean(UserBean userbean);
-    public UserBean getUserbean();
-    public void setOrderservice(ICateringOrderService orderservice);
-    public IProductService getProductservice();
-    public void setProductservice(IProductService productservice);
+
+  public void removeProductFromOrder();
+
+  public void setUserbean(UserBean userbean);
+
+  public UserBean getUserbean();
+
+  public void setOrderservice(ICateringOrderService orderservice);
+
+  public IProductService getProductservice();
+
+  public void setProductservice(IProductService productservice);
 }

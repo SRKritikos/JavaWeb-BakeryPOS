@@ -15,9 +15,9 @@ import javax.inject.Qualifier;
  *
  * @author Steven
  */
-@Retention( RetentionPolicy.RUNTIME)
+@Retention(RetentionPolicy.RUNTIME)
 @Target({ElementType.PARAMETER, ElementType.FIELD, ElementType.TYPE, ElementType.METHOD})
 @Qualifier
 public @interface SchoolDB {
-    
+
 }

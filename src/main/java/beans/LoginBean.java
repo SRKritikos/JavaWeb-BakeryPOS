@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package beans;
 
 import data.entities.Cateringorder;
@@ -26,79 +25,79 @@ import services.ICustomerService;
  *
  * @author Steven Kritikos
  */
-@ManagedBean(name="login")
+@ManagedBean(name = "login")
 @ViewScoped
 public class LoginBean implements ILoginBean, Serializable {
-    private String username;
-    private String password;
-    @EJB
-    private ICustomerService customerservice;
-    @EJB
-    private ICateringOrderService orderservice;
-    @ManagedProperty(value="#{user}")
-    private UserBean user;
-    
-    @PostConstruct
-    public void init() {
-        this.username = "default customer";
-        this.password = "pwd1";
-    }
-    
-    @Override
-    public void setUsername(String username) {
-        this.username = username;
-    }
 
-    @Override
-    public String getUsername() {
-        return this.username;
-    }
+  private String username;
+  private String password;
+  @EJB
+  private ICustomerService customerservice;
+  @EJB
+  private ICateringOrderService orderservice;
+  @ManagedProperty(value = "#{user}")
+  private UserBean user;
 
-    @Override
-    public void setPassword(String password) {
-        this.password =  password;
-    }
+  @PostConstruct
+  public void init() {
+    this.username = "default customer";
+    this.password = "pwd1";
+  }
 
-    @Override
-    public String getPassword() {
-        return this.password;
-    }
+  @Override
+  public void setUsername(String username) {
+    this.username = username;
+  }
 
-    @Override
-    public String login() {
-        Customer customer = customerservice.getCustomerByName(username);
-        if (customer != null) {
-            this.user.setCustomer(customer);
-            if (customer.getCateringorderList().isEmpty()) {
-                this.user.addCustomerOrder(null);
-            } else {
-                Cateringorder order = customer.getCateringorderList()
-                        .parallelStream()
-                        .sorted((o1, o2) -> o1.getDateCreated().compareTo(o2.getDateCreated()))
-                        .collect(Collectors.toList())
-                        .get(0);
-                this.user.addCustomerOrder(order);
-            }
-            
-            return "home.xhtml";
-        }
-        return "login.xhtml";
-    }
+  @Override
+  public String getUsername() {
+    return this.username;
+  }
 
-    @Override
-    public void setCustomerService(ICustomerService customerservice) {
-        this.customerservice = customerservice;
-    }
+  @Override
+  public void setPassword(String password) {
+    this.password = password;
+  }
 
-    @Override
-    public UserBean getUser() {
-        return user;
-    }
+  @Override
+  public String getPassword() {
+    return this.password;
+  }
 
-    @Override
-    public void setUser(UserBean user) {
-        this.user = user;
-    }
+  @Override
+  public String login() {
+    Customer customer = customerservice.getCustomerByName(username);
+    if (customer != null) {
+      this.user.setCustomer(customer);
+      if (customer.getCateringorderList().isEmpty()) {
+        this.user.addCustomerOrder(null);
+      } else {
+        Cateringorder order = customer.getCateringorderList()
+                .parallelStream()
+                .sorted((o1, o2) -> o1.getDateCreated().compareTo(o2.getDateCreated()))
+                .collect(Collectors.toList())
+                .get(0);
+        this.user.addCustomerOrder(order);
+      }
 
+      return "home.xhtml";
+    }
+    return "login.xhtml";
+  }
+
+  @Override
+  public void setCustomerService(ICustomerService customerservice) {
+    this.customerservice = customerservice;
+  }
+
+  @Override
+  public UserBean getUser() {
+    return user;
+  }
+
+  @Override
+  public void setUser(UserBean user) {
+    this.user = user;
+  }
 
 }

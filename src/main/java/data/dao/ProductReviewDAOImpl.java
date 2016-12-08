@@ -20,26 +20,26 @@ import javax.persistence.EntityManager;
  */
 @Stateless
 @LocalBean
-public class ProductReviewDAOImpl extends DAOFacade<Productreview> implements IProductReviewDAO{
-    
-    @Inject
-    @Named("homedbcon")
-    public ProductReviewDAOImpl(IDatabaseConnection dbCon) {
-        super(dbCon, Productreview.class);
-    }
+public class ProductReviewDAOImpl extends DAOFacade<Productreview> implements IProductReviewDAO {
 
-    public List<Productreview> getReviewsByProduct(String productId) {
-        List<Productreview> rtVl = null;
-        try {
-            EntityManager em = this.dbCon.getConnection();
-            rtVl = em.createQuery("SELECT p FROM Productreview p "
-                    + "WHERE p.productId.productId = :productId", Productreview.class)
-                    .setParameter("productId", productId)
-                    .getResultList();
-        } catch (Exception e) {
-            System.out.println(e.toString() + "in getReviewsByProduct");
-        }
-        return rtVl;
+  @Inject
+  @Named("homedbcon")
+  public ProductReviewDAOImpl(IDatabaseConnection dbCon) {
+    super(dbCon, Productreview.class);
+  }
+
+  public List<Productreview> getReviewsByProduct(String productId) {
+    List<Productreview> rtVl = null;
+    try {
+      EntityManager em = this.dbCon.getConnection();
+      rtVl = em.createQuery("SELECT p FROM Productreview p "
+              + "WHERE p.productId.productId = :productId", Productreview.class)
+              .setParameter("productId", productId)
+              .getResultList();
+    } catch (Exception e) {
+      System.out.println(e.toString() + "in getReviewsByProduct");
     }
-    
+    return rtVl;
+  }
+
 }

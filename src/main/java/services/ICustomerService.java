@@ -14,7 +14,10 @@ import javax.ejb.Local;
  */
 @Local
 public interface ICustomerService {
-    public boolean saveCustomer(Customer customer);
-    public Customer getCustomerById(String customerId);
-    public Customer getCustomerByName(String username);
+
+  public boolean saveCustomer(Customer customer);
+
+  public Customer getCustomerById(String customerId);
+
+  public Customer getCustomerByName(String username);
 }

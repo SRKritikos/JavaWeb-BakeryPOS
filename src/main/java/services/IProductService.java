@@ -15,7 +15,10 @@ import javax.ejb.Local;
  */
 @Local
 public interface IProductService {
-    public List<Product> getAllProducts();
-    public Product getProductById(String productId);
-    public boolean saveProduct(Product product);
+
+  public List<Product> getAllProducts();
+
+  public Product getProductById(String productId);
+
+  public boolean saveProduct(Product product);
 }

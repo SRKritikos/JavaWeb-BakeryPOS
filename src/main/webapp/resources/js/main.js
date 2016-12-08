@@ -5,8 +5,8 @@
  */
 
 
-$(window).ready(function(){
-    $(".disabledBtn").click(function(){
-       return false; 
-    });
+$(window).ready(function () {
+  $(".disabledBtn").click(function () {
+    return false;
+  });
 });

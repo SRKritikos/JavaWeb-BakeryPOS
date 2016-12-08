@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package data.entities;
 
 import java.io.Serializable;
@@ -32,113 +31,113 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Table(name = "productreview")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Productreview.findAll", query = "SELECT p FROM Productreview p"),
-    @NamedQuery(name = "Productreview.findByReviewId", query = "SELECT p FROM Productreview p WHERE p.reviewId = :reviewId"),
-    @NamedQuery(name = "Productreview.findByReviewText", query = "SELECT p FROM Productreview p WHERE p.reviewText = :reviewText"),
-    @NamedQuery(name = "Productreview.findByReviewDate", query = "SELECT p FROM Productreview p WHERE p.reviewDate = :reviewDate"),
-    @NamedQuery(name = "Productreview.findByNumberStars", query = "SELECT p FROM Productreview p WHERE p.numberStars = :numberStars")})
+  @NamedQuery(name = "Productreview.findAll", query = "SELECT p FROM Productreview p"),
+  @NamedQuery(name = "Productreview.findByReviewId", query = "SELECT p FROM Productreview p WHERE p.reviewId = :reviewId"),
+  @NamedQuery(name = "Productreview.findByReviewText", query = "SELECT p FROM Productreview p WHERE p.reviewText = :reviewText"),
+  @NamedQuery(name = "Productreview.findByReviewDate", query = "SELECT p FROM Productreview p WHERE p.reviewDate = :reviewDate"),
+  @NamedQuery(name = "Productreview.findByNumberStars", query = "SELECT p FROM Productreview p WHERE p.numberStars = :numberStars")})
 public class Productreview implements Serializable {
 
-    private static final long serialVersionUID = 1L;
-    @Id
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 100)
-    @Column(name = "review_id")
-    private String reviewId;
-    @Size(max = 6000)
-    @Column(name = "review_text")
-    private String reviewText;
-    @Column(name = "review_date")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date reviewDate;
-    @Column(name = "number_stars")
-    private Integer numberStars;
-    @JoinColumn(name = "customer_id", referencedColumnName = "customer_id")
-    @ManyToOne(fetch = FetchType.EAGER)
-    private Customer customerId;
-    @JoinColumn(name = "product_id", referencedColumnName = "product_id")
-    @ManyToOne(fetch = FetchType.EAGER)
-    private Product productId;
+  private static final long serialVersionUID = 1L;
+  @Id
+  @Basic(optional = false)
+  @NotNull
+  @Size(min = 1, max = 100)
+  @Column(name = "review_id")
+  private String reviewId;
+  @Size(max = 6000)
+  @Column(name = "review_text")
+  private String reviewText;
+  @Column(name = "review_date")
+  @Temporal(TemporalType.TIMESTAMP)
+  private Date reviewDate;
+  @Column(name = "number_stars")
+  private Integer numberStars;
+  @JoinColumn(name = "customer_id", referencedColumnName = "customer_id")
+  @ManyToOne(fetch = FetchType.EAGER)
+  private Customer customerId;
+  @JoinColumn(name = "product_id", referencedColumnName = "product_id")
+  @ManyToOne(fetch = FetchType.EAGER)
+  private Product productId;
 
-    public Productreview() {
-    }
+  public Productreview() {
+  }
 
-    public Productreview(String reviewId) {
-        this.reviewId = reviewId;
-    }
+  public Productreview(String reviewId) {
+    this.reviewId = reviewId;
+  }
 
-    public String getReviewId() {
-        return reviewId;
-    }
+  public String getReviewId() {
+    return reviewId;
+  }
 
-    public void setReviewId(String reviewId) {
-        this.reviewId = reviewId;
-    }
+  public void setReviewId(String reviewId) {
+    this.reviewId = reviewId;
+  }
 
-    public String getReviewText() {
-        return reviewText;
-    }
+  public String getReviewText() {
+    return reviewText;
+  }
 
-    public void setReviewText(String reviewText) {
-        this.reviewText = reviewText;
-    }
+  public void setReviewText(String reviewText) {
+    this.reviewText = reviewText;
+  }
 
-    public Date getReviewDate() {
-        return reviewDate;
-    }
+  public Date getReviewDate() {
+    return reviewDate;
+  }
 
-    public void setReviewDate(Date reviewDate) {
-        this.reviewDate = reviewDate;
-    }
+  public void setReviewDate(Date reviewDate) {
+    this.reviewDate = reviewDate;
+  }
 
-    public Integer getNumberStars() {
-        return numberStars;
-    }
+  public Integer getNumberStars() {
+    return numberStars;
+  }
 
-    public void setNumberStars(Integer numberStars) {
-        this.numberStars = numberStars;
-    }
+  public void setNumberStars(Integer numberStars) {
+    this.numberStars = numberStars;
+  }
 
-    public Customer getCustomerId() {
-        return customerId;
-    }
+  public Customer getCustomerId() {
+    return customerId;
+  }
 
-    public void setCustomerId(Customer customerId) {
-        this.customerId = customerId;
-    }
+  public void setCustomerId(Customer customerId) {
+    this.customerId = customerId;
+  }
 
-    public Product getProductId() {
-        return productId;
-    }
+  public Product getProductId() {
+    return productId;
+  }
 
-    public void setProductId(Product productId) {
-        this.productId = productId;
-    }
+  public void setProductId(Product productId) {
+    this.productId = productId;
+  }
 
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (reviewId != null ? reviewId.hashCode() : 0);
-        return hash;
-    }
+  @Override
+  public int hashCode() {
+    int hash = 0;
+    hash += (reviewId != null ? reviewId.hashCode() : 0);
+    return hash;
+  }
 
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Productreview)) {
-            return false;
-        }
-        Productreview other = (Productreview) object;
-        if ((this.reviewId == null && other.reviewId != null) || (this.reviewId != null && !this.reviewId.equals(other.reviewId))) {
-            return false;
-        }
-        return true;
+  @Override
+  public boolean equals(Object object) {
+    // TODO: Warning - this method won't work in the case the id fields are not set
+    if (!(object instanceof Productreview)) {
+      return false;
     }
+    Productreview other = (Productreview) object;
+    if ((this.reviewId == null && other.reviewId != null) || (this.reviewId != null && !this.reviewId.equals(other.reviewId))) {
+      return false;
+    }
+    return true;
+  }
 
-    @Override
-    public String toString() {
-        return "data.entities.Productreview[ reviewId=" + reviewId + " ]";
-    }
+  @Override
+  public String toString() {
+    return "data.entities.Productreview[ reviewId=" + reviewId + " ]";
+  }
 
 }

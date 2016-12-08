@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package model;
 
 import data.entities.Product;
@@ -14,52 +13,48 @@ import data.entities.Productcategory;
  * @author Steven Kritikos
  */
 public class CateringProduct {
-    private int qty;
-    private Product product;
-    private Productcategory category;
-    
-    public CateringProduct(int qty, Product product,Productcategory category) {
-        this.qty = qty;
-        this.product = product;
-        this.category = category;
-    }
 
-    public int getQty() {
-        return qty;
-    }
+  private int qty;
+  private Product product;
+  private Productcategory category;
 
-    public void setQty(int qty) {
-        this.qty = qty;
-    }
+  public CateringProduct(int qty, Product product, Productcategory category) {
+    this.qty = qty;
+    this.product = product;
+    this.category = category;
+  }
 
-    public Product getProduct() {
-        return product;
-    }
+  public int getQty() {
+    return qty;
+  }
 
-    public void setProduct(Product product) {
-        this.product = product;
-    }
+  public void setQty(int qty) {
+    this.qty = qty;
+  }
 
-    public Productcategory getCategory() {
-        return category;
-    }
+  public Product getProduct() {
+    return product;
+  }
 
-    public void setCategory(Productcategory category) {
-        this.category = category;
-    }
-    
-    
+  public void setProduct(Product product) {
+    this.product = product;
+  }
 
-    @Override
-    public boolean equals(Object obj) {
-        if (obj instanceof CateringProduct) {
-            return ((CateringProduct)obj).product.getCategoryId()
-                    .equals(this.product.getCategoryId());
-        } 
-        return false;
+  public Productcategory getCategory() {
+    return category;
+  }
+
+  public void setCategory(Productcategory category) {
+    this.category = category;
+  }
+
+  @Override
+  public boolean equals(Object obj) {
+    if (obj instanceof CateringProduct) {
+      return ((CateringProduct) obj).product.getCategoryId()
+              .equals(this.product.getCategoryId());
     }
-    
-    
-    
-    
+    return false;
+  }
+
 }

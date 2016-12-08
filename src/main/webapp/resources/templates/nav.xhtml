@@ -6,35 +6,35 @@ and open the template in the editor.
 -->
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-       xmlns:h="http://xmlns.jcp.org/jsf/html"
-       xmlns:ui="http://java.sun.com/jsf/facelets"
-       >
-    <body>
-        <nav class="navbar navbar-inverse navbar-fixed-top">
-          <div class="container-fluid">
-            <div class="navbar-header">
-                <a class="navbar-brand" href="home.jsp">
-                    <span style="color: #94533E"> BATR Bakery &amp; Café</span>
-                </a>
-            </div>
-            <h:form>
-                <ul class="nav navbar-nav">
-                    <li>
-                        <h:commandLink action="#{navigation.goToHome()}" >
-                            Home
-                        </h:commandLink>
-                    </li>
-                    <li><h:commandLink action="#{navigation.goToCatering()}" value="Catering"/> </li>
-                </ul>
-            </h:form>
-              <h:form>
-                <ul class="nav navbar-nav navbar-right">
-                    <li><h:commandLink action="#{user.logout()}" value="Logout">
-                      <span class="glyphicon glyphicon-log-out"></span>
-                    </h:commandLink></li>
-                </ul>
-              </h:form>
-          </div>
-        </nav>
-    </body>
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      >
+  <body>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="home.jsp">
+            <span style="color: #94533E"> BATR Bakery &amp; Café</span>
+          </a>
+        </div>
+        <h:form>
+          <ul class="nav navbar-nav">
+            <li>
+              <h:commandLink action="#{navigation.goToHome()}" >
+                Home
+              </h:commandLink>
+            </li>
+            <li><h:commandLink action="#{navigation.goToCatering()}" value="Catering"/> </li>
+          </ul>
+        </h:form>
+        <h:form>
+          <ul class="nav navbar-nav navbar-right">
+            <li><h:commandLink action="#{user.logout()}" value="Logout">
+                <span class="glyphicon glyphicon-log-out"></span>
+              </h:commandLink></li>
+          </ul>
+        </h:form>
+      </div>
+    </nav>
+  </body>
 </html>

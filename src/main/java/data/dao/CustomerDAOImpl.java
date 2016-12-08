@@ -19,28 +19,27 @@ import javax.persistence.EntityManager;
  */
 @Stateless
 @LocalBean
-public class CustomerDAOImpl extends DAOFacade<Customer> implements ICustomerDAO{
+public class CustomerDAOImpl extends DAOFacade<Customer> implements ICustomerDAO {
 
-    
-    @Inject
-    @Named("homedbcon")
-    public CustomerDAOImpl(IDatabaseConnection dbCon) {
-        super(dbCon, Customer.class);
-    }   
+  @Inject
+  @Named("homedbcon")
+  public CustomerDAOImpl(IDatabaseConnection dbCon) {
+    super(dbCon, Customer.class);
+  }
 
-    @Override
-    public Customer getCustomerByName(String username) {
-        EntityManager em = this.dbCon.getConnection();
-        Customer rtVl = null;
-        try {
-            rtVl = em.createNamedQuery("Customer.findByUsername", Customer.class)
-                        .setParameter("username", username)
-                        .getSingleResult();
-        } catch (Exception e) {
-            System.out.println(e.toString() + " in getCustomerByName");
-        }
-        
-        return rtVl;
-        
+  @Override
+  public Customer getCustomerByName(String username) {
+    EntityManager em = this.dbCon.getConnection();
+    Customer rtVl = null;
+    try {
+      rtVl = em.createNamedQuery("Customer.findByUsername", Customer.class)
+              .setParameter("username", username)
+              .getSingleResult();
+    } catch (Exception e) {
+      System.out.println(e.toString() + " in getCustomerByName");
     }
+
+    return rtVl;
+
+  }
 }

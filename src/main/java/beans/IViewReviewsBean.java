@@ -14,8 +14,12 @@ import java.util.List;
  * @author Steven
  */
 public interface IViewReviewsBean {
-    public List<Productreview> getProductReviews();
-    public void setProductReviews(List<Productreview> productReviews);
-    public Product getProductBeingReviewed();
-    public void setProductBeingReviewed(Product productBeingReviewed);
+
+  public List<Productreview> getProductReviews();
+
+  public void setProductReviews(List<Productreview> productReviews);
+
+  public Product getProductBeingReviewed();
+
+  public void setProductBeingReviewed(Product productBeingReviewed);
 }

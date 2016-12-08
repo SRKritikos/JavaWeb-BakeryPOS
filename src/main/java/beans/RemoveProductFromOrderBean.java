@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package beans;
 
 import data.entities.Cateringorder;
@@ -21,63 +20,61 @@ import services.IProductService;
  *
  * @author Steven Kritikos
  */
-@ManagedBean(name="removeproductfromorder")
+@ManagedBean(name = "removeproductfromorder")
 @RequestScoped
 public class RemoveProductFromOrderBean implements IRemoveProductFromOrderBean {
-    @EJB
-    private IProductService productservice;
-    @EJB
-    private ICateringOrderService orderservice;
-    @ManagedProperty(value="#{user}")
-    private UserBean userbean;
 
-    @Override
-    public IProductService getProductservice() {
-        return productservice;
-    }
+  @EJB
+  private IProductService productservice;
+  @EJB
+  private ICateringOrderService orderservice;
+  @ManagedProperty(value = "#{user}")
+  private UserBean userbean;
 
-    @Override
-    public void setProductservice(IProductService productservice) {
-        this.productservice = productservice;
-    }
+  @Override
+  public IProductService getProductservice() {
+    return productservice;
+  }
 
-    public ICateringOrderService getOrderservice() {
-        return orderservice;
-    }
+  @Override
+  public void setProductservice(IProductService productservice) {
+    this.productservice = productservice;
+  }
 
-    @Override
-    public void setOrderservice(ICateringOrderService orderservice) {
-        this.orderservice = orderservice;
-    }
+  public ICateringOrderService getOrderservice() {
+    return orderservice;
+  }
 
-    @Override
-    public UserBean getUserbean() {
-        return userbean;
-    }
+  @Override
+  public void setOrderservice(ICateringOrderService orderservice) {
+    this.orderservice = orderservice;
+  }
 
-    @Override
-    public void setUserbean(UserBean userbean) {
-        this.userbean = userbean;
-    }
+  @Override
+  public UserBean getUserbean() {
+    return userbean;
+  }
 
-    @Override
-    public void removeProductFromOrder() {
-        String idClicked = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("removeProductId");
-        Product product = this.productservice.getProductById(idClicked);
-        Cateringorder order = this.userbean.getCurrentCateringOrder();
-        CateringorderProduct  orderProductRemoved = this.orderservice.removeFromCateringOrderProduct(product, order);
-        if (orderProductRemoved != null) {
-            if (order.getCateringorderProductList().contains(orderProductRemoved)) {
-                order.getCateringorderProductList()
-                        .set(order.getCateringorderProductList().indexOf(orderProductRemoved), orderProductRemoved);
-            } else {
-                order.getCateringorderProductList().add(orderProductRemoved);
-            }
-            this.userbean.updateCustomerOrder(order);
-        }
+  @Override
+  public void setUserbean(UserBean userbean) {
+    this.userbean = userbean;
+  }
+
+  @Override
+  public void removeProductFromOrder() {
+    String idClicked = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("removeProductId");
+    Product product = this.productservice.getProductById(idClicked);
+    Cateringorder order = this.userbean.getCurrentCateringOrder();
+    CateringorderProduct orderProductRemoved = this.orderservice.removeFromCateringOrderProduct(product, order);
+    if (orderProductRemoved != null) {
+      if (order.getCateringorderProductList().contains(orderProductRemoved)) {
+        order.getCateringorderProductList()
+                .set(order.getCateringorderProductList().indexOf(orderProductRemoved), orderProductRemoved);
+      } else {
+        order.getCateringorderProductList().add(orderProductRemoved);
+      }
+      this.userbean.updateCustomerOrder(order);
     }
-    
-    
-    
-    
+  }
+
 }

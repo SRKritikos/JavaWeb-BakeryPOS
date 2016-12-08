@@ -16,19 +16,34 @@ import services.IReviewsService;
  */
 @Local
 public interface IWriteReviewBean {
-    public void setReviewText(String text);
-    public String getReviewText();
-    public void setNumStars(int numStars);
-    public int getNumStars();
-    public void setProductId(String productId);
-    public String getProductId();
-    public String submitReview();
-    public IReviewsService getReviewservice();
-    public void setReviewservice(IReviewsService reviewservice);
-    public IProductService getProductservice();
-    public void setProductservice(IProductService productservice);
-    public ICustomerService getCustomerservice();
-    public void setCustomerservice(ICustomerService customerservice);
-    public void setUser(UserBean user);
-    public UserBean getUser();
+
+  public void setReviewText(String text);
+
+  public String getReviewText();
+
+  public void setNumStars(int numStars);
+
+  public int getNumStars();
+
+  public void setProductId(String productId);
+
+  public String getProductId();
+
+  public String submitReview();
+
+  public IReviewsService getReviewservice();
+
+  public void setReviewservice(IReviewsService reviewservice);
+
+  public IProductService getProductservice();
+
+  public void setProductservice(IProductService productservice);
+
+  public ICustomerService getCustomerservice();
+
+  public void setCustomerservice(ICustomerService customerservice);
+
+  public void setUser(UserBean user);
+
+  public UserBean getUser();
 }

@@ -14,9 +14,14 @@ import javax.ejb.Local;
  */
 @Local
 public interface IDAOFacade<T> {
-    public boolean create(T entity);
-    public boolean delete(T entity);
-    public boolean edit(T entity);
-    public T find(String id);
-    public List<T> getAll();
+
+  public boolean create(T entity);
+
+  public boolean delete(T entity);
+
+  public boolean edit(T entity);
+
+  public T find(String id);
+
+  public List<T> getAll();
 }

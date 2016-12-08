@@ -16,11 +16,14 @@ import javax.ejb.Local;
  *
  * @author Steven
  */
-
 @Local
 public interface ICateringOrderDAO {
-    public CateringorderProduct getCateringorderProductById(CateringorderProductPK orderProductPK);
-    public boolean updateCateringOrderProduct(CateringorderProduct orderProduct);
-    public List<Cateringorder> getCateringOrdersForCustomer(Customer customerId);
-    public boolean createNewOrderProduct(CateringorderProduct orderProduct);
+
+  public CateringorderProduct getCateringorderProductById(CateringorderProductPK orderProductPK);
+
+  public boolean updateCateringOrderProduct(CateringorderProduct orderProduct);
+
+  public List<Cateringorder> getCateringOrdersForCustomer(Customer customerId);
+
+  public boolean createNewOrderProduct(CateringorderProduct orderProduct);
 }

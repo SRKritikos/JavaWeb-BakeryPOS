@@ -18,12 +18,20 @@ import services.ProductService;
  * @author Steven
  */
 public interface IProductListBean {
-    public void init();
-    public void setProductlist(List<HomeProduct> productList);
-    public List<HomeProduct> getProductlist();
-    public void setProductservice(IProductService productservice);
-    public void setReviewService(IReviewsService reviewService);
-    public String viewReviewsClick();
-    public ViewReviewsBean getViewReviewsBean();
-    public void setViewReviewsBean(ViewReviewsBean viewReviewsBean);
+
+  public void init();
+
+  public void setProductlist(List<HomeProduct> productList);
+
+  public List<HomeProduct> getProductlist();
+
+  public void setProductservice(IProductService productservice);
+
+  public void setReviewService(IReviewsService reviewService);
+
+  public String viewReviewsClick();
+
+  public ViewReviewsBean getViewReviewsBean();
+
+  public void setViewReviewsBean(ViewReviewsBean viewReviewsBean);
 }

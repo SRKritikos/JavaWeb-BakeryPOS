@@ -15,11 +15,18 @@ import services.IProductService;
  */
 @Local
 public interface IAddProductToOrderBean {
-    public void addProductToOrder();
-    public void setUserbean(UserBean userbean);
-    public UserBean getUserbean();
-    public ICateringOrderService getOrderservice();
-    public void setOrderservice(ICateringOrderService orderservice);
-    public IProductService getProductservice();
-    public void setProductservice(IProductService productservice);
+
+  public void addProductToOrder();
+
+  public void setUserbean(UserBean userbean);
+
+  public UserBean getUserbean();
+
+  public ICateringOrderService getOrderservice();
+
+  public void setOrderservice(ICateringOrderService orderservice);
+
+  public IProductService getProductservice();
+
+  public void setProductservice(IProductService productservice);
 }

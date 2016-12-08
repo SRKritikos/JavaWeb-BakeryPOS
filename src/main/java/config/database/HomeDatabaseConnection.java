@@ -18,44 +18,48 @@ import javax.transaction.UserTransaction;
  *
  * @author srostantkritikos06
  */
-@Stateful(name="homedbcon")
-@TransactionManagement(value=TransactionManagementType.BEAN)
+@Stateful(name = "homedbcon")
+@TransactionManagement(value = TransactionManagementType.BEAN)
 public class HomeDatabaseConnection implements IDatabaseConnection {
-    @PersistenceContext(name="COMP31A3HomePU")
-    private EntityManager em;
-    @Resource
-    private UserTransaction utx;
-    
-    @Override
-    public EntityManager getConnection() {
-        return em;
-    }
 
-    /**
-     * For manually inject em
-     * @param em 
-     */
-    public void setEm(EntityManager em) {
-        this.em = em;
-    }
-    
-    @Override
-    public UserTransaction getTransaction() {
-        return utx;
-    }
+  @PersistenceContext(name = "COMP31A3HomePU")
+  private EntityManager em;
+  @Resource
+  private UserTransaction utx;
 
-    /**
-    * Setter for injecting utx manually
-    * @param em 
-    */
-    public void setUtx(UserTransaction utx) {
-        this.utx = utx;
-    }
+  @Override
+  public EntityManager getConnection() {
+    return em;
+  }
 
-    @Override
-    public void close() {
-        if (em != null) 
-            em.close();
+  /**
+   * For manually inject em
+   *
+   * @param em
+   */
+  public void setEm(EntityManager em) {
+    this.em = em;
+  }
+
+  @Override
+  public UserTransaction getTransaction() {
+    return utx;
+  }
+
+  /**
+   * Setter for injecting utx manually
+   *
+   * @param em
+   */
+  public void setUtx(UserTransaction utx) {
+    this.utx = utx;
+  }
+
+  @Override
+  public void close() {
+    if (em != null) {
+      em.close();
     }
+  }
 
 }

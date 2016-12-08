@@ -18,12 +18,12 @@ import javax.inject.Named;
  */
 @Stateful
 @LocalBean
-public class ProductDAOImpl extends DAOFacade<Product> implements IProductDAO{
-    
-    @Inject
-    @Named("homedbcon")
-    public ProductDAOImpl(IDatabaseConnection dbCon) {
-        super(dbCon, Product.class);
-    }
-    
+public class ProductDAOImpl extends DAOFacade<Product> implements IProductDAO {
+
+  @Inject
+  @Named("homedbcon")
+  public ProductDAOImpl(IDatabaseConnection dbCon) {
+    super(dbCon, Product.class);
+  }
+
 }

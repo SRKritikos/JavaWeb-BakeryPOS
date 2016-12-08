@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package beans;
 
 import data.entities.Customer;
@@ -20,96 +19,97 @@ import services.IReviewsService;
  *
  * @author Steven Kritikos
  */
-@ManagedBean(name="writereview")
+@ManagedBean(name = "writereview")
 @RequestScoped
-public class WriteReviewBean implements IWriteReviewBean{
-    private String reviewText;
-    private int numStars;
-    private String productId;
-    @ManagedProperty(value="#{user}")
-    private UserBean user;
-    @EJB
-    private IReviewsService reviewservice;
-    @EJB
-    private ICustomerService customerservice;
-    @EJB
-    private IProductService productservice;
-    
-    @Override
-    public void setReviewText(String text) {
-        this.reviewText = text;
-    }
+public class WriteReviewBean implements IWriteReviewBean {
 
-    @Override
-    public String getReviewText() {
-        return reviewText;
-    }
+  private String reviewText;
+  private int numStars;
+  private String productId;
+  @ManagedProperty(value = "#{user}")
+  private UserBean user;
+  @EJB
+  private IReviewsService reviewservice;
+  @EJB
+  private ICustomerService customerservice;
+  @EJB
+  private IProductService productservice;
 
-    @Override
-    public void setNumStars(int numStars) {
-        this.numStars = numStars;
-    }
+  @Override
+  public void setReviewText(String text) {
+    this.reviewText = text;
+  }
 
-    @Override
-    public int getNumStars() {
-        return numStars;
-    }
+  @Override
+  public String getReviewText() {
+    return reviewText;
+  }
 
-    @Override
-    public void setProductId(String productId) {
-        this.productId = productId;
-    }
+  @Override
+  public void setNumStars(int numStars) {
+    this.numStars = numStars;
+  }
 
-    @Override
-    public String getProductId() {
-        return productId;
-    }
+  @Override
+  public int getNumStars() {
+    return numStars;
+  }
 
-    @Override
-    public String submitReview() {
-        System.out.println(this.numStars +  this.reviewText + "   $$$ " + this.productId );
-        Product product = this.productservice.getProductById(productId);
-        this.reviewservice.saveProductReview(product, this.user.getCustomer(), reviewText, numStars);
-        return "home.xhtml";
-    }
+  @Override
+  public void setProductId(String productId) {
+    this.productId = productId;
+  }
 
-    @Override
-    public void setReviewservice(IReviewsService reviewservice) {
-        this.reviewservice = reviewservice;
-    }
+  @Override
+  public String getProductId() {
+    return productId;
+  }
 
-    public void setCustomerservice(ICustomerService customerservice) {
-        this.customerservice = customerservice;
-    }
+  @Override
+  public String submitReview() {
+    System.out.println(this.numStars + this.reviewText + "   $$$ " + this.productId);
+    Product product = this.productservice.getProductById(productId);
+    this.reviewservice.saveProductReview(product, this.user.getCustomer(), reviewText, numStars);
+    return "home.xhtml";
+  }
 
-    @Override
-    public void setProductservice(IProductService productservice) {
-        this.productservice = productservice;
-    }
+  @Override
+  public void setReviewservice(IReviewsService reviewservice) {
+    this.reviewservice = reviewservice;
+  }
 
-    @Override
-    public IReviewsService getReviewservice() {
-        return reviewservice;
-    }
+  public void setCustomerservice(ICustomerService customerservice) {
+    this.customerservice = customerservice;
+  }
 
-    @Override
-    public ICustomerService getCustomerservice() {
-        return customerservice;
-    }
+  @Override
+  public void setProductservice(IProductService productservice) {
+    this.productservice = productservice;
+  }
 
-    @Override
-    public IProductService getProductservice() {
-        return productservice;
-    }
+  @Override
+  public IReviewsService getReviewservice() {
+    return reviewservice;
+  }
 
-    @Override
-    public void setUser(UserBean user) {
-        this.user = user;
-    }
+  @Override
+  public ICustomerService getCustomerservice() {
+    return customerservice;
+  }
 
-    @Override
-    public UserBean getUser() {
-        return user;
-    }
-    
+  @Override
+  public IProductService getProductservice() {
+    return productservice;
+  }
+
+  @Override
+  public void setUser(UserBean user) {
+    this.user = user;
+  }
+
+  @Override
+  public UserBean getUser() {
+    return user;
+  }
+
 }

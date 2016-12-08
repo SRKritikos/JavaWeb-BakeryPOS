@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package services;
 
 import data.dao.CustomerDAOImpl;
@@ -19,31 +18,30 @@ import javax.inject.Inject;
  */
 @Stateless
 public class CustomerService implements ICustomerService {
-    @EJB
-    private CustomerDAOImpl customerDAO;
 
-    @Override
-     public boolean saveCustomer(Customer customer) {
-        boolean rtVl = this.customerDAO.edit(customer);
-        return rtVl;
-    }
-    
-    @Override
-    public Customer getCustomerById(String customerId) {
-        Customer rtVl = this.customerDAO.find(customerId);
-        return rtVl;
-    }
+  @EJB
+  private CustomerDAOImpl customerDAO;
 
-    public void setCustomerDAO(CustomerDAOImpl customerDAO) {
-        this.customerDAO = customerDAO;
-    }
+  @Override
+  public boolean saveCustomer(Customer customer) {
+    boolean rtVl = this.customerDAO.edit(customer);
+    return rtVl;
+  }
 
-    @Override
-    public Customer getCustomerByName(String username) {
-        Customer rtVl = this.customerDAO.getCustomerByName(username);
-        return rtVl;
-    }
-    
-    
-    
+  @Override
+  public Customer getCustomerById(String customerId) {
+    Customer rtVl = this.customerDAO.find(customerId);
+    return rtVl;
+  }
+
+  public void setCustomerDAO(CustomerDAOImpl customerDAO) {
+    this.customerDAO = customerDAO;
+  }
+
+  @Override
+  public Customer getCustomerByName(String username) {
+    Customer rtVl = this.customerDAO.getCustomerByName(username);
+    return rtVl;
+  }
+
 }

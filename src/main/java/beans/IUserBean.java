@@ -17,15 +17,26 @@ import services.ICustomerService;
  */
 @Local
 public interface IUserBean {
-    public Customer getCustomer();
-    public void setCustomer(Customer customer);
-    public String logout();
-    public void setCurrentCateringOrder(Cateringorder cateringorder);
-    public Cateringorder getCurrentCateringOrder();
-    public void setCartTotal(Double cartTotal);
-    public Double getCartTotal();
-    public void addCustomerOrder(Cateringorder order);
-    public void updateCustomerOrder(Cateringorder order);
-    public void setOrderservice(ICateringOrderService orderservice);
-    public void setCustomerservice(ICustomerService customerservice);
+
+  public Customer getCustomer();
+
+  public void setCustomer(Customer customer);
+
+  public String logout();
+
+  public void setCurrentCateringOrder(Cateringorder cateringorder);
+
+  public Cateringorder getCurrentCateringOrder();
+
+  public void setCartTotal(Double cartTotal);
+
+  public Double getCartTotal();
+
+  public void addCustomerOrder(Cateringorder order);
+
+  public void updateCustomerOrder(Cateringorder order);
+
+  public void setOrderservice(ICateringOrderService orderservice);
+
+  public void setCustomerservice(ICustomerService customerservice);
 }

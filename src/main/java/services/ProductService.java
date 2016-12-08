@@ -3,9 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package services;
-
 
 import data.dao.ProductDAOImpl;
 import data.entities.Product;
@@ -21,33 +19,31 @@ import javax.inject.Inject;
  * @author Steven Kritikos
  */
 @Stateless
-public class ProductService implements IProductService{
-    @EJB
-    private ProductDAOImpl productDAO;
-    
-    
-    
-    @Override
-    public List<Product> getAllProducts() {
-        List<Product> rtVl = productDAO.getAll();
-        return rtVl;
-    }
+public class ProductService implements IProductService {
 
-    @Override
-    public Product getProductById(String productId) {
-        Product rtVl = this.productDAO.find(productId);
-        return rtVl;
-    }
+  @EJB
+  private ProductDAOImpl productDAO;
 
-    @Override
-    public boolean saveProduct(Product product) {
-        boolean rtVl = this.productDAO.create(product);
-        return rtVl;
-    }
+  @Override
+  public List<Product> getAllProducts() {
+    List<Product> rtVl = productDAO.getAll();
+    return rtVl;
+  }
 
-    public void setProductDAO(ProductDAOImpl productDAO) {
-        this.productDAO = productDAO;
-    }
-    
-    
+  @Override
+  public Product getProductById(String productId) {
+    Product rtVl = this.productDAO.find(productId);
+    return rtVl;
+  }
+
+  @Override
+  public boolean saveProduct(Product product) {
+    boolean rtVl = this.productDAO.create(product);
+    return rtVl;
+  }
+
+  public void setProductDAO(ProductDAOImpl productDAO) {
+    this.productDAO = productDAO;
+  }
+
 }

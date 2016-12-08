@@ -14,5 +14,6 @@ import javax.ejb.Local;
  */
 @Local
 public interface ICustomerDAO {
-    public Customer getCustomerByName(String username);
+
+  public Customer getCustomerByName(String username);
 }

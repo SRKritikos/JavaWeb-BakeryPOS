@@ -8,15 +8,15 @@ import javax.persistence.metamodel.ListAttribute;
 import javax.persistence.metamodel.SingularAttribute;
 import javax.persistence.metamodel.StaticMetamodel;
 
-@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2016-12-08T07:34:46")
+@Generated(value = "EclipseLink-2.5.2.v20140319-rNA", date = "2016-12-08T07:34:46")
 @StaticMetamodel(Paymentmethod.class)
-public class Paymentmethod_ { 
+public class Paymentmethod_ {
 
-    public static volatile SingularAttribute<Paymentmethod, String> cardCvv;
-    public static volatile ListAttribute<Paymentmethod, Cateringorder> cateringorderList;
-    public static volatile SingularAttribute<Paymentmethod, String> paymentMethodId;
-    public static volatile SingularAttribute<Paymentmethod, Date> dateTo;
-    public static volatile SingularAttribute<Paymentmethod, Customer> customerId;
-    public static volatile SingularAttribute<Paymentmethod, String> cardNumber;
+  public static volatile SingularAttribute<Paymentmethod, String> cardCvv;
+  public static volatile ListAttribute<Paymentmethod, Cateringorder> cateringorderList;
+  public static volatile SingularAttribute<Paymentmethod, String> paymentMethodId;
+  public static volatile SingularAttribute<Paymentmethod, Date> dateTo;
+  public static volatile SingularAttribute<Paymentmethod, Customer> customerId;
+  public static volatile SingularAttribute<Paymentmethod, String> cardNumber;
 
 }

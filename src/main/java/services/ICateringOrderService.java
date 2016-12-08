@@ -21,10 +21,16 @@ import javax.ejb.Local;
  */
 @Local
 public interface ICateringOrderService {
-    public Cateringorder createNewCateringOrder(Date dateCreated, Date deliveryDate, Paymentmethod paymentMethod, Customer customer, List<CateringorderProduct> orderProductList);
-    public CateringorderProduct addToCateringOrderProducts(Product product, Cateringorder order);
-    public CateringorderProduct removeFromCateringOrderProduct(Product product, Cateringorder order);
-    public Cateringorder getCateringOrderById(String cateringId);
-    public List<Cateringorder> getCateringOrdersForCustomer(Customer customer);
-    public void setOrderDAO(CateringOrderDAOImpl orderDAO);
+
+  public Cateringorder createNewCateringOrder(Date dateCreated, Date deliveryDate, Paymentmethod paymentMethod, Customer customer, List<CateringorderProduct> orderProductList);
+
+  public CateringorderProduct addToCateringOrderProducts(Product product, Cateringorder order);
+
+  public CateringorderProduct removeFromCateringOrderProduct(Product product, Cateringorder order);
+
+  public Cateringorder getCateringOrderById(String cateringId);
+
+  public List<Cateringorder> getCateringOrdersForCustomer(Customer customer);
+
+  public void setOrderDAO(CateringOrderDAOImpl orderDAO);
 }

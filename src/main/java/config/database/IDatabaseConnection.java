@@ -15,7 +15,10 @@ import javax.transaction.UserTransaction;
  */
 @Local
 public interface IDatabaseConnection {
-    public EntityManager getConnection();
-    public UserTransaction getTransaction();
-    public void close();
+
+  public EntityManager getConnection();
+
+  public UserTransaction getTransaction();
+
+  public void close();
 }

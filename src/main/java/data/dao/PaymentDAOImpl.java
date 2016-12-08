@@ -16,13 +16,12 @@ import javax.inject.Named;
  * @author srostantkritikos06
  */
 @Stateful
-public class PaymentDAOImpl extends DAOFacade<Paymentmethod> implements IPaymentDAO{
+public class PaymentDAOImpl extends DAOFacade<Paymentmethod> implements IPaymentDAO {
 
-    @Inject
-    @Named("homedbcon")
-    public PaymentDAOImpl(IDatabaseConnection dbCon) {
-        super(dbCon, Paymentmethod.class);
-    }
+  @Inject
+  @Named("homedbcon")
+  public PaymentDAOImpl(IDatabaseConnection dbCon) {
+    super(dbCon, Paymentmethod.class);
+  }
 
-    
 }

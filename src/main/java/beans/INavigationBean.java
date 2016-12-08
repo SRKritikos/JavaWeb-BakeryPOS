@@ -13,6 +13,8 @@ import javax.ejb.Local;
  */
 @Local
 public interface INavigationBean {
-    public String goToHome();
-    public String goToCatering();
+
+  public String goToHome();
+
+  public String goToCatering();
 }
