@@ -1,4 +1,5 @@
 data\dao\IProductReviewDAO.class
+beans\AddProductToOrderBean.class
 data\entities\Productreview_.class
 config\PaymentMethod.class
 data\entities\Productcategory_.class
@@ -26,6 +27,7 @@ services\ProductService.class
 data\dao\DAOFacade.class
 data\dao\IPaymentDAO.class
 services\CateringOrderService.class
+beans\RemoveProductFromOrderBean.class
 data\entities\Cateringorder_.class
 services\clients\MasterCardPayment.class
 beans\IUserBean.class
@@ -42,6 +44,7 @@ data\entities\Cateringorder.class
 services\clients\PaymentsFactory.class
 beans\INavigationBean.class
 data\dao\ProductDAOImpl.class
+beans\IAddProductToOrderBean.class
 data\dao\PaymentDAOImpl.class
 data\dao\CustomerDAOImpl.class
 services\IProductService.class
@@ -58,6 +61,7 @@ services\clients\VisaPayment.class
 data\entities\CateringorderProductPK_.class
 data\entities\CateringorderProduct_.class
 data\entities\Productcategory.class
+beans\IRemoveProductFromOrderBean.class
 services\clients\IPaymentProcess.class
 services\IReviewsService.class
 beans\IProductListBean.class

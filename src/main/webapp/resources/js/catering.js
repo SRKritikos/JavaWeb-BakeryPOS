@@ -6,9 +6,9 @@
 
 
 $(window).ready(function(){
-   var cartTotal = parseFloat($("#cartTotal").html());
-   cartTotal = cartTotal.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,');
-   $("#cartTotal").html("$"+cartTotal);
+//   var cartTotal = parseFloat($("#cartTotal").html());
+//   cartTotal = cartTotal.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,');
+//   $("#cartTotal").html("$"+cartTotal);
    $(".products-wrapper").css({"display" : "none"});
    $(".showProducts").click(function(e){
        var btnVal = $(this).val();
@@ -28,39 +28,39 @@ $(window).ready(function(){
        $(this).parent("div").parent("div").next(".products-wrapper").css({ "display" : btnVal });
    });
    
-   $(".addProductBtn").click(function(e) {
-      var $id =  $(this).closest(".products").attr("id");  
-      $.ajax({
-        url : "AddProductToOrder",
-        type: 'POST',
-        data : { 
-                 "id" : $id
-               } 
-      }).done(function(data) {
-          console.log(data);
-          updateUserProductInformation(data);
-      }).fail(function(error){
-          console.log("error");
-          console.log(error);
-      }); 
-   });
+//   $(".addProductBtn").click(function(e) {
+//      var $id =  $(this).closest(".products").attr("id");  
+//      $.ajax({
+//        url : "AddProductToOrder",
+//        type: 'POST',
+//        data : { 
+//                 "id" : $id
+//               } 
+//      }).done(function(data) {
+//          console.log(data);
+//          updateUserProductInformation(data);
+//      }).fail(function(error){
+//          console.log("error");
+//          console.log(error);
+//      }); 
+//   });
    
-   $(".removeProductBtn").click(function(e){
-       var numProducts = parseInt($(this).closest(".products").find(".numProducts").html());
-       if (numProducts > 0) {
-            var $id =  $(this).closest(".products").attr("id");
-            $.ajax({
-                url : "RemoveProductFromOrder",
-                type : "POST",
-                data : { "id" : $id }
-            }).done(function(data){ 
-                console.log(data);
-                updateUserProductInformation(data);
-            }).fail(function(error){
-                console.log(error);
-            });
-        }
-    });
+//   $(".removeProductBtn").click(function(e){
+//       var numProducts = parseInt($(this).closest(".products").find(".numProducts").html());
+//       if (numProducts > 0) {
+//            var $id =  $(this).closest(".products").attr("id");
+//            $.ajax({
+//                url : "RemoveProductFromOrder",
+//                type : "POST",
+//                data : { "id" : $id }
+//            }).done(function(data){ 
+//                console.log(data);
+//                updateUserProductInformation(data);
+//            }).fail(function(error){
+//                console.log(error);
+//            });
+//        }
+//    });
 });
 
 function updateUserProductInformation(data) {

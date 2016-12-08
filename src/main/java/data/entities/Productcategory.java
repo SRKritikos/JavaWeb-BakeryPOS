@@ -25,7 +25,6 @@ import javax.xml.bind.annotation.XmlTransient;
 /**
  *
  * @author Steven Kritikos
- * email: stevenrktitikos@outlook.com
  */
 @Entity
 @Table(name = "productcategory")

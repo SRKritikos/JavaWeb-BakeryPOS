@@ -8,6 +8,7 @@ package beans;
 
 import data.entities.Product;
 import data.entities.Productreview;
+import java.io.Serializable;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
@@ -19,7 +20,7 @@ import javax.faces.bean.SessionScoped;
  */
 @ManagedBean(name="viewreviews")
 @SessionScoped
-public class ViewReviewsBean implements IViewReviewsBean {
+public class ViewReviewsBean implements IViewReviewsBean, Serializable {
     
     private List<Productreview> productReviews;
     private Product productBeingReviewed;

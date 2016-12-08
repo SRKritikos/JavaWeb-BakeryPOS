@@ -21,7 +21,6 @@ import javax.xml.bind.annotation.XmlRootElement;
 /**
  *
  * @author Steven Kritikos
- * email: stevenrktitikos@outlook.com
  */
 @Entity
 @Table(name = "cateringorder_product")

@@ -9,6 +9,7 @@ package beans;
 import data.entities.Cateringorder;
 import data.entities.CateringorderProduct;
 import data.entities.Customer;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -27,7 +28,7 @@ import services.ICustomerService;
  */
 @ManagedBean(name="login")
 @ViewScoped
-public class LoginBean implements ILoginBean {
+public class LoginBean implements ILoginBean, Serializable {
     private String username;
     private String password;
     @EJB

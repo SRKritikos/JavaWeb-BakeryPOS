@@ -13,11 +13,11 @@ and open the template in the editor.
         <ui:define name="maincontent">
             <h:outputScript name="js/catering.js"/>
             <h:outputStylesheet name="css/catering.css"/>
-            <div id="order-wrapper">
+            <h:panelGroup id="order-wrapper">
                 <span class="glyphicon glyphicon-shopping-cart"></span>
-                <label>Total: </label> <h:outputText id="cartTotal" value="#{user.cartTotal}"/>
+                <label>Total:   $</label> <h:outputText id="cartTotal" value="#{user.cartTotal}"/>
                 <p><a class="btn btn-success disabled" href="">Checkout</a></p>
-            </div>
+            </h:panelGroup>
             <div class="row">
                 <div class="col-md-1 col-md-offset-3" id="addOrderWrapper">
                     <h:form>
@@ -38,7 +38,7 @@ and open the template in the editor.
                     </div>
                 </h:form>
             </div>
-            <div id="cateringOrderDisplay">
+            <h:panelGroup id="cateringOrderDisplay">
                 <ui:repeat value="#{catering.cateringModel.entrySet().toArray()}" var="productCategory">
                     <div class="categories" id="${productCategory.key.name}">
                         <div class="row">
@@ -57,21 +57,32 @@ and open the template in the editor.
                                 </div>
                                 <div class="add-remove-wrapper col-md-4">
                                      <div class="addProduct col-md-12">   
-                                        <button class="addProductBtn btn btn-default" type="button">
-                                             <span class="glyphicon glyphicon-plus"></span>
-                                        </button>
+                                        <h:form>
+                                            <input type="hidden" name="addProductId" value="#{product.product.productId}"/>
+                                            <h:commandLink action="#{addproducttoorder.addProductToOrder()}" class="addProductBtn btn btn-default">
+                                                 <span class="glyphicon glyphicon-plus"></span>
+                                                 <f:ajax execute="@form" render=":cateringOrderDisplay :order-wrapper"/>
+                                            </h:commandLink>
+                                        </h:form>
+                                    </div>
+                                    <div>
+                                        <h:outputText value="#{product.qty}"/>
                                     </div>
                                     <div class="removeProduct col-md-12">
-                                        <button class="removeProductBtn btn btn-default" type="button">
-                                            <span class="glyphicon glyphicon-minus"></span>
-                                        </button>
+                                        <h:form>
+                                            <input type="hidden" name="removeProductId" value="#{product.product.productId}"/>
+                                            <h:commandLink action="#{removeproductfromorder.removeProductFromOrder()}" class="removeProductBtn btn btn-default" type="button">
+                                                <span class="glyphicon glyphicon-minus"></span>
+                                                <f:ajax execute="@form" render=":cateringOrderDisplay :order-wrapper"/>
+                                            </h:commandLink>   
+                                        </h:form>
                                     </div>
                                 </div>
                             </div>
                         </ui:repeat>      
                     </div>
                 </ui:repeat>
-            </div> 
+            </h:panelGroup>
         </ui:define>
     </ui:composition>
 </html>

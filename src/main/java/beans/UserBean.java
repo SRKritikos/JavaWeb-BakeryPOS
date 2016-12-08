@@ -9,6 +9,8 @@ package beans;
 import data.entities.Cateringorder;
 import data.entities.CateringorderProduct;
 import data.entities.Customer;
+import java.io.Serializable;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -25,7 +27,7 @@ import services.ICustomerService;
  */
 @ManagedBean(name="user")
 @SessionScoped
-public class UserBean implements IUserBean {
+public class UserBean implements IUserBean, Serializable{
 
     @EJB
     private ICateringOrderService orderservice;
@@ -57,6 +59,8 @@ public class UserBean implements IUserBean {
 
     @Override
     public Double getCartTotal() {
+        DecimalFormat df = new DecimalFormat("#.00");
+        df.format(this.cartTotal);
         return cartTotal;
     }
 
@@ -82,13 +86,13 @@ public class UserBean implements IUserBean {
         this.customer.setCateringorderList(customerOrders);
         this.customerservice.saveCustomer(customer);
         this.currentCateringOrder = order;
-        this.cartTotal =  this.computeTotal(order);
+        this.computeTotal();
     }
     
     @Override
     public void updateCustomerOrder(Cateringorder order) {
         this.currentCateringOrder = order;
-        this.cartTotal = this.computeTotal(order);
+        this.computeTotal();
     }
 
     @Override
@@ -102,10 +106,10 @@ public class UserBean implements IUserBean {
     }
 
     
-    private Double computeTotal(Cateringorder order) {
-        return order.getCateringorderProductList().stream()
-                    .mapToDouble(cor -> cor.getProduct().getPrice().doubleValue())
-                    .sum();
+    private void computeTotal() {
+        this.cartTotal = this.currentCateringOrder.getCateringorderProductList().stream()
+                    .mapToDouble(cor -> cor.getProduct().getPrice().doubleValue() * cor.getQuantity())
+                    .sum(); 
     }
 
     

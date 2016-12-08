@@ -16,7 +16,6 @@ import javax.validation.constraints.Size;
 /**
  *
  * @author Steven Kritikos
- * email: stevenrktitikos@outlook.com
  */
 @Embeddable
 public class CateringorderProductPK implements Serializable {

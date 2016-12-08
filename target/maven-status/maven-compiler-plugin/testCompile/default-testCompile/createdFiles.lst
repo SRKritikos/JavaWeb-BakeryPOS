@@ -1,3 +1,5 @@
+beans\CateringBeanTest.class
+services\CateringOrderServiceTest.class
 services\CustomerServiceTest.class
 config\database\HomeDatabaseConnectionTest.class
 beans\WriteReviewBeanTest.class

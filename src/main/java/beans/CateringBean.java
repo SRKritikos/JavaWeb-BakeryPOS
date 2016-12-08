@@ -16,6 +16,7 @@ import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
+import javax.faces.context.FacesContext;
 import model.CateringProduct;
 import services.ICateringOrderService;
 import services.ICustomerService;
@@ -44,12 +45,16 @@ public class CateringBean implements ICateringBean{
         List<Product> productsList = this.productservice.getAllProducts();
         Cateringorder userOrder = this.user.getCurrentCateringOrder();
         this.cateringModel = productsList.parallelStream()
-                    .map(p -> new CateringProduct(0, p, p.getCategoryId()))
+                    .map(p ->  new CateringProduct(0, p, p.getCategoryId()))
                     .collect(Collectors.groupingBy(CateringProduct::getCategory));
-//        this.cateringModel = this.cateringModel.entrySet().parallelStream()
-//                .filter(entry -> entry.getValue()
-//                        .equals(userOrder.getCateringorderProductList().stream().))
-                
+        this.cateringModel.entrySet().parallelStream()
+                .forEach(entry -> entry.getValue().stream()
+                    .forEach(cp -> userOrder.getCateringorderProductList().stream()
+                            .filter(cop -> cop.getProduct().equals(cp.getProduct()))
+                            .findFirst()
+                            .ifPresent(foundP -> cp.setQty(foundP.getQuantity()))
+                    )
+                );        
         return cateringModel;
     }
     
@@ -58,6 +63,15 @@ public class CateringBean implements ICateringBean{
         this.user.addCustomerOrder(null);
         return "catering.xhtml";
     }
+    
+    @Override
+    public void changeOrder() {
+        System.out.println(this.currentOrderId);
+        Cateringorder order = this.orderservice.getCateringOrderById(currentOrderId);
+        this.user.updateCustomerOrder(order);
+//        return "catering.xhtml";
+    }
+    
 
     @Override
     public void setCateringModel(Map<Productcategory, List<CateringProduct>> cateringModel) {
@@ -88,14 +102,6 @@ public class CateringBean implements ICateringBean{
     }
 
     @Override
-    public void changeOrder() {
-        System.out.println(this.currentOrderId);
-        Cateringorder order = this.orderservice.getCateringOrderById(currentOrderId);
-        this.user.updateCustomerOrder(order);
-//        return "catering.xhtml";
-    }
-
-    @Override
     public UserBean getUser() {
         return user;
     }
@@ -118,6 +124,7 @@ public class CateringBean implements ICateringBean{
     public void setOrderservice(ICateringOrderService orderservice) {
         this.orderservice = orderservice;
     }
+
 
     
     
