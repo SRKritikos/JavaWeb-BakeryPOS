@@ -38,7 +38,6 @@ public class PaymentsFactory {
     this.paymentMap.put(PaymentMethod.AmericanExpress, americanexpress);
     this.paymentMap.put(PaymentMethod.PayPal, paypal);
     this.paymentMap.put(PaymentMethod.MasterCard, mastercard);
-
   }
 
   public IPaymentProcess getPayment(PaymentMethod method) {

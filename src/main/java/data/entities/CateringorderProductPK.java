@@ -3,6 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package data.entities;
 
 import java.io.Serializable;
@@ -15,6 +16,7 @@ import javax.validation.constraints.Size;
 /**
  *
  * @author Steven Kritikos
+ * email: stevenrktitikos@outlook.com
  */
 @Embeddable
 public class CateringorderProductPK implements Serializable {

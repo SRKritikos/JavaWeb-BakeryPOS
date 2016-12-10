@@ -5,6 +5,8 @@
  */
 package services.clients;
 
+import data.entities.Paymentmethod;
+
 /**
  *
  * @author srostantkritikos06
@@ -12,7 +14,7 @@ package services.clients;
 public class VisaPayment implements IPaymentProcess {
 
   @Override
-  public void processPaynent() {
+  public void processPaynent(Paymentmethod paymentMethod) {
     throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
   }
 

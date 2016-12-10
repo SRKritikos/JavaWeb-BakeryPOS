@@ -5,11 +5,13 @@
  */
 package services.clients;
 
+import data.entities.Paymentmethod;
+
 /**
  *
  * @author srostantkritikos06
  */
 public interface IPaymentProcess {
 
-  public void processPaynent();
+  public void processPaynent(Paymentmethod paymentMethod);
 }

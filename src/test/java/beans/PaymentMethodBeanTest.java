@@ -10,8 +10,11 @@ import controllerbeans.PaymentMethodBean;
 import controllerbeans.UserBean;
 import data.entities.Customer;
 import data.entities.Paymentmethod;
+import java.util.Date;
 import org.junit.After;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Matchers;
@@ -89,5 +92,28 @@ public class PaymentMethodBeanTest {
     this.instance.setPaymentType(expectedResult);
     String result = this.instance.getPaymentType();
     assertEquals(expectedResult, result);
+  }
+  
+  @Test
+  public void testInit() {
+    String expectedCVV = "111";
+    Date date = new Date();
+    String expectedCardNumber = "123456";
+    String expectedPaymentType = "Visa";
+    Paymentmethod paymentMethod =  new Paymentmethod("1");
+    paymentMethod.setIsPrefered(Boolean.TRUE);
+    paymentMethod.setPaymentType(expectedCVV);
+    paymentMethod.setCardCvv(expectedPaymentType);
+    paymentMethod.setCardNumber(expectedCardNumber);
+    paymentMethod.setDateTo(date);
+    Mockito.when(this.userBean.getCurrentPaymentMethod()).thenReturn(paymentMethod);
+    this.instance.init();
+    assertNotNull(this.instance.getCardCVV());
+    assertNotNull(this.instance.getCardNumber());
+    assertNotNull(this.instance.getExpiryMonth());
+    assertNotNull(this.instance.getExpiryYear());
+    assertNotNull(this.instance.getPaymentType());
+    assertTrue(this.instance.isIsPrefered());
+   
   }
 }

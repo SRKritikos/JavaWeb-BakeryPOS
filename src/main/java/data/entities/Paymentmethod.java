@@ -3,6 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package data.entities;
 
 import java.io.Serializable;
@@ -29,6 +30,7 @@ import javax.xml.bind.annotation.XmlTransient;
 /**
  *
  * @author Steven Kritikos
+ * email: stevenrktitikos@outlook.com
  */
 @Entity
 @Table(name = "paymentmethod")
@@ -38,7 +40,9 @@ import javax.xml.bind.annotation.XmlTransient;
   @NamedQuery(name = "Paymentmethod.findByPaymentMethodId", query = "SELECT p FROM Paymentmethod p WHERE p.paymentMethodId = :paymentMethodId"),
   @NamedQuery(name = "Paymentmethod.findByCardNumber", query = "SELECT p FROM Paymentmethod p WHERE p.cardNumber = :cardNumber"),
   @NamedQuery(name = "Paymentmethod.findByCardCvv", query = "SELECT p FROM Paymentmethod p WHERE p.cardCvv = :cardCvv"),
-  @NamedQuery(name = "Paymentmethod.findByDateTo", query = "SELECT p FROM Paymentmethod p WHERE p.dateTo = :dateTo")})
+  @NamedQuery(name = "Paymentmethod.findByDateTo", query = "SELECT p FROM Paymentmethod p WHERE p.dateTo = :dateTo"),
+  @NamedQuery(name = "Paymentmethod.findByIsPrefered", query = "SELECT p FROM Paymentmethod p WHERE p.isPrefered = :isPrefered"),
+  @NamedQuery(name = "Paymentmethod.findByPaymentType", query = "SELECT p FROM Paymentmethod p WHERE p.paymentType = :paymentType")})
 public class Paymentmethod implements Serializable {
 
   private static final long serialVersionUID = 1L;
@@ -57,6 +61,11 @@ public class Paymentmethod implements Serializable {
   @Column(name = "date_to")
   @Temporal(TemporalType.TIMESTAMP)
   private Date dateTo;
+  @Column(name = "isPrefered")
+  private Boolean isPrefered;
+  @Size(max = 15)
+  @Column(name = "payment_type")
+  private String paymentType;
   @OneToMany(mappedBy = "paymentMethodId", fetch = FetchType.EAGER)
   private List<Cateringorder> cateringorderList;
   @JoinColumn(name = "customer_id", referencedColumnName = "customer_id")
@@ -100,6 +109,22 @@ public class Paymentmethod implements Serializable {
 
   public void setDateTo(Date dateTo) {
     this.dateTo = dateTo;
+  }
+
+  public Boolean getIsPrefered() {
+    return isPrefered;
+  }
+
+  public void setIsPrefered(Boolean isPrefered) {
+    this.isPrefered = isPrefered;
+  }
+
+  public String getPaymentType() {
+    return paymentType;
+  }
+
+  public void setPaymentType(String paymentType) {
+    this.paymentType = paymentType;
   }
 
   @XmlTransient

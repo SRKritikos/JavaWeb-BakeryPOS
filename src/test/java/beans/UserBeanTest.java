@@ -22,12 +22,16 @@ import services.ICateringOrderService;
 import services.ICustomerService;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 /**
  *
  * @author Steven Kritikos
  */
-public class UserBeantest {
+public class UserBeanTest {
 
   private UserBean instance;
   private ICustomerService customerservice;
@@ -69,10 +73,17 @@ public class UserBeantest {
   @Test
   public void testUpdateCustomerOrder() {
     Cateringorder expectedResult = new Cateringorder("1");
-    Mockito.when(this.orderservice.createNewCateringOrder(Matchers.any(Date.class), Matchers.isNull(Date.class), Matchers.isNull(Paymentmethod.class), Matchers.any(Customer.class), Matchers.anyListOf(CateringorderProduct.class)))
-            .thenReturn(expectedResult);
-    Customer customer = this.instance.getCustomer();
-    Mockito.when(customer.getCateringorderList()).thenReturn(new ArrayList<Cateringorder>());
+    expectedResult.setCateringorderProductList(new ArrayList<>());
+    this.instance.setCurrentCateringOrder(new Cateringorder("1"));
+    this.instance.updateCustomerOrder(expectedResult);
     assertNotNull(this.instance.getCurrentCateringOrder());
+  }
+  
+  @Test
+  public void  testSetAndGetCurrentPaymentMethod() {
+    Paymentmethod expectedResult = new Paymentmethod("1");
+    this.instance.setCurrentPaymentMethod(expectedResult);
+    Paymentmethod result = this.instance.getCurrentPaymentMethod();
+    assertEquals(expectedResult, result);
   }
 }

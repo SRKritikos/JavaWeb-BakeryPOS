@@ -7,6 +7,7 @@ package controllerbeans;
 
 import data.entities.Cateringorder;
 import data.entities.Customer;
+import data.entities.Paymentmethod;
 import javax.ejb.Local;
 import services.ICateringOrderService;
 import services.ICustomerService;
@@ -39,4 +40,8 @@ public interface IUserBean {
   public void setOrderservice(ICateringOrderService orderservice);
 
   public void setCustomerservice(ICustomerService customerservice);
+  
+  public Paymentmethod getCurrentPaymentMethod();
+  
+  public void setCurrentPaymentMethod(Paymentmethod currentPaymentMethod);
 }

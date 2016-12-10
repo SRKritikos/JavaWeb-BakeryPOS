@@ -8,6 +8,7 @@ package controllerbeans;
 import data.entities.Cateringorder;
 import data.entities.CateringorderProduct;
 import data.entities.Customer;
+import data.entities.Paymentmethod;
 import java.io.Serializable;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -35,6 +36,7 @@ public class UserBean implements IUserBean, Serializable {
   private Customer customer;
   private Cateringorder currentCateringOrder;
   private Double cartTotal;
+  private Paymentmethod currentPaymentMethod;
 
   @Override
   public Customer getCustomer() {
@@ -103,6 +105,16 @@ public class UserBean implements IUserBean, Serializable {
     this.customerservice = customerservice;
   }
 
+  @Override
+  public Paymentmethod getCurrentPaymentMethod() {
+    return currentPaymentMethod;
+  }
+
+  @Override
+  public void setCurrentPaymentMethod(Paymentmethod currentPaymentMethod) {
+    this.currentPaymentMethod = currentPaymentMethod;
+  }
+  
   private void computeTotal() {
     this.cartTotal = this.currentCateringOrder.getCateringorderProductList().stream()
             .mapToDouble(cor -> cor.getProduct().getPrice().doubleValue() * cor.getQuantity())

@@ -26,4 +26,7 @@ public interface IPaymentMethodBean {
   public UserBean getUserbean();
   public String getPaymentType();
   public void setPaymentType(String paymentType);
+  public boolean isIsPrefered();
+  public void setIsPrefered(boolean isPrefered);
+  public void init();
 }
