@@ -5,6 +5,7 @@
  */
 package beans;
 
+import controllerbeans.UserBean;
 import data.entities.Cateringorder;
 import data.entities.CateringorderProduct;
 import data.entities.Customer;

@@ -10,7 +10,7 @@ package config;
  * @author srostantkritikos06
  */
 public enum PaymentMethod {
-  Paypal,
+  PayPal,
   Visa,
   MasterCard,
   AmericanExpress

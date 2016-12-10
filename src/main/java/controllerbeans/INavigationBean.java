@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package beans;
+package controllerbeans;
 
 import javax.ejb.Local;
 
@@ -17,4 +17,5 @@ public interface INavigationBean {
   public String goToHome();
 
   public String goToCatering();
+  public String goToCheckout();
 }

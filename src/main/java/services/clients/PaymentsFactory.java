@@ -36,7 +36,7 @@ public class PaymentsFactory {
     this.paymentMap = new HashMap();
     this.paymentMap.put(PaymentMethod.Visa, visa);
     this.paymentMap.put(PaymentMethod.AmericanExpress, americanexpress);
-    this.paymentMap.put(PaymentMethod.Paypal, paypal);
+    this.paymentMap.put(PaymentMethod.PayPal, paypal);
     this.paymentMap.put(PaymentMethod.MasterCard, mastercard);
 
   }

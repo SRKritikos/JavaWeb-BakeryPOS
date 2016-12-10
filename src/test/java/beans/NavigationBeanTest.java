@@ -5,6 +5,7 @@
  */
 package beans;
 
+import controllerbeans.NavigationBean;
 import org.junit.After;
 import static org.junit.Assert.assertEquals;
 import org.junit.Before;

@@ -5,6 +5,8 @@
  */
 package beans;
 
+import controllerbeans.CateringBean;
+import controllerbeans.UserBean;
 import data.entities.Cateringorder;
 import org.junit.After;
 import static org.junit.Assert.assertEquals;

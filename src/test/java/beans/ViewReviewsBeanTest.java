@@ -5,6 +5,7 @@
  */
 package beans;
 
+import controllerbeans.ViewReviewsBean;
 import data.entities.Productreview;
 import java.util.Arrays;
 import java.util.List;

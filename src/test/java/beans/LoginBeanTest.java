@@ -5,6 +5,8 @@
  */
 package beans;
 
+import controllerbeans.LoginBean;
+import controllerbeans.UserBean;
 import org.junit.After;
 import static org.junit.Assert.assertEquals;
 import org.junit.Before;

@@ -16,7 +16,9 @@ and open the template in the editor.
       <h:panelGroup id="order-wrapper">
         <span class="glyphicon glyphicon-shopping-cart"></span>
         <label>Total:   $</label> <h:outputText id="cartTotal" value="#{user.cartTotal}"/>
-        <p><a class="btn btn-success disabled" href="">Checkout</a></p>
+        <h:form>
+          <p><h:commandLink class="btn btn-success" action="#{navigation.goToCheckout()}" value="Checkout"/></p>
+        </h:form>
       </h:panelGroup>
       <div class="row">
         <div class="col-md-1 col-md-offset-3" id="addOrderWrapper">

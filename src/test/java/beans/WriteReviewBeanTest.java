@@ -5,6 +5,8 @@
  */
 package beans;
 
+import controllerbeans.WriteReviewBean;
+import controllerbeans.UserBean;
 import org.junit.After;
 import static org.junit.Assert.assertEquals;
 import org.junit.Before;

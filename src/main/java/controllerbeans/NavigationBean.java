@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package beans;
+package controllerbeans;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
@@ -25,5 +25,12 @@ public class NavigationBean implements INavigationBean {
   public String goToCatering() {
     return "catering.xhtml";
   }
+
+  @Override
+  public String goToCheckout() {
+    return "checkout.xhtml";
+  }
+  
+ 
 
 }

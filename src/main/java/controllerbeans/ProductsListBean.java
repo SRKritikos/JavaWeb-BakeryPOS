@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package beans;
+package controllerbeans;
 
 import data.entities.Product;
 import data.entities.Productreview;
