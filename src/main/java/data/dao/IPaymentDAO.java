@@ -5,6 +5,10 @@
  */
 package data.dao;
 
+import config.PaymentMethod;
+import data.entities.Customer;
+import data.entities.Paymentmethod;
+import java.util.List;
 import javax.ejb.Local;
 
 /**
@@ -13,5 +17,6 @@ import javax.ejb.Local;
  */
 @Local
 public interface IPaymentDAO {
-
+  public List<Paymentmethod> getPaymentMethodsForCustomer(Customer customer);
+  public Paymentmethod getPaymentMethodByCardNumber(String cardNumber);
 }

@@ -8,6 +8,7 @@ package controllerbeans;
 import data.entities.Cateringorder;
 import data.entities.CateringorderProduct;
 import data.entities.Customer;
+import data.entities.Paymentmethod;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
@@ -79,6 +80,16 @@ public class LoginBean implements ILoginBean, Serializable {
                 .get(0);
         this.user.addCustomerOrder(order);
       }
+      if (customer.getPaymentmethodList().isEmpty()) {
+        this.user.setCurrentPaymentMethod(null);
+      } else {
+        Paymentmethod paymentMethod = customer.getPaymentmethodList()
+                                      .stream().filter(pm -> pm.getIsPreferred())
+                                      .findFirst()
+                                      .get();
+        this.user.setCurrentPaymentMethod(paymentMethod);
+      }
+      
 
       return "home.xhtml";
     }

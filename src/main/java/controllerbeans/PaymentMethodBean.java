@@ -6,15 +6,19 @@
 
 package controllerbeans;
 
+import config.PaymentMethod;
+import data.entities.Customer;
 import data.entities.Paymentmethod;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
+import services.ICustomerService;
 import services.IPaymentMethodService;
 
 /**
@@ -24,17 +28,21 @@ import services.IPaymentMethodService;
 @ManagedBean(name="paymentmethod")
 @RequestScoped
 public class PaymentMethodBean implements IPaymentMethodBean{
+  private Paymentmethod selectedPaymentMethod;
   private String paymentType;
   private String cardNumber;
   private String cardCVV;
   private String expiryMonth;
   private String expiryYear;
-  private boolean isPrefered;
+  private boolean isPreferred;
   @ManagedProperty(value="#{user}")
   private UserBean userbean;  
   @EJB
   private IPaymentMethodService paymentService;
-
+  @EJB
+  private ICustomerService customerService;
+  
+  
   @PostConstruct 
   @Override
   public void init() {
@@ -44,7 +52,7 @@ public class PaymentMethodBean implements IPaymentMethodBean{
       this.cardCVV = paymentMethod.getCardCvv();
       this.cardNumber = paymentMethod.getCardNumber();
       this.paymentType = paymentMethod.getPaymentType();
-      this.isPrefered = paymentMethod.getIsPrefered();
+      this.isPreferred = paymentMethod.getIsPreferred();
       this.expiryMonth = df.format(paymentMethod.getDateTo());
       df =  new SimpleDateFormat("yy");
       this.expiryYear = df.format(paymentMethod.getDateTo());
@@ -113,26 +121,49 @@ public class PaymentMethodBean implements IPaymentMethodBean{
 
   @Override
   public boolean isIsPrefered() {
-    return isPrefered;
+    return isPreferred;
   }
 
   @Override
   public void setIsPrefered(boolean isPrefered) {
-    this.isPrefered = isPrefered;
+    this.isPreferred = isPrefered;
   }
-  
+
+  @Override
+  public Paymentmethod getSelectedPaymentMethod() {
+    return selectedPaymentMethod;
+  }
+
+  @Override
+  public void setSelectedPaymentMethod(Paymentmethod selectedPaymentMethod) {
+    this.selectedPaymentMethod = selectedPaymentMethod;
+  }
   
 
   @Override
   public String addPaymentMethod() {
-    Paymentmethod newPaymentMethod = this.paymentService.addNewPaymentForCustomer(this.userbean.getCustomer(), cardNumber, cardCVV, expiryMonth+expiryYear);
-    
+    System.out.println("Adding payment method");
+    if (this.paymentService.getPaymentMethodByCardNumber(cardNumber) == null) {
+      if (isPreferred) {
+        this.paymentService.updateAllCustomerPreferredMethod(this.userbean.getCustomer(), false);
+      }
+      Paymentmethod newPaymentMethod = this.paymentService.addNewPaymentForCustomer(this.userbean.getCustomer(), cardNumber, cardCVV, expiryMonth+expiryYear, this.isPreferred, PaymentMethod.valueOf(this.paymentType));
+      List<Paymentmethod> updatedPaymentMethodList = this.paymentService.getPaymentMethodsForCustomer(this.userbean.getCustomer());
+      updatedPaymentMethodList.forEach(pm -> System.out.println(pm.getCardNumber()));
+      if (newPaymentMethod != null) {
+        this.userbean.getCustomer().setPaymentmethodList(updatedPaymentMethodList);
+        this.userbean.setCurrentPaymentMethod(newPaymentMethod);
+      }
+    }
     return "checkout.xhtml";
   }
 
+  @Override
   public void setPaymentService(IPaymentMethodService paymentService) {
     this.paymentService = paymentService;
   }
+  
+  
 
   
   

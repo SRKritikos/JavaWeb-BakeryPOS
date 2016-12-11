@@ -44,7 +44,7 @@ CREATE TABLE paymentmethod (
     card_number VARCHAR(64),
     card_cvv VARCHAR(3),
     date_to DATETIME,
-    isPrefered BOOLEAN DEFAULT FALSE,
+    isPreferred BOOLEAN DEFAULT FALSE,
     payment_type ENUM('Visa', 'PayPal', 'MasterCard', 'AmericanExpress') DEFAULT NULL,
 
     FOREIGN KEY (customer_id)

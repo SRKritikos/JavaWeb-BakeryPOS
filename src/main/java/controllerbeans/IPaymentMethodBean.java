@@ -5,6 +5,8 @@
  */
 package controllerbeans;
 
+import data.entities.Paymentmethod;
+import services.ICustomerService;
 import services.IPaymentMethodService;
 
 /**
@@ -28,5 +30,7 @@ public interface IPaymentMethodBean {
   public void setPaymentType(String paymentType);
   public boolean isIsPrefered();
   public void setIsPrefered(boolean isPrefered);
+  public Paymentmethod getSelectedPaymentMethod();
+  public void setSelectedPaymentMethod(Paymentmethod selectedPaymentMethod);
   public void init();
 }

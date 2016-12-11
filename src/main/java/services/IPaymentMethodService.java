@@ -5,9 +5,11 @@
  */
 package services;
 
+import config.PaymentMethod;
 import data.dao.PaymentDAOImpl;
 import data.entities.Customer;
 import data.entities.Paymentmethod;
+import java.util.List;
 import javax.ejb.Local;
 
 /**
@@ -16,6 +18,9 @@ import javax.ejb.Local;
  */
 @Local
 public interface IPaymentMethodService {
-  public Paymentmethod addNewPaymentForCustomer(Customer customer, String cardNumber, String cardCVV, String expiryDate);
+  public Paymentmethod addNewPaymentForCustomer(Customer customer, String cardNumber, String cardCVV, String expiryDate, boolean isPreferred, PaymentMethod method);
   public void setPaymentDAO(PaymentDAOImpl customerDAO);
+  public void updateAllCustomerPreferredMethod(Customer customer, boolean b);
+  public List<Paymentmethod> getPaymentMethodsForCustomer(Customer customer);
+  public Paymentmethod getPaymentMethodByCardNumber(String cardNumber);
 }

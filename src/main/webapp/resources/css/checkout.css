@@ -11,3 +11,11 @@ and open the template in the editor.
 #billingInfo {
   padding-top: 25px;
 }
+
+input[type=checkbox] {
+  transform: scale(2);
+}
+
+input[type=radio] {
+  transform: scale(1.1);
+}

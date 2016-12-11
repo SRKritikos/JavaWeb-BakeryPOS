@@ -6,11 +6,14 @@
 
 package beans;
 
+import config.PaymentMethod;
 import controllerbeans.PaymentMethodBean;
 import controllerbeans.UserBean;
 import data.entities.Customer;
 import data.entities.Paymentmethod;
+import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
 import org.junit.After;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -18,7 +21,9 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Matchers;
+import static org.mockito.Matchers.anyString;
 import org.mockito.Mockito;
+import services.ICustomerService;
 import services.IPaymentMethodService;
 
 /**
@@ -37,6 +42,7 @@ public class PaymentMethodBeanTest {
     this.instance = new PaymentMethodBean();
     this.instance.setPaymentService(paymentService);
     this.instance.setUserbean(userBean);
+
   }
   
   @After
@@ -78,10 +84,17 @@ public class PaymentMethodBeanTest {
   
   @Test
   public void testaddPaymentMethod() {
+    Paymentmethod paymentMethod = new Paymentmethod("1");
     String expectedResult = "checkout.xhtml";
+    List<Paymentmethod> paymentMethods = Arrays.asList(paymentMethod);
+    Customer customer = new Customer("1");
+    customer.setPaymentmethodList(paymentMethods);
+    this.instance.setPaymentType("Visa");
     Mockito.when(this.paymentService.addNewPaymentForCustomer(
-            Matchers.any(Customer.class), Matchers.anyString(), Matchers.anyString(), Matchers.anyString()))
-            .thenReturn(new Paymentmethod("1"));
+            Matchers.any(Customer.class), Matchers.anyString(), Matchers.anyString(), Matchers.anyString(), Matchers.anyBoolean(), Matchers.any(PaymentMethod.class)))
+            .thenReturn(paymentMethod);
+    Mockito.when(this.paymentService.getPaymentMethodsForCustomer(Matchers.any(Customer.class))).thenReturn(paymentMethods);
+    Mockito.when(this.userBean.getCustomer()).thenReturn(customer);
     String result = this.instance.addPaymentMethod();
     assertEquals(expectedResult, result);
   }
@@ -101,7 +114,7 @@ public class PaymentMethodBeanTest {
     String expectedCardNumber = "123456";
     String expectedPaymentType = "Visa";
     Paymentmethod paymentMethod =  new Paymentmethod("1");
-    paymentMethod.setIsPrefered(Boolean.TRUE);
+    paymentMethod.setIsPreferred(Boolean.TRUE);
     paymentMethod.setPaymentType(expectedCVV);
     paymentMethod.setCardCvv(expectedPaymentType);
     paymentMethod.setCardNumber(expectedCardNumber);

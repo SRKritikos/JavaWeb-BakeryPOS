@@ -6,6 +6,7 @@
 
 package services;
 
+import config.PaymentMethod;
 import data.dao.PaymentDAOImpl;
 import data.dao.PaymentMethodDAOImplTest;
 import data.entities.Customer;
@@ -40,7 +41,7 @@ public class PaymentMethodServiceTest {
   @Test 
   public void testAddNewPaymentForCustomer() {
     Mockito.when(this.paymentDAO.create(Matchers.any(Paymentmethod.class))).thenReturn(Boolean.TRUE);
-    Paymentmethod result = this.instance.addNewPaymentForCustomer(new Customer("1"), "1234", "111", "1216");
+    Paymentmethod result = this.instance.addNewPaymentForCustomer(new Customer("1"), "1234", "111", "1216", true, PaymentMethod.Visa);
     assertNotNull(result);
   }
 }
