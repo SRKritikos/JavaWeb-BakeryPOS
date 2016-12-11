@@ -12,6 +12,5 @@ import data.entities.Paymentmethod;
  * @author srostantkritikos06
  */
 public interface IPaymentProcess {
-
   public void processPaynent(Paymentmethod paymentMethod);
 }

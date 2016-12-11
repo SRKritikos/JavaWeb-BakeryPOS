@@ -5,6 +5,9 @@
  */
 package controllerbeans;
 
+import java.util.List;
+import model.CheckoutProduct;
+
 /**
  *
  * @author Steven
@@ -14,4 +17,12 @@ public interface ICheckoutBean {
   public void setUserbean(UserBean userbean);
   public String getCanCheckoutClass();
   public void setCanCheckoutClass(String canCheckoutClass);
+  public void setConfirmOrdersModel(List<CheckoutProduct> confirmOrdersModel);
+  public List<CheckoutProduct> getConfirmOrdersModel();
+  public void setFinalTotalAmount(Double finalTotalAmount);
+  public Double getFinalTotalAmount();
+  public void setTaxCalculated(Double taxCalculated);
+  public Double getTaxCalculated();
+  public void init();
+  public void placeOrder();
 }

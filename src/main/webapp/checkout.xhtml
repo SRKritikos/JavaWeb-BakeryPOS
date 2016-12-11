@@ -36,65 +36,112 @@ and open the template in the editor.
                 </div>
               </div>
             </h:form>
-              <h:form class="form-horizontal">
-                <div class="form-group">
-                  <div class="filler col-md-2"></div>
-                  <label class="col-md-1">Name: </label>
-                  <div class="col-md-3">
-                    <h:outputText  value="#{user.customer.firstName} #{user.customer.lastName}"/>
-                  </div>
+            <h:form class="form-horizontal">
+              <div class="form-group">
+                <div class="filler col-md-2"></div>
+                <label class="col-md-1">Name: </label>
+                <div class="col-md-3">
+                  <h:outputText  value="#{user.customer.firstName} #{user.customer.lastName}"/>
                 </div>
-                <div class="form-group">
-                  <div class="filler col-md-2"></div>
-                  <label class="col-md-2">Make preferred payment method:</label>
-                  <div class="col-md-1">
-                    <h:selectBooleanCheckbox class="checkbox" value="#{paymentmethod.isPrefered}"/>
-                  </div>
+              </div>
+              <div class="form-group">
+                <div class="filler col-md-2"></div>
+                <label class="col-md-2">Make preferred payment method:</label>
+                <div class="col-md-1">
+                  <h:selectBooleanCheckbox class="checkbox" value="#{paymentmethod.isPrefered}"/>
                 </div>
-                <div class="form-group">
-                  <div class="filler col-md-2"></div>
-                  <label class="col-md-1">Payment Type: </label>
-                  <div class="col-md-4">
-                    <h:selectOneRadio value="#{paymentmethod.paymentType}">
-                      <f:selectItem itemValue="Visa" itemLabel="VISA"/>
-                      <f:selectItem itemValue="AmericanExpress" itemLabel="American Express"/>
-                      <f:selectItem itemValue="MasterCard" itemLabel="Master Card"/>
-                      <f:selectItem itemValue="PayPal" itemLabel="PayPal"/>
-                    </h:selectOneRadio>
-                  </div>
+              </div>
+              <div class="form-group">
+                <div class="filler col-md-2"></div>
+                <label class="col-md-1">Payment Type: </label>
+                <div class="col-md-4">
+                  <h:selectOneRadio value="#{paymentmethod.paymentType}">
+                    <f:selectItem itemValue="Visa" itemLabel="VISA"/>
+                    <f:selectItem itemValue="AmericanExpress" itemLabel="American Express"/>
+                    <f:selectItem itemValue="MasterCard" itemLabel="Master Card"/>
+                    <f:selectItem itemValue="PayPal" itemLabel="PayPal"/>
+                  </h:selectOneRadio>
                 </div>
-                <div class="form-group">
-                  <div class="filler col-md-2"></div>
-                  <label class="col-md-1">Card Number: </label>
-                  <div class="col-md-3">
-                    <h:inputText class="form-control" value="#{paymentmethod.cardNumber}"/>
-                  </div>
+              </div>
+              <div class="form-group">
+                <div class="filler col-md-2"></div>
+                <label class="col-md-1">Card Number: </label>
+                <div class="col-md-3">
+                  <h:inputText class="form-control" value="#{paymentmethod.cardNumber}"/>
                 </div>
-                <div class="form-group">
-                  <div class="filler col-md-2"></div>
-                  <label class="col-md-1">Expiration Month: </label>
-                  <div class="col-md-1">
-                    <h:inputText class="form-control" value="#{paymentmethod.expiryMonth}"/>
-                  </div>
-                  <div class="filler col-md-1"></div>
-                  <label class="col-md-1">Expiration Year: </label>
-                  <div class="col-md-1">
-                    <h:inputText class="form-control" value="#{paymentmethod.expiryYear}"/>
-                  </div>
+              </div>
+              <div class="form-group">
+                <div class="filler col-md-2"></div>
+                <label class="col-md-1">Expiration Month: </label>
+                <div class="col-md-1">
+                  <h:inputText class="form-control" value="#{paymentmethod.expiryMonth}"/>
                 </div>
-                <div class="form-group">
-                  <div class="filler col-md-2"></div>
-                  <label class="col-md-1">CVV: </label>
-                  <div class="col-md-1">
-                    <h:inputText class="form-control" value="#{paymentmethod.cardCVV}"/>
-                  </div>
+                <div class="filler col-md-1"></div>
+                <label class="col-md-1">Expiration Year: </label>
+                <div class="col-md-1">
+                  <h:inputText class="form-control" value="#{paymentmethod.expiryYear}"/>
                 </div>
-                <div class="form-group">
-                  <div class="filler col-md-2"></div>
-                  <h:commandButton class="btn btn-default" action="#{paymentmethod.addPaymentMethod()}" value="Update/Add PaymentMethod"/>
-                  <button id="toConfirmBtn" class="btn btn-default #{checkout.canCheckoutClass}" type="button" data-toggle="tab" href="#confirm">Continue</button>
+              </div>
+              <div class="form-group">
+                <div class="filler col-md-2"></div>
+                <label class="col-md-1">CVV: </label>
+                <div class="col-md-1">
+                  <h:inputText class="form-control" value="#{paymentmethod.cardCVV}"/>
                 </div>
-              </h:form>
+              </div>
+              <div class="form-group">
+                <div class="filler col-md-2"></div>
+                <h:commandButton class="btn btn-default" action="#{paymentmethod.addPaymentMethod()}" value="Add PaymentMethod"/>
+                <button id="toConfirmBtn" class="btn btn-default #{checkout.canCheckoutClass}" type="button" data-toggle="tab" href="#confirm">Continue</button>
+              </div>
+            </h:form>
+          </h:panelGroup>
+          <h:panelGroup id="confirm" class="tab-pane fade">
+            <h4>Order Confirmation</h4>
+            <h:dataTable class="table" value="#{checkout.confirmOrdersModel}" var="checkoutProduct">
+              <h:column>
+                <f:facet name="header">Product Name</f:facet>
+                #{checkoutProduct.productName}
+              </h:column>
+              <h:column>
+                <f:facet name="header">Quantity</f:facet>
+                #{checkoutProduct.qty}
+              </h:column>
+              <h:column>
+                <f:facet name="header">Price</f:facet>
+                #{checkoutProduct.totalPrice}
+              </h:column>
+            </h:dataTable>
+            <h3>Total</h3>
+            <table class="table">
+              <tr>
+                <td colspan="2" class="col-md-7">
+                  Price
+                </td>
+                <td id="cartTotal" class="col-md-5">
+                  #{user.cartTotal}
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" class="col-md-7">
+                  Tax
+                </td>
+                <td class="col-md-5">
+                  #{checkout.taxCalculated}
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" class="col-md-7">
+                  <strong><span>Total</span></strong>
+                </td>
+                <td class="col-md-5">
+                  #{checkout.finalTotalAmount}
+                </td>
+              </tr> 
+            </table>
+            <div class="col-md-1">
+              <button id="backToBilling" type="button" class="btn btn-default" data-toggle="tab" href="#billingInfo">Back</button>
+            </div>
           </h:panelGroup>
           </div>
         </div>

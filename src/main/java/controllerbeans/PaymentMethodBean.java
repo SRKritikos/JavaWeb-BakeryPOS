@@ -147,9 +147,8 @@ public class PaymentMethodBean implements IPaymentMethodBean{
       if (isPreferred) {
        this.paymentService.updateAllCustomerPreferredMethod(this.userbean.getCustomer(), false);
       }
-      newPaymentMethod = this.paymentService.addNewPaymentForCustomer(this.userbean.getCustomer(), cardNumber, cardCVV, expiryMonth+expiryYear, this.isPreferred, PaymentMethod.valueOf(this.paymentType));
+      newPaymentMethod = this.paymentService.addNewPaymentForCustomer(this.userbean.getCustomer(), this.cardNumber, this.cardCVV, expiryMonth+expiryYear, this.isPreferred, PaymentMethod.valueOf(this.paymentType));
       List<Paymentmethod> updatedPaymentMethodList = this.paymentService.getPaymentMethodsForCustomer(this.userbean.getCustomer());
-      updatedPaymentMethodList.forEach(pm -> System.out.println(pm.getCardNumber()));
       this.userbean.getCustomer().setPaymentmethodList(updatedPaymentMethodList);
       this.userbean.setCurrentPaymentMethod(newPaymentMethod);
     }
