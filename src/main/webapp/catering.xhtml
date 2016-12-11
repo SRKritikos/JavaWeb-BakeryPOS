@@ -16,8 +16,8 @@ and open the template in the editor.
       <h:panelGroup id="order-wrapper">
         <span class="glyphicon glyphicon-shopping-cart"></span>
         <label>Total:   $</label> <h:outputText id="cartTotal" value="#{user.cartTotal}"/>
-        <h:form>
-          <p><h:commandLink class="btn btn-success" action="#{navigation.goToCheckout()}" value="Checkout"/></p>
+        <h:form id="checkoutForm">
+          <p><h:commandLink class="btn btn-success" id="checkoutBtn" action="#{navigation.goToCheckout()}" value="Checkout"/></p>
         </h:form>
       </h:panelGroup>
       <div class="row">
@@ -61,9 +61,9 @@ and open the template in the editor.
                   <div class="addProduct col-md-12">   
                     <h:form>
                       <input type="hidden" name="addProductId" value="#{product.product.productId}"/>
-                      <h:commandLink action="#{addproducttoorder.addProductToOrder()}" class="addProductBtn btn btn-default">
+                      <h:commandLink action="#{modifycateringorder.addProductToOrder()}" class="addProductBtn btn btn-default">
                         <span class="glyphicon glyphicon-plus"></span>
-                        <f:ajax execute="@form" render=":cateringOrderDisplay :order-wrapper"/>
+                        <f:ajax onevent="orderUpdate" execute="@form" render=":cateringOrderDisplay :order-wrapper"/>
                       </h:commandLink>
                     </h:form>
                   </div>
@@ -73,9 +73,9 @@ and open the template in the editor.
                   <div class="removeProduct col-md-12">
                     <h:form>
                       <input type="hidden" name="removeProductId" value="#{product.product.productId}"/>
-                      <h:commandLink action="#{removeproductfromorder.removeProductFromOrder()}" class="removeProductBtn btn btn-default" type="button">
+                      <h:commandLink action="#{modifycateringorder.removeProductFromOrder()}" class="removeProductBtn btn btn-default" type="button">
                         <span class="glyphicon glyphicon-minus"></span>
-                        <f:ajax execute="@form" render=":cateringOrderDisplay :order-wrapper"/>
+                        <f:ajax onevent="orderUpdate" execute="@form" render=":cateringOrderDisplay :order-wrapper"/>
                       </h:commandLink>   
                     </h:form>
                   </div>

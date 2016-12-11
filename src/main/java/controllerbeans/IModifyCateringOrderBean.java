@@ -14,9 +14,10 @@ import services.IProductService;
  * @author Steven
  */
 @Local
-public interface IAddProductToOrderBean {
-
+public interface IModifyCateringOrderBean {
   public void addProductToOrder();
+  
+  public void removeProductFromOrder();
 
   public void setUserbean(UserBean userbean);
 
@@ -29,4 +30,6 @@ public interface IAddProductToOrderBean {
   public IProductService getProductservice();
 
   public void setProductservice(IProductService productservice);
+  
+  
 }

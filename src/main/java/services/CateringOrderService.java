@@ -5,6 +5,7 @@
  */
 package services;
 
+import config.PaymentMethod;
 import data.dao.CateringOrderDAOImpl;
 import data.entities.Cateringorder;
 import data.entities.CateringorderProduct;
@@ -18,6 +19,8 @@ import java.util.UUID;
 import java.util.stream.Collectors;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
+import services.clients.IPaymentProcess;
+import services.clients.PaymentsFactory;
 
 /**
  *
@@ -28,6 +31,8 @@ public class CateringOrderService implements ICateringOrderService {
 
   @EJB
   private CateringOrderDAOImpl orderDAO;
+  @EJB
+  private PaymentsFactory paymentFactory;
 
   @Override
   public Cateringorder createNewCateringOrder(Date dateCreated, Date deliveryDate, Paymentmethod paymentMethod, Customer customer, List<CateringorderProduct> orderProductList) {
@@ -98,10 +103,24 @@ public class CateringOrderService implements ICateringOrderService {
     List<Cateringorder> rtVl = this.orderDAO.getCateringOrdersForCustomer(customer);
     return rtVl;
   }
+  
+  @Override
+  public boolean processOrder(Cateringorder order, Paymentmethod paymentMethod) {
+    PaymentMethod method = PaymentMethod.valueOf(paymentMethod.getPaymentType());
+    IPaymentProcess paymentProcess = this.paymentFactory.getPayment(method);
+    boolean success = paymentProcess.processPaynent(paymentMethod);
+    if (success) {
+      success = this.orderDAO.delete(order);
+    }
+    return success;
+  }
 
   @Override
   public void setOrderDAO(CateringOrderDAOImpl orderDAO) {
     this.orderDAO = orderDAO;
   }
 
+  public void setPaymentFactory(PaymentsFactory paymentFactory) {
+    this.paymentFactory = paymentFactory;
+  }
 }

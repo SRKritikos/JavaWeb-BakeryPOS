@@ -6,10 +6,12 @@
 
 
 $(window).ready(function () {
-//   var cartTotal = parseFloat($("#cartTotal").html());
-//   cartTotal = cartTotal.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,');
-//   $("#cartTotal").html("$"+cartTotal);
   $(".products-wrapper").css({"display": "none"});
+  showHideBtnHandler();
+  makeCheckoutBtnDisabled();
+});
+
+function showHideBtnHandler() {
   $(".showProducts").click(function (e) {
     var btnVal = $(this).val();
     var html = $(this).html();
@@ -27,47 +29,22 @@ $(window).ready(function () {
     //WTB .grandParent();
     $(this).parent("div").parent("div").next(".products-wrapper").css({"display": btnVal});
   });
+ 
+}
 
-//   $(".addProductBtn").click(function(e) {
-//      var $id =  $(this).closest(".products").attr("id");  
-//      $.ajax({
-//        url : "AddProductToOrder",
-//        type: 'POST',
-//        data : { 
-//                 "id" : $id
-//               } 
-//      }).done(function(data) {
-//          console.log(data);
-//          updateUserProductInformation(data);
-//      }).fail(function(error){
-//          console.log("error");
-//          console.log(error);
-//      }); 
-//   });
+function makeCheckoutBtnDisabled() {
+  var cartTotal = parseInt($("#cartTotal").html());
+  if (!cartTotal > 0) {
+    $("#checkoutForm\\:checkoutBtn").addClass("disabled");
+  } else {
+    $("#checkoutForm\\:checkoutBtn").removeClass("disabled");
+  }
+}
 
-//   $(".removeProductBtn").click(function(e){
-//       var numProducts = parseInt($(this).closest(".products").find(".numProducts").html());
-//       if (numProducts > 0) {
-//            var $id =  $(this).closest(".products").attr("id");
-//            $.ajax({
-//                url : "RemoveProductFromOrder",
-//                type : "POST",
-//                data : { "id" : $id }
-//            }).done(function(data){ 
-//                console.log(data);
-//                updateUserProductInformation(data);
-//            }).fail(function(error){
-//                console.log(error);
-//            });
-//        }
-//    });
-});
-
-function updateUserProductInformation(data) {
-  var cartTotal = data.cartTotal
-  cartTotal = cartTotal.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,');
-  console.log(cartTotal);
-  $("#" + data.id).find(".numProducts")
-          .html(data.orderProductQty);
-  $("#cartTotal").html("$" + cartTotal);
+function orderUpdate(data) {
+  console.log(data);
+  if (data.status === "success") {
+    makeCheckoutBtnDisabled();
+    showHideBtnHandler();
+  }
 }

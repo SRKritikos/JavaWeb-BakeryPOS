@@ -33,4 +33,6 @@ public interface ICateringOrderService {
   public List<Cateringorder> getCateringOrdersForCustomer(Customer customer);
 
   public void setOrderDAO(CateringOrderDAOImpl orderDAO);
+  
+  public boolean processOrder(Cateringorder order, Paymentmethod paymentMethod);
 }

@@ -24,5 +24,5 @@ public interface ICheckoutBean {
   public void setTaxCalculated(Double taxCalculated);
   public Double getTaxCalculated();
   public void init();
-  public void placeOrder();
+  public String placeOrder();
 }

@@ -6,11 +6,13 @@
 package services.clients;
 
 import data.entities.Paymentmethod;
+import javax.ejb.Local;
 
 /**
  *
  * @author srostantkritikos06
  */
+@Local
 public interface IPaymentProcess {
-  public void processPaynent(Paymentmethod paymentMethod);
+  public boolean processPaynent(Paymentmethod paymentMethod);
 }

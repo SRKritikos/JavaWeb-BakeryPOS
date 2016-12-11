@@ -78,7 +78,7 @@ public class LoginBean implements ILoginBean, Serializable {
                 .sorted((o1, o2) -> o1.getDateCreated().compareTo(o2.getDateCreated()))
                 .collect(Collectors.toList())
                 .get(0);
-        this.user.addCustomerOrder(order);
+        this.user.updateCustomerOrder(order);
       }
       if (customer.getPaymentmethodList().isEmpty()) {
         this.user.setCurrentPaymentMethod(null);

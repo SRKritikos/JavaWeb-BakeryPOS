@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package controllerbeans;
 
 import data.entities.Cateringorder;
 import data.entities.CateringorderProduct;
 import data.entities.Product;
-import java.util.List;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
@@ -21,11 +21,10 @@ import services.IProductService;
  *
  * @author Steven Kritikos
  */
-@ManagedBean(name = "addproducttoorder")
+@ManagedBean(name="modifycateringorder")
 @RequestScoped
-public class AddProductToOrderBean implements IAddProductToOrderBean {
-
-  @EJB
+public class ModifyCateringOrderBean implements IModifyCateringOrderBean {
+   @EJB
   private ICateringOrderService orderservice;
   @EJB
   private IProductService productservice;
@@ -79,4 +78,20 @@ public class AddProductToOrderBean implements IAddProductToOrderBean {
     }
   }
 
+  @Override
+  public void removeProductFromOrder() {
+    String idClicked = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("removeProductId");
+    Product product = this.productservice.getProductById(idClicked);
+    Cateringorder order = this.userbean.getCurrentCateringOrder();
+    CateringorderProduct orderProductRemoved = this.orderservice.removeFromCateringOrderProduct(product, order);
+    if (orderProductRemoved != null) {
+      if (order.getCateringorderProductList().contains(orderProductRemoved)) {
+        order.getCateringorderProductList()
+                .set(order.getCateringorderProductList().indexOf(orderProductRemoved), orderProductRemoved);
+      } else {
+        order.getCateringorderProductList().add(orderProductRemoved);
+      }
+      this.userbean.updateCustomerOrder(order);
+    }
+  }
 }

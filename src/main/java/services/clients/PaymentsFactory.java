@@ -11,6 +11,7 @@ import java.util.Map;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.ejb.Stateful;
+import javax.inject.Named;
 
 /**
  * Class used to return appropriate payment process
@@ -23,12 +24,16 @@ public class PaymentsFactory {
   private Map<PaymentMethod, IPaymentProcess> paymentMap;
 
   @EJB
+  @Named("mastercard")
   private MasterCardPayment mastercard;
   @EJB
+  @Named("paypal")
   private PaypalPayment paypal;
   @EJB
+  @Named("visa")
   private VisaPayment visa;
   @EJB
+  @Named("americanexpress")
   private AmericanExpressPayment americanexpress;
 
   @PostConstruct

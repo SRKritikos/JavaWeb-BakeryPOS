@@ -6,16 +6,25 @@
 package services.clients;
 
 import data.entities.Paymentmethod;
+import javax.ejb.LocalBean;
+import javax.ejb.Stateful;
 
 /**
  *
  * @author srostantkritikos06
  */
+@Stateful(name = "americanexpress")
+@LocalBean
 public class AmericanExpressPayment implements IPaymentProcess {
 
   @Override
-  public void processPaynent(Paymentmethod paymentMethod) {
-    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+  public boolean processPaynent(Paymentmethod paymentMethod) {
+    System.out.println("Processing payment through " + this.getClass().getName());
+    System.out.println("With Card Number - " + paymentMethod.getCardNumber());
+    System.out.println("With CVV - " + paymentMethod.getCardCvv());
+    System.out.println("With expirty date - " + paymentMethod.getDateTo());
+    System.out.println("Finished processing payment");
+    return true;
   }
 
 }

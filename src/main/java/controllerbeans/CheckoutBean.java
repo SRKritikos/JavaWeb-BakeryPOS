@@ -7,13 +7,16 @@
 package controllerbeans;
 
 import data.entities.Cateringorder;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import javax.annotation.PostConstruct;
+import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
 import model.CheckoutProduct;
+import services.ICateringOrderService;
 
 /**
  *
@@ -28,8 +31,9 @@ public class CheckoutBean implements ICheckoutBean {
   private final Double TAX = .13D;
   private Double taxCalculated;
   private Double finalTotalAmount;
-  private List<CheckoutProduct> confirmOrdersModel;
-  
+  private List<CheckoutProduct> checkoutProductList;
+  @EJB
+  private ICateringOrderService orderservice;
 
   @PostConstruct
   @Override
@@ -38,7 +42,7 @@ public class CheckoutBean implements ICheckoutBean {
       this.canCheckoutClass = "disabled";
     } else {
       this.canCheckoutClass = "active";
-      this.buildConfirmOrdersModel(this.userbean.getCurrentCateringOrder());
+      this.buildCheckoutProductList(this.userbean.getCurrentCateringOrder());
       this.taxCalculated = this.userbean.getCartTotal() * TAX;
       this.finalTotalAmount = this.userbean.getCartTotal() + this.taxCalculated;
     }  
@@ -86,29 +90,59 @@ public class CheckoutBean implements ICheckoutBean {
 
   @Override
   public List<CheckoutProduct> getConfirmOrdersModel() {
-    return confirmOrdersModel;
+    return checkoutProductList;
   }
 
   @Override
   public void setConfirmOrdersModel(List<CheckoutProduct> confirmOrdersModel) {
-    this.confirmOrdersModel = confirmOrdersModel;
+    this.checkoutProductList = confirmOrdersModel;
+  }
+
+  public void setOrderservice(ICateringOrderService orderservice) {
+    this.orderservice = orderservice;
   }
   
-  private void buildConfirmOrdersModel(Cateringorder order) {
+  
+  
+  private void buildCheckoutProductList(Cateringorder order) {
+    this.checkoutProductList = new ArrayList<>();
     order.getCateringorderProductList().stream()
             .map(cop -> cop.getProduct())
-            .collect(Collectors.toSet())
-            .stream()
             .forEach(product -> {
-              this.confirmOrdersModel = order.getCateringorderProductList().stream()
+              this.checkoutProductList.addAll(order.getCateringorderProductList().stream()
                       .filter(cop -> cop
                               .getProduct()
                               .equals(product))
                       .map(filteredCop -> new CheckoutProduct(filteredCop.getProduct().getProductName(),
                               filteredCop.getQuantity(),
                               filteredCop.getProduct().getPrice().doubleValue() * filteredCop.getQuantity()))
-                      .collect(Collectors.toList());
+                      .collect(Collectors.toList()));
             });
+    
+    System.out.println("$$$$$$$$$" + this.checkoutProductList.size());
+  }
+
+  @Override
+  public String placeOrder() {
+    boolean success = this.orderservice.processOrder(this.userbean.getCurrentCateringOrder(), this.userbean.getCurrentPaymentMethod());
+    if (success) {
+      List<Cateringorder> customerOrderList = this.orderservice.getCateringOrdersForCustomer(this.userbean.getCustomer());
+      if (!customerOrderList.isEmpty()) {
+        this.userbean.updateCustomerOrder(
+          customerOrderList
+              .parallelStream()
+              .sorted((o1, o2) -> o1.getDateCreated().compareTo(o2.getDateCreated()))
+              .collect(Collectors.toList())
+              .get(0)
+        );
+      } else {
+        this.userbean.addCustomerOrder(null);
+      }
+      return "catering.xhtml";
+    } else {
+      return "checkout.xhtml";     
+    }
+    
   }
 
 

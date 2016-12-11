@@ -45,10 +45,12 @@ public abstract class DAOFacade<T> implements IDAOFacade<T> {
     EntityManager em = this.dbCon.getConnection();
     boolean success = false;
     try {
+      entity = em.merge(entity);
       em.remove(entity);
       success = true;
     } catch (Exception e) {
       System.out.println("Failed to delete entity " + this.getClass().getName());
+      e.printStackTrace();
     }
     return success;
   }

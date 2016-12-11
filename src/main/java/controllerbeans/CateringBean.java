@@ -78,7 +78,7 @@ public class CateringBean implements ICateringBean {
 
   @Override
   public List<Cateringorder> getUserOrders() {
-    this.userOrders = this.user.getCustomer().getCateringorderList();
+    this.userOrders = this.orderservice.getCateringOrdersForCustomer(this.user.getCustomer());
     return userOrders;
   }
 
