@@ -118,8 +118,6 @@ public class CheckoutBean implements ICheckoutBean {
                               filteredCop.getProduct().getPrice().doubleValue() * filteredCop.getQuantity()))
                       .collect(Collectors.toList()));
             });
-    
-    System.out.println("$$$$$$$$$" + this.checkoutProductList.size());
   }
 
   @Override

@@ -44,4 +44,10 @@ public class CustomerService implements ICustomerService {
     return rtVl;
   }
 
+  @Override
+  public Customer authenticateCustomer(String username, String password) {
+    Customer rtVl = this.customerDAO.getUserByUsernameAndPassword(username, password);
+    return rtVl;
+  }
+
 }

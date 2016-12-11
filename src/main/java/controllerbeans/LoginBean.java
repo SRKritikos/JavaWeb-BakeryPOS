@@ -6,13 +6,9 @@
 package controllerbeans;
 
 import data.entities.Cateringorder;
-import data.entities.CateringorderProduct;
 import data.entities.Customer;
 import data.entities.Paymentmethod;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
 import java.util.stream.Collectors;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
@@ -67,7 +63,7 @@ public class LoginBean implements ILoginBean, Serializable {
 
   @Override
   public String login() {
-    Customer customer = customerservice.getCustomerByName(username);
+    Customer customer = customerservice.authenticateCustomer(username, password);
     if (customer != null) {
       this.user.setCustomer(customer);
       if (customer.getCateringorderList().isEmpty()) {
@@ -89,8 +85,6 @@ public class LoginBean implements ILoginBean, Serializable {
                                       .get();
         this.user.setCurrentPaymentMethod(paymentMethod);
       }
-      
-
       return "home.xhtml";
     }
     return "login.xhtml";

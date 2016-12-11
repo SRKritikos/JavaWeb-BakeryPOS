@@ -42,4 +42,18 @@ public class CustomerDAOImpl extends DAOFacade<Customer> implements ICustomerDAO
     return rtVl;
 
   }
+
+  public Customer getUserByUsernameAndPassword(String username, String password) {
+    EntityManager em = this.dbCon.getConnection();
+    Customer rtVl = null;
+    try {
+      rtVl = em.createQuery("SELECT c FROM Customer c WHERE c.username = :username AND c.password = :password", Customer.class)
+              .setParameter("username", username)
+              .setParameter("password", password)
+              .getSingleResult();
+    } catch(Exception e) {
+      System.out.println(e.toString() + " in getUserByUsernameAndPassword");
+    }
+    return rtVl;
+  }
 }

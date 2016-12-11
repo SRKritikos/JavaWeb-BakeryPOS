@@ -20,4 +20,6 @@ public interface ICustomerService {
   public Customer getCustomerById(String customerId);
 
   public Customer getCustomerByName(String username);
+
+  public Customer authenticateCustomer(String username, String password);
 }
