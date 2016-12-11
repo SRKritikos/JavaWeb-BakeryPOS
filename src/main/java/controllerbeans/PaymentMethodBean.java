@@ -28,7 +28,7 @@ import services.IPaymentMethodService;
 @ManagedBean(name="paymentmethod")
 @RequestScoped
 public class PaymentMethodBean implements IPaymentMethodBean{
-  private Paymentmethod selectedPaymentMethod;
+  private String selectedPaymentMethodId;
   private String paymentType;
   private String cardNumber;
   private String cardCVV;
@@ -53,6 +53,7 @@ public class PaymentMethodBean implements IPaymentMethodBean{
       this.cardNumber = paymentMethod.getCardNumber();
       this.paymentType = paymentMethod.getPaymentType();
       this.isPreferred = paymentMethod.getIsPreferred();
+      this.selectedPaymentMethodId = paymentMethod.getPaymentMethodId();
       this.expiryMonth = df.format(paymentMethod.getDateTo());
       df =  new SimpleDateFormat("yy");
       this.expiryYear = df.format(paymentMethod.getDateTo());
@@ -130,34 +131,37 @@ public class PaymentMethodBean implements IPaymentMethodBean{
   }
 
   @Override
-  public Paymentmethod getSelectedPaymentMethod() {
-    return selectedPaymentMethod;
+  public String getSelectedPaymentMethodId() {
+    return selectedPaymentMethodId;
   }
 
   @Override
-  public void setSelectedPaymentMethod(Paymentmethod selectedPaymentMethod) {
-    this.selectedPaymentMethod = selectedPaymentMethod;
+  public void setSelectedPaymentMethodId(String selectedPaymentMethodId) {
+    this.selectedPaymentMethodId = selectedPaymentMethodId;
   }
   
-
   @Override
   public String addPaymentMethod() {
-    System.out.println("Adding payment method");
-    if (this.paymentService.getPaymentMethodByCardNumber(cardNumber) == null) {
+    Paymentmethod newPaymentMethod = this.paymentService.getPaymentMethodByCardNumber(cardNumber);
+    if (newPaymentMethod == null) {
       if (isPreferred) {
-        this.paymentService.updateAllCustomerPreferredMethod(this.userbean.getCustomer(), false);
+       this.paymentService.updateAllCustomerPreferredMethod(this.userbean.getCustomer(), false);
       }
-      Paymentmethod newPaymentMethod = this.paymentService.addNewPaymentForCustomer(this.userbean.getCustomer(), cardNumber, cardCVV, expiryMonth+expiryYear, this.isPreferred, PaymentMethod.valueOf(this.paymentType));
+      newPaymentMethod = this.paymentService.addNewPaymentForCustomer(this.userbean.getCustomer(), cardNumber, cardCVV, expiryMonth+expiryYear, this.isPreferred, PaymentMethod.valueOf(this.paymentType));
       List<Paymentmethod> updatedPaymentMethodList = this.paymentService.getPaymentMethodsForCustomer(this.userbean.getCustomer());
       updatedPaymentMethodList.forEach(pm -> System.out.println(pm.getCardNumber()));
-      if (newPaymentMethod != null) {
-        this.userbean.getCustomer().setPaymentmethodList(updatedPaymentMethodList);
-        this.userbean.setCurrentPaymentMethod(newPaymentMethod);
-      }
+      this.userbean.getCustomer().setPaymentmethodList(updatedPaymentMethodList);
+      this.userbean.setCurrentPaymentMethod(newPaymentMethod);
     }
     return "checkout.xhtml";
   }
 
+  public void changePaymentMethod() {
+    Paymentmethod paymentMethod = this.paymentService.getPaymentMethodById(selectedPaymentMethodId);
+    this.userbean.setCurrentPaymentMethod(paymentMethod);
+    init();
+  }
+  
   @Override
   public void setPaymentService(IPaymentMethodService paymentService) {
     this.paymentService = paymentService;

@@ -36,7 +36,6 @@ public abstract class DAOFacade<T> implements IDAOFacade<T> {
       success = true;
     } catch (Exception e) {
       System.out.println("Failed to create instance in function " + this.getClass().getName());
-      e.printStackTrace();
     }
     return success;
   }

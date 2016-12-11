@@ -23,4 +23,6 @@ public interface IPaymentMethodService {
   public void updateAllCustomerPreferredMethod(Customer customer, boolean b);
   public List<Paymentmethod> getPaymentMethodsForCustomer(Customer customer);
   public Paymentmethod getPaymentMethodByCardNumber(String cardNumber);
+  public Paymentmethod getPaymentMethodById(String selectedPaymentMethodId);
+  public Paymentmethod updatePaymentWithValues(Paymentmethod newPaymentMethod, String cardCVV, String expiryDate, boolean preferred, PaymentMethod paymentMethod);
 }

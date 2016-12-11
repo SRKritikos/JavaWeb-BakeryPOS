@@ -30,7 +30,7 @@ public interface IPaymentMethodBean {
   public void setPaymentType(String paymentType);
   public boolean isIsPrefered();
   public void setIsPrefered(boolean isPrefered);
-  public Paymentmethod getSelectedPaymentMethod();
-  public void setSelectedPaymentMethod(Paymentmethod selectedPaymentMethod);
+  public String getSelectedPaymentMethodId();
+  public void setSelectedPaymentMethodId(String selectedPaymentMethodId);
   public void init();
 }

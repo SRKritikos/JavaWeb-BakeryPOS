@@ -87,6 +87,25 @@ public class PaymentMethodService implements IPaymentMethodService{
     Paymentmethod rtVl = this.paymentDAO.getPaymentMethodByCardNumber(cardNumber);
     return rtVl;
   }
-  
-  
+
+  @Override
+  public Paymentmethod getPaymentMethodById(String selectedPaymentMethodId) {
+    Paymentmethod rtVl = this.paymentDAO.find(selectedPaymentMethodId);
+    return rtVl;
+  }
+
+  @Override
+  public Paymentmethod updatePaymentWithValues(Paymentmethod newPaymentMethod, String cardCVV, String expiryDate, boolean preferred, PaymentMethod paymentMethod) {
+    Paymentmethod rtVl = newPaymentMethod;
+    rtVl.setCardCvv(cardCVV);
+    rtVl.setCardNumber(cardCVV);
+    rtVl.setDateTo(this.getExpiryDate(expiryDate));
+    rtVl.setIsPreferred(preferred);
+    rtVl.setPaymentType(paymentMethod.name());
+    boolean success = this.paymentDAO.edit(rtVl);
+    if (!success) {
+      rtVl = newPaymentMethod;
+    }
+    return rtVl;
+  }
 }

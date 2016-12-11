@@ -20,22 +20,22 @@ and open the template in the editor.
           <li><a class="disabledBtn" data-toggle="tab" href="#confirm">Confirm Order</a></li>
         </ul>
         <div class="tab-content">
-          <div id="billingInfo" class="tab-pane fade in active">
+          <h:panelGroup id="billingInfo" class="tab-pane fade in active">
             <h:form class="form-horizontal">
               <div id="form-group">
                 <div class="filler col-md-2"></div>
                 <label class="col-md-2">Card ending in: </label>
                 <div class="col-md-2">
-                  <h:selectOneMenu class="form-control">
+                  <h:selectOneMenu class="form-control" value="#{paymentmethod.selectedPaymentMethodId}">
                     <f:selectItems value="#{user.customer.paymentmethodList}"
                               var="paymentMethod"
                               itemLabel="#{paymentMethod.cardNumber.substring(paymentMethod.cardNumber.length() -4)}"
                               itemValue="#{paymentMethod.paymentMethodId}"/>
+                    <f:ajax listener="#{paymentmethod.changePaymentMethod()}" render="billingInfo"/>
                   </h:selectOneMenu>
                 </div>
               </div>
             </h:form>
-            <div>
               <h:form class="form-horizontal">
                 <div class="form-group">
                   <div class="filler col-md-2"></div>
@@ -91,14 +91,13 @@ and open the template in the editor.
                 </div>
                 <div class="form-group">
                   <div class="filler col-md-2"></div>
-                  <h:commandButton class="btn btn-default" action="#{paymentmethod.addPaymentMethod()}" value="Add New Payment Method"/>
+                  <h:commandButton class="btn btn-default" action="#{paymentmethod.addPaymentMethod()}" value="Update/Add PaymentMethod"/>
                   <button id="toConfirmBtn" class="btn btn-default #{checkout.canCheckoutClass}" type="button" data-toggle="tab" href="#confirm">Continue</button>
                 </div>
               </h:form>
-            </div>
+          </h:panelGroup>
           </div>
         </div>
-      </div>
     </ui:define>
   </ui:composition>
 </html>
