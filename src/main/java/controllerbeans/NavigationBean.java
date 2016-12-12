@@ -28,7 +28,6 @@ public class NavigationBean implements INavigationBean {
 
   @Override
   public String goToCheckout() {
-    System.out.println("NOW GOING TO CHECKOUT");
     return "checkout.xhtml";
   }
   
