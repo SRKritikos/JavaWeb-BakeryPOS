@@ -5,6 +5,7 @@
  */
 package controllerbeans;
 
+import data.entities.Cateringorder;
 import java.util.List;
 import model.CheckoutProduct;
 

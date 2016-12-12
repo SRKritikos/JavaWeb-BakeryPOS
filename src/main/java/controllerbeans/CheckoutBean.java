@@ -102,17 +102,13 @@ public class CheckoutBean implements ICheckoutBean {
     this.orderservice = orderservice;
   }
   
-  
-  
   private void buildCheckoutProductList(Cateringorder order) {
     this.checkoutProductList = new ArrayList<>();
     order.getCateringorderProductList().stream()
             .map(cop -> cop.getProduct())
             .forEach(product -> {
               this.checkoutProductList.addAll(order.getCateringorderProductList().stream()
-                      .filter(cop -> cop
-                              .getProduct()
-                              .equals(product))
+                      .filter(cop -> cop.getProduct().equals(product))
                       .map(filteredCop -> new CheckoutProduct(filteredCop.getProduct().getProductName(),
                               filteredCop.getQuantity(),
                               filteredCop.getProduct().getPrice().doubleValue() * filteredCop.getQuantity()))

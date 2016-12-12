@@ -35,7 +35,7 @@ and open the template in the editor.
               <f:selectItems value="#{catering.userOrders}" var="order"
                              itemLabel="#{order.cateringId.substring(0, 5)}"
                              itemValue="#{order.cateringId}"/>
-              <f:ajax listener="#{catering.changeOrder()}" render="cateringOrderDisplay"/>
+              <f:ajax onevent="orderUpdate" listener="#{catering.changeOrder()}" render=":cateringOrderDisplay :order-wrapper"/>
             </h:selectOneMenu>  
           </div>
         </h:form>

@@ -65,10 +65,8 @@ public class CateringBean implements ICateringBean {
 
   @Override
   public void changeOrder() {
-    System.out.println(this.currentOrderId);
     Cateringorder order = this.orderservice.getCateringOrderById(currentOrderId);
     this.user.updateCustomerOrder(order);
-//        return "catering.xhtml";
   }
 
   @Override

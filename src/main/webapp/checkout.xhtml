@@ -55,38 +55,51 @@ and open the template in the editor.
                 <div class="filler col-md-2"></div>
                 <label class="col-md-1">Payment Type: </label>
                 <div class="col-md-4">
-                  <h:selectOneRadio value="#{paymentmethod.paymentType}">
+                  <h:selectOneRadio id="selectPaymentType" required="true" value="#{paymentmethod.paymentType}" requiredMessage="Please choose payment type">
                     <f:selectItem itemValue="Visa" itemLabel="VISA"/>
                     <f:selectItem itemValue="AmericanExpress" itemLabel="American Express"/>
                     <f:selectItem itemValue="MasterCard" itemLabel="Master Card"/>
                     <f:selectItem itemValue="PayPal" itemLabel="PayPal"/>
                   </h:selectOneRadio>
+                  <h:message for="selectedPaymentType" style="color:red"/>
                 </div>
               </div>
               <div class="form-group">
                 <div class="filler col-md-2"></div>
                 <label class="col-md-1">Card Number: </label>
                 <div class="col-md-3">
-                  <h:inputText class="form-control" value="#{paymentmethod.cardNumber}"/>
+                  <h:inputText id="cardNumberInput" class="form-control" value="#{paymentmethod.cardNumber}" required="true" validatorMessage="Please enter valid credit card number">
+                    <f:validateLength minimum="8" maximum="12" />
+                  </h:inputText>
+                  <h:message for="cardNumberInput"/>
                 </div>
               </div>
               <div class="form-group">
                 <div class="filler col-md-2"></div>
                 <label class="col-md-1">Expiration Month: </label>
                 <div class="col-md-1">
-                  <h:inputText class="form-control" value="#{paymentmethod.expiryMonth}"/>
+                  <h:inputText id="expiryMonthInput" class="form-control" value="#{paymentmethod.expiryMonth}" required="true" validatorMessage="Please enter two digit month">
+                    <f:validateLength minimum="2" maximum="2" />
+                  </h:inputText>
+                  <h:message for="expiryMonthInput" />
                 </div>
                 <div class="filler col-md-1"></div>
                 <label class="col-md-1">Expiration Year: </label>
                 <div class="col-md-1">
-                  <h:inputText class="form-control" value="#{paymentmethod.expiryYear}"/>
+                  <h:inputText id="expiryYearInput" class="form-control" value="#{paymentmethod.expiryYear}" required="true" validatorMessage="Please enter two digit year">
+                    <f:validateLength minimum="2" maximum="2"/>
+                  </h:inputText>
+                  <h:message for="expiryYearInput"/>
                 </div>
               </div>
               <div class="form-group">
                 <div class="filler col-md-2"></div>
                 <label class="col-md-1">CVV: </label>
                 <div class="col-md-1">
-                  <h:inputText class="form-control" value="#{paymentmethod.cardCVV}"/>
+                  <h:inputText id="cardCVVInput" class="form-control" value="#{paymentmethod.cardCVV}" required="true" validatorMessage="Please enter valid CVV number">
+                    <f:validateLength maximum="3" minimum="3"/>
+                  </h:inputText>
+                  <h:message for="cardCVVInput"/>
                 </div>
               </div>
               <div class="form-group">
