@@ -15,4 +15,15 @@ $(document).ready(function () {
     $("#reviewform\\:modalProductId").val(id);
     $("#write-review-modal").modal('show');
   });
+  var $div = $("<div></div>").addClass("row");
+  $(".main-wrapper").append($div);
+  $(".product").each(function(i, el){
+    if (i % 3 === 0) {
+      $div = $("<div></div>").addClass("row");
+      $(".main-wrapper").append($div);
+    }
+    $div.append($(this));
+    
+  });
+  
 });

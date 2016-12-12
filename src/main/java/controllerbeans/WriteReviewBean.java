@@ -67,7 +67,6 @@ public class WriteReviewBean implements IWriteReviewBean {
 
   @Override
   public String submitReview() {
-    System.out.println(this.numStars + this.reviewText + "   $$$ " + this.productId);
     Product product = this.productservice.getProductById(productId);
     this.reviewservice.saveProductReview(product, this.user.getCustomer(), reviewText, numStars);
     return "home.xhtml";

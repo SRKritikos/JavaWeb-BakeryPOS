@@ -25,7 +25,6 @@ function showHideBtnHandler() {
     console.log(btnVal);
     $(this).val(btnVal);
     $(this).html(html);
-    console.log($(this).parent("div").siblings(".products-wrapper"));
     //WTB .grandParent();
     $(this).parent("div").parent("div").next(".products-wrapper").css({"display": btnVal});
   });
@@ -42,7 +41,6 @@ function makeCheckoutBtnDisabled() {
 }
 
 function orderUpdate(data) {
-  console.log(data);
   if (data.status === "success") {
     makeCheckoutBtnDisabled();
     showHideBtnHandler();
